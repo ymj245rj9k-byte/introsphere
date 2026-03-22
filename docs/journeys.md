@@ -16,10 +16,10 @@
 
 ---
 
-## 1. Wewnętrzne Dziecko
+## 1. Wewnętrzne Dziecko (Inner Child)
 
-**Podtytuł:** Tydzień łagodnego powrotu do siebie — nie po to, żeby naprawić, ale żeby usłyszeć.  
-**Ton:** ciepły, współczujący.
+**Podtytuł / Subtitle:** A week of gentle return to yourself — not to fix, but to hear.
+**Ton / Tone:** ciepły, współczujący (warm, compassionate).
 
 ### Dzień 1 — Poniedziałek
 What did you need most as a child but didn't receive? Is this something you're still seeking in your adult life?
@@ -44,10 +44,10 @@ Write a letter to your inner child. You don't need to have answers — just let 
 
 ---
 
-## 2. Granice
+## 2. Granice (Boundaries)
 
-**Podtytuł:** Tydzień z pytaniem: gdzie kończę się ja, a zaczyna ktoś inny?  
-**Ton:** shadow work, bez oceniania.
+**Podtytuł / Subtitle:** A week with the question: where do I end and someone else begins?
+**Ton / Tone:** shadow work, bez oceniania (non-judgmental).
 
 ### Dzień 1 — Poniedziałek
 In what situation recently did you say 'yes' when your whole body was saying 'no'? What stopped you?
@@ -72,10 +72,10 @@ One boundary you want to start respecting for yourself — not towards others, b
 
 ---
 
-## 3. Energia
+## 3. Energia (Energy)
 
-**Podtytuł:** Tydzień świadomego audytu życia — co mnie napędza, a co po cichu wyczerpuje.  
-**Ton:** praktyczny i odkrywczy.
+**Podtytuł / Subtitle:** A week of conscious life audit — what fuels me and what quietly drains me.
+**Ton / Tone:** praktyczny i odkrywczy (practical & exploratory).
 
 ### Dzień 1 — Poniedziałek
 Think about the last week — when did you feel most alive and light? What was happening, who were you with, what were you doing?
@@ -100,10 +100,10 @@ If you could reclaim 30% of your energy tomorrow — with one small change — w
 
 ---
 
-## 4. Wdzięczność
+## 4. Wdzięczność (Gratitude)
 
-**Podtytuł:** Tydzień wdzięczności, która nie jest tylko pozytywnym myśleniem — ale prawdziwym zobaczeniem swojego życia.  
-**Ton:** ciepły, uważny.
+**Podtytuł / Subtitle:** A week of gratitude that isn't just positive thinking — but truly seeing your life.
+**Ton / Tone:** ciepły, uważny (warm, mindful).
 
 ### Dzień 1 — Poniedziałek
 What are you grateful for but rarely think about — something so obvious it's become invisible?
@@ -128,10 +128,10 @@ Write to yourself from a future you don't yet have — and thank the present for
 
 ---
 
-## 5. Decyzje
+## 5. Decyzje (Decisions)
 
-**Podtekst:** Tydzień dla głów, które analizują zamiast czuć. Pytania pomagają skrócić drogę między myślą a działaniem.  
-**Ton:** praktyczny, trochę prowokujący.
+**Podtekst / Subtitle:** A week for heads that analyze instead of feel. Questions help shorten the path between thought and action.
+**Ton / Tone:** praktyczny, trochę prowokujący (practical, a bit provocative).
 
 ### Dzień 1 — Poniedziałek
 What decision have you been putting off for over a month? Write it down. Now ask: what are you really afraid of if you make it?
@@ -156,10 +156,10 @@ There's no perfect decision — there's only your decision and what you do with 
 
 ---
 
-## 6. Relacje
+## 6. Relacje (Relationships)
 
-**Podtekst:** Tydzień z pytaniem: jak naprawdę jestem z ludźmi — i czego o sobie przez nich się uczę.  
-**Ton:** refleksyjny, shadow work.
+**Podtekst / Subtitle:** A week with the question: how am I really with people — and what do I learn about myself through them?
+**Ton / Tone:** refleksyjny, shadow work (reflective).
 
 ### Dzień 1 — Poniedziałek
 In which relationship in your life do you feel most like yourself? What does this relationship have that others lack?
@@ -184,52 +184,6 @@ What is one thing you can do this week to make one important relationship a litt
 
 ---
 
-## Pytania do Koła Emocji (Jednorazowa Sesja)
-
-Oprócz Journeys, użytkownik może wybrać nastrój i otrzymać pojedyncze pytanie. Oparte na kole emocji Plutchika:
-
-### JOY (Radość)
-1. What specifically is making you feel this joy right now — and what does it tell you about what you truly value?
-2. How fully are you letting yourself receive this feeling, or are you already waiting for it to pass?
-3. Who in your life deserves to hear about this moment, and what's stopping you from sharing it with them?
-
-### TRUST (Zaufanie)
-1. What is it about this person or situation that makes you feel safe enough to trust? What does that reflect about your needs?
-2. Have you ever withheld trust from someone or something that deserved it — what was the fear underneath that?
-3. How does it feel in your body when you fully trust? Can you let yourself rest in that right now?
-
-### FEAR (Strach)
-1. What is this fear actually trying to protect you from — and is that threat real right now, or is it a memory or story?
-2. When did you first learn to be afraid of this? Whose voice does this fear sound like?
-3. If you knew you were completely safe, what would you do differently today?
-
-### SURPRISE (Zaskoczenie)
-1. What expectation or assumption got disrupted here — and is it possible the disruption was for your growth?
-2. What does your reaction to this surprise reveal about what you were holding onto?
-3. If this unexpected thing turned out to be exactly what you needed, how might you see it differently?
-
-### SADNESS (Smutek)
-1. What or who are you grieving right now — and have you allowed yourself to fully feel that loss without rushing to fix it?
-2. What does this sadness need from you? Not to solve it — just to be witnessed.
-3. Is there something beautiful about what you're sad over — something worth honoring before you let it go?
-
-### DISGUST (Wstręt)
-1. What value or boundary is being violated that's causing this feeling of disgust? What does that tell you about what matters to you?
-2. Is there any part of what repels you that you also recognize — even faintly — in yourself?
-3. What would it look like to address what disgusts you from a place of values rather than judgment?
-
-### ANGER (Złość)
-1. What boundary, need, or value feels like it's been crossed right now? Underneath the anger — what's the hurt?
-2. Is this anger familiar? Does it remind you of a feeling from earlier in your life you never fully expressed?
-3. What would you need in order to feel truly heard in this situation — and who is the right person to express it to?
-
-### ANTICIPATION (Oczekiwanie)
-1. What are you most looking forward to, and what does that desire reveal about who you're becoming?
-2. Is your anticipation rooted in hope, or in anxiety about the future? How can you tell the difference right now?
-3. What can you do today — just one small thing — that honors the future you're moving toward?
-
----
-
 ## Struktura Pytań (Dla Developera)
 
 ```javascript
@@ -239,8 +193,9 @@ const journeys = {
     title: "Wewnętrzne Dziecko",
     titleEn: "Inner Child",
     subtitle: "Tydzień łagodnego powrotu do siebie — nie po to, żeby naprawić, ale żeby usłyszeć.",
-    subtitleEn: "A week of gentle return to yourself",
+    subtitleEn: "A week of gentle return to yourself — not to fix, but to hear.",
     tone: "ciepły, współczujący",
+    toneEn: "warm, compassionate",
     days: [
       { day: 1, dayName: "Poniedziałek", question: "What did you need most as a child but didn't receive? Is this something you're still seeking in your adult life?" },
       { day: 2, dayName: "Wtorek", question: "What phrase — said to you in childhood — do you still hear in your head when something goes wrong?" },
@@ -258,6 +213,7 @@ const journeys = {
     subtitle: "Tydzień z pytaniem: gdzie kończę się ja, a zaczyna ktoś inny?",
     subtitleEn: "A week with the question: where do I end and someone else begins?",
     tone: "shadow work, bez oceniania",
+    toneEn: "non-judgmental",
     days: [
       { day: 1, dayName: "Poniedziałek", question: "In what situation recently did you say 'yes' when your whole body was saying 'no'? What stopped you?" },
       { day: 2, dayName: "Wtorek", question: "Who in your life regularly crosses your boundaries — and does this person know? Do you tell them yourself?" },
@@ -275,6 +231,7 @@ const journeys = {
     subtitle: "Tydzień świadomego audytu życia — co mnie napędza, a co po cichu wyczerpuje.",
     subtitleEn: "A week of conscious life audit — what fuels me and what quietly drains me.",
     tone: "praktyczny i odkrywczy",
+    toneEn: "practical & exploratory",
     days: [
       { day: 1, dayName: "Poniedziałek", question: "Think about the last week — when did you feel most alive and light? What was happening, who were you with, what were you doing?" },
       { day: 2, dayName: "Wtorek", question: "What do you regularly do that leaves you empty — obligation, relationship, habit, environment? Should you change it or accept it?" },
@@ -292,6 +249,7 @@ const journeys = {
     subtitle: "Tydzień wdzięczności, która nie jest tylko pozytywnym myśleniem — ale prawdziwym zobaczeniem swojego życia.",
     subtitleEn: "A week of gratitude that isn't just positive thinking — but truly seeing your life.",
     tone: "ciepły, uważny",
+    toneEn: "warm, mindful",
     days: [
       { day: 1, dayName: "Poniedziałek", question: "What are you grateful for but rarely think about — something so obvious it's become invisible?" },
       { day: 2, dayName: "Wtorek", question: "Think about a difficult situation from your past. Is there anything — even one thing — you're grateful you went through?" },
@@ -309,6 +267,7 @@ const journeys = {
     subtitle: "Tydzień dla głów, które analizują zamiast czuć. Pytania pomagają skrócić drogę między myślą a działaniem.",
     subtitleEn: "A week for heads that analyze instead of feel. Questions help shorten the path between thought and action.",
     tone: "praktyczny, trochę prowokujący",
+    toneEn: "practical, a bit provocative",
     days: [
       { day: 1, dayName: "Poniedziałek", question: "What decision have you been putting off for over a month? Write it down. Now ask: what are you really afraid of if you make it?" },
       { day: 2, dayName: "Wtorek", question: "If you could trust only your body — without analyzing — what does it say about this decision? Yes or no?" },
@@ -326,6 +285,7 @@ const journeys = {
     subtitle: "Tydzień z pytaniem: jak naprawdę jestem z ludźmi — i czego o sobie przez nich się uczę.",
     subtitleEn: "A week with the question: how am I really with people — and what do I learn about myself through them?",
     tone: "refleksyjny, shadow work",
+    toneEn: "reflective",
     days: [
       { day: 1, dayName: "Poniedziałek", question: "In which relationship in your life do you feel most like yourself? What does this relationship have that others lack?" },
       { day: 2, dayName: "Wtorek", question: "What pattern repeats in your relationships — something that appears with different people, at different life moments? What does it say about you?" },
@@ -338,146 +298,6 @@ const journeys = {
   }
 };
 
-// Jednorazowe pytania do Koła Emocji (Plutchik)
-const emotionQuestions = {
-  "joy": {
-    id: "joy",
-    name: "Radość",
-    nameEn: "Joy",
-    spectrum: "primary",
-    parent: null,
-    questions: [
-      "What specifically is making you feel this joy right now — and what does it tell you about what you truly value?",
-      "How fully are you letting yourself receive this feeling, or are you already waiting for it to pass?",
-      "Who in your life deserves to hear about this moment, and what's stopping you from sharing it with them?"
-    ]
-  },
-  "trust": {
-    id: "trust",
-    name: "Zaufanie",
-    nameEn: "Trust",
-    spectrum: "primary",
-    parent: null,
-    questions: [
-      "What is it about this person or situation that makes you feel safe enough to trust? What does that reflect about your needs?",
-      "Have you ever withheld trust from someone or something that deserved it — what was the fear underneath that?",
-      "How does it feel in your body when you fully trust? Can you let yourself rest in that right now?"
-    ]
-  },
-  "fear": {
-    id: "fear",
-    name: "Strach",
-    nameEn: "Fear",
-    spectrum: "primary",
-    parent: null,
-    questions: [
-      "What is this fear actually trying to protect you from — and is that threat real right now, or is it a memory or story?",
-      "When did you first learn to be afraid of this? Whose voice does this fear sound like?",
-      "If you knew you were completely safe, what would you do differently today?"
-    ]
-  },
-  "surprise": {
-    id: "surprise",
-    name: "Zaskoczenie",
-    nameEn: "Surprise",
-    spectrum: "primary",
-    parent: null,
-    questions: [
-      "What expectation or assumption got disrupted here — and is it possible the disruption was for your growth?",
-      "What does your reaction to this surprise reveal about what you were holding onto?",
-      "If this unexpected thing turned out to be exactly what you needed, how might you see it differently?"
-    ]
-  },
-  "sadness": {
-    id: "sadness",
-    name: "Smutek",
-    nameEn: "Sadness",
-    spectrum: "primary",
-    parent: null,
-    questions: [
-      "What or who are you grieving right now — and have you allowed yourself to fully feel that loss without rushing to fix it?",
-      "What does this sadness need from you? Not to solve it — just to be witnessed.",
-      "Is there something beautiful about what you're sad over — something worth honoring before you let it go?"
-    ]
-  },
-  "disgust": {
-    id: "disgust",
-    name: "Wstręt",
-    nameEn: "Disgust",
-    spectrum: "primary",
-    parent: null,
-    questions: [
-      "What value or boundary is being violated that's causing this feeling of disgust? What does that tell you about what matters to you?",
-      "Is there any part of what repels you that you also recognize — even faintly — in yourself?",
-      "What would it look like to address what disgusts you from a place of values rather than judgment?"
-    ]
-  },
-  "anger": {
-    id: "anger",
-    name: "Złość",
-    nameEn: "Anger",
-    spectrum: "primary",
-    parent: null,
-    questions: [
-      "What boundary, need, or value feels like it's been crossed right now? Underneath the anger — what's the hurt?",
-      "Is this anger familiar? Does it remind you of a feeling from earlier in your life you never fully expressed?",
-      "What would you need in order to feel truly heard in this situation — and who is the right person to express it to?"
-    ]
-  },
-  "anticipation": {
-    id: "anticipation",
-    name: "Oczekiwanie",
-    nameEn: "Anticipation",
-    spectrum: "primary",
-    parent: null,
-    questions: [
-      "What are you most looking forward to, and what does that desire reveal about who you're becoming?",
-      "Is your anticipation rooted in hope, or in anxiety about the future? How can you tell the difference right now?",
-      "What can you do today — just one small thing — that honors the future you're moving toward?"
-    ]
-  }
-};
-
-// Podspektra emocji (rozszerzenie)
-const emotionSubSpectra = {
-  // JOY subspectra
-  "serenity": { id: "serenity", name: "Spokój", nameEn: "Serenity", parent: "joy", spectrum: "subspectrum" },
-  "ecstasy": { id: "ecstasy", name: "Ekstaza", nameEn: "Ecstasy", parent: "joy", spectrum: "subspectrum" },
-  "love": { id: "love", name: "Miłość", nameEn: "Love", parent: "joy", spectrum: "subspectrum" },
-  
-  // TRUST subspectra
-  "acceptance": { id: "acceptance", name: "Akceptacja", nameEn: "Acceptance", parent: "trust", spectrum: "subspectrum" },
-  "submission": { id: "submission", name: "Podporządkowanie", nameEn: "Submission", parent: "trust", spectrum: "subspectrum" },
-  
-  // FEAR subspectra
-  "apprehension": { id: "apprehension", name: "Niepokój", nameEn: "Apprehension", parent: "fear", spectrum: "subspectrum" },
-  "terror": { id: "terror", name: "Terror", nameEn: "Terror", parent: "fear", spectrum: "subspectrum" },
-  "awe": { id: "awe", name: "Podziw", nameEn: "Awe", parent: "fear", spectrum: "subspectrum" },
-  
-  // SURPRISE subspectra
-  "distraction": { id: "distraction", name: "Rozproszenie", nameEn: "Distraction", parent: "surprise", spectrum: "subspectrum" },
-  "amazement": { id: "amazement", name: "Zadziwienie", nameEn: "Amazement", parent: "surprise", spectrum: "subspectrum" },
-  
-  // SADNESS subspectra
-  "pensiveness": { id: "pensiveness", name: "Zaduma", nameEn: "Pensiveness", parent: "sadness", spectrum: "subspectrum" },
-  "grief": { id: "grief", name: "Żałoba", nameEn: "Grief", parent: "sadness", spectrum: "subspectrum" },
-  "remorse": { id: "remorse", name: "Skrucha", nameEn: "Remorse", parent: "sadness", spectrum: "subspectrum" },
-  
-  // DISGUST subspectra
-  "boredom": { id: "boredom", name: "Nuda", nameEn: "Boredom", parent: "disgust", spectrum: "subspectrum" },
-  "loathing": { id: "loathing", name: "Obrzydzenie", nameEn: "Loathing", parent: "disgust", spectrum: "subspectrum" },
-  "contempt": { id: "contempt", name: "Pogarda", nameEn: "Contempt", parent: "disgust", spectrum: "subspectrum" },
-  
-  // ANGER subspectra
-  "annoyance": { id: "annoyance", name: "Drażliwość", nameEn: "Annoyance", parent: "anger", spectrum: "subspectrum" },
-  "rage": { id: "rage", name: "Wściekłość", nameEn: "Rage", parent: "anger", spectrum: "subspectrum" },
-  "aggressiveness": { id: "aggressiveness", name: "Agresywność", nameEn: "Aggressiveness", parent: "anger", spectrum: "subspectrum" },
-  
-  // ANTICIPATION subspectra
-  "interest": { id: "interest", name: "Zainteresowanie", nameEn: "Interest", parent: "anticipation", spectrum: "subspectrum" },
-  "vigilance": { id: "vigilance", name: "Czujność", nameEn: "Vigilance", parent: "anticipation", spectrum: "subspectrum" },
-  "optimism": { id: "optimism", name: "Optymizm", nameEn: "Optimism", parent: "anticipation", spectrum: "subspectrum" }
-};
 ```
 
 ---
