@@ -40,7 +40,7 @@ Introsphere to guided journaling app, która prowadzi cię przez pytania dopasow
 
 | Funkcja | Opis |
 |---------|------|
-| **Koło Emocji** | 6 podstawowych → 24 warianty. Nie musisz umieć nazywać – wystarczy dotknąć. |
+| **Koło Emocji** | 8 podstawowych → 24 warianty. Nie musisz umieć nazywać – wystarczy dotknąć. |
 | **Guided Journeys** | 7-dniowe programy: Wewnętrzne Dziecko, Granice, Energia, Wdzięczność, Decyzje, Relacje |
 | **Kalendarz Nastrojów** | Widzisz wzorce: co się zmienia? Kiedy jest ciężej? |
 | **Atmosfery** | Opcjonalne: Clean Girl, Cottagecore, Dark Academia, Soft Girl, Futuristic Femme |

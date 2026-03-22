@@ -104,7 +104,7 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 
 | Technologia | Uzasadnienie |
 |-------------|--------------|
-| **React + Vite** | Szybki start, popularny, jeden kod web/mobile |
+| **React + Vite** | Szybki start, popularny, web/PWA |
 | **Firebase Auth** | User authentication |
 | **Firebase Firestore** | Cloud storage (free tier: 50k/day) |
 | **Hive/Isar** | Lokalna baza (offline-first) |
@@ -114,7 +114,7 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 
 | Opcja | Kiedy wybrać |
 |-------|--------------|
-| React Native | Jeśli znasz JS |
+| React Native | Tylko jeśli chcesz mobile app |
 | Supabase | Jeśli wolisz SQL |
 | No-code (FlutterFlow) | Jeśli nie chcesz kodować |
 
@@ -125,7 +125,7 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 ### Red Flags
 
 1. **Scope creep** – "Dodam jeszcze jedną funkcję" = projekt nigdy się nie skończy
-   - *Mitigation:* Trzymaj się 25h limitu
+   - *Mitigation:* Trzymaj się 15h limitu
 
 2. **App Store rejection** – Apple może odrzucić
    - *Mitigation:* Zapoznij się z guidelines przed submit
@@ -151,14 +151,14 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 
 **WERDYKT: ✅ WYKONALNE**
 
-- Czas: 25h (~2-3 tygodnie part-time)
+- Czas: 15h (~2-3 tygodnie part-time)
 - Budżet: ~500 PLN
 - Zespół: 1 osoba
-- Tech: Flutter + Firebase
+- Tech: React + Tailwind + Shadcn + Firebase
 
 ### Warunki sukcesu:
 
-1. **Trzymaj się limitu czasu** – 25h to maximum
+1. **Trzymaj się limitu czasu** – 15h to maximum
 2. **Content first** – pytania muszą być gotowe PRZED codingiem
 3. **Minimal UI** – nie rozbudowuj designu
 4. **Launch fast** – wersja 1.0 może być prosta
@@ -169,19 +169,19 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 
 | Kryterium | Wartość |
 |-----------|---------|
-| Czas na MVP | 25h |
+| Czas na MVP | 15h |
 | Budżet Year 1 | ~500 PLN |
 | Developerzy | 1 |
-| Tech stack | Flutter + Firebase |
+| Tech stack | React + Firebase |
 | Pytania do stworzenia | ~140 |
-| Platformy | iOS + Android |
+| Platformy | Web / PWA |
 
 ---
 
 ## Następny Krok
 
 1. Stwórz pytania (10-15h)
-2. Setup Flutter (2h)
+2. Setup React (2h)
 3. Implementacja core features (15h)
 4. Test + submit (5h)
 5. Launch! 🚀

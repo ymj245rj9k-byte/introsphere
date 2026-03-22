@@ -54,7 +54,7 @@
 
 **[CORE – bez tego nie ma aplikacji]**
 
-- [ ] Wybór ogólnej emocji (6 podstawowych z modelu Plutchika):
+- [ ] Wybór ogólnej emocji (8 podstawowych z modelu Plutchika):
   - 😊 Radość (Joy)
   - 😢 Smutek (Sadness)
   - 😠 Złość (Anger)

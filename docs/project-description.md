@@ -60,11 +60,11 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 
 #### 1. Guided Journeys (7 dni)
 - Zamiast losowych pytań – **spójny program na 7 dni**
-- Przykład: "Journey: Relacje z Rodzicami" → dzień 1: pytanie o dzieciństwo, dzień 7: pytanie o granice
+- Przykład: "Journey: Relacje" → dzień 1: pytanie o dzieciństwo, dzień 7: pytanie o granice
 - Buduje nawyk, nie pojedynczą sesję
 
 #### 2. Koło Emocji z Precyzacją
-- 6 podstawowych emocji (Plutchik) → rozwinięcie w 24 warianty
+- 8 podstawowych emocji (Plutchik) → rozwinięcie w 24 warianty
 - Smutek → tęsknota, samotność, żal, rozczarowanie...
 - Nie musisz umieć nazywać – wystarczy dotknąć
 
