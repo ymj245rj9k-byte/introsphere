@@ -78,15 +78,15 @@ Introsphere to guided journaling app, która prowadzi cię przez pytania dopasow
 
 ## Dokumentacja
 
-- [Project Description](./project-description.md) – pełny opis projektu
-- [ICP Persona](./icp-persona.md) – profil idealnego użytkownika
-- [MVP Scoping](./mvp-scoping.md) – zakres MVP
-- [Journeys](./journeys.md) – 6 gotowych programów
-- [Questions](./questions.md) – baza pytań do emocji
-- [Job To Be Done](./job-to-be-done.md) – definicja problemów użytkownika
-- [Resource Analysis](./resource-analysis.md) – czas, budżet, zasoby
-- [Monetization & GTM](./monetization-and-gtm.md) – strategia przychodów i dotarcia
-- [Competitor Audit](./competitor-audit.md) – analiza konkurencji
+- [Project Description](./docs/project-description.md) – pełny opis projektu
+- [ICP Persona](./docs/icp-persona.md) – profil idealnego użytkownika
+- [MVP Scoping](./docs/mvp-scoping.md) – zakres MVP
+- [Journeys](./docs/journeys.md) – 6 gotowych programów
+- [Questions](./docs/questions.md) – baza pytań do emocji
+- [Job To Be Done](./docs/job-to-be-done.md) – definicja problemów użytkownika
+- [Resource Analysis](./docs/resource-analysis.md) – czas, budżet, zasoby
+- [Monetization & GTM](./docs/monetization-and-gtm.md) – strategia przychodów i dotarcia
+- [Competitor Audit](./docs/competitor-audit.md) – analiza konkurencji
 
 ---
 
