@@ -147,8 +147,8 @@ Forms:
 - Zod (validation)
 
 Backend:
-- Firebase (Auth + Firestore)
-- Alternatywa: Supabase
+- Supabase (Auth + PostgreSQL)
+- Alternatywa: Firebase
 ```
 
 ### 3.2 Struktura Komponentów

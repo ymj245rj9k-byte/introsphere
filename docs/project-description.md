@@ -101,7 +101,7 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 ## Technologie (MVP)
 
 - **Frontend:** React + Tailwind CSS + Shadcn
-- **Backend:** Firebase lub Supabase
+- **Backend:** Supabase (PostgreSQL)
 - **Hosting:** Vercel (darmowe dla hobby)
 - **Limit:** 15 godzin pracy
 

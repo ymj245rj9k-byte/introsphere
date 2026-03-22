@@ -88,7 +88,7 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 
 | Rola | Potrzebna? | Alternatywa |
 |------|------------|-------------|
-| Backend Developer | ❌ | Firebase (BaaS) |
+| Backend Developer | ❌ | Supabase (BaaS) |
 | Designer | ❌ | Tailwind + templates |
 | Copywriter | ❌ | Własne pytania + AI |
 | Marketing | ❌ | Organic TikTok |
@@ -105,8 +105,8 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 | Technologia | Uzasadnienie |
 |-------------|--------------|
 | **React + Vite** | Szybki start, popularny, web/PWA |
-| **Firebase Auth** | User authentication |
-| **Firebase Firestore** | Cloud storage (free tier: 50k/day) |
+| **Supabase Auth** | User authentication |
+| **Supabase PostgreSQL** | Cloud database (free tier: 500MB) |
 | **Hive/Isar** | Lokalna baza (offline-first) |
 | **Riverpod** | State management |
 
@@ -154,7 +154,7 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 - Czas: 15h (~2-3 tygodnie part-time)
 - Budżet: ~500 PLN
 - Zespół: 1 osoba
-- Tech: React + Tailwind + Shadcn + Firebase
+- Tech: React + Tailwind + Shadcn + Supabase
 
 ### Warunki sukcesu:
 
@@ -172,7 +172,7 @@ To jest minimalny możliwy budżet. Możesz zacząć za darmo (tylko Apple Devel
 | Czas na MVP | 15h |
 | Budżet Year 1 | ~500 PLN |
 | Developerzy | 1 |
-| Tech stack | React + Firebase |
+| Tech stack | React + Supabase |
 | Pytania do stworzenia | ~140 |
 | Platformy | Web / PWA |
 

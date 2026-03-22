@@ -1,12 +1,12 @@
 # Database Schema - Introsphere
 
-## Firebase Auth (Autentykacja)
+## Supabase Auth (Autentykacja)
 
-Firebase Auth zapewnia wbudowany system auth - nie musisz tworzyć własnej tabeli users!
+Supabase zapewnia wbudowany system auth - nie musisz tworzyć własnej tabeli users!
 
 ### Konfiguracja:
 
-1. **Włącz Firebase Auth** w konsoli Firebase:
+1. **Włącz Supabase Auth** w dashboardzie Supabase:
    - Email/Password
    - Opcjonalnie: Google, Apple, GitHub
 
@@ -387,6 +387,4 @@ SELECT
 
 2. **MVP**: Dla pierwszej wersji można uprościć - dane Journeys i Emotions w kodzie, tylko user_responses i user_journey_progress w bazie.
 
-3. **No-code alternatywa**: Dla very MVP można użyć Firebase z prostym schematem JSON.
-
-> **Nota:** Alternatywnie możesz użyć Supabase (SQL-like, darmowy tier).
+3. **Frontend alternative**: Dla very MVP można użyć Firebase lub plain localStorage.

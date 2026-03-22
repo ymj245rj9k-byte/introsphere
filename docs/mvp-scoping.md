@@ -180,7 +180,7 @@
 - React + Vite
 - Tailwind CSS
 - Shadcn UI
-- Firebase (Auth + Firestore)
+- Supabase (Auth + PostgreSQL)
 - React Router
 
 ---

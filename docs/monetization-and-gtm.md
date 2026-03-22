@@ -46,7 +46,7 @@
 
 | Koszt | Cena |
 |-------|------|
-| Firebase Free Tier | 0 PLN (do 1GB, 100k reads/day) |
+| Supabase Free Tier | 0 PLN (do 500MB, 2GB transfer) |
 | Vercel Hobby | 0 PLN |
 | Domena | ~50 PLN/rok |
 | **Margines** | **100%** (poza czasem Twojej pracy) |
@@ -62,7 +62,7 @@
 - **Framer Motion** – proste animacje
 
 ### Backend
-- **Firebase** – Auth + Firestore + Hosting
+- **Supabase** – Auth + PostgreSQL + Hosting
 - Dlaczego: darmowy tier, proste API, integracja z React
 
 ### Narzędzia
@@ -154,7 +154,7 @@
 | Ryzyko | Mitigation |
 |--------|------------|
 | Nie znajdziesz użytkowników | TikTok organic – darmowe, może wypalić |
-| Za trudne technicznie | Firebase = proste, Shadcn = gotowe |
+| Za trudne technicznie | Supabase = proste, Shadcn = gotowe |
 | Konkurencja zrobi to samo | First-mover advantage w tej niszy |
 | Gen Z nie płaci | Lifetime deal = szybki cash flow |
 | Conversion rate niski | Free ma wszystko = musi zobaczyć wartość |
