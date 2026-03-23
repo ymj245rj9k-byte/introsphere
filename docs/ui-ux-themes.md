@@ -77,20 +77,20 @@ Zachowanie:
 
 | Atmosfera | Kolory | Font | Charakter |
 |-----------|--------|------|-----------|
-| **Clean Girl Aesthetic** | Beige, cream, soft neutrals, biała przestrzeń, rounded shapes | Sans-serif, clean | Spokojna, minimalistyczna |
-| **Cottagecore** | Zielone, ciepłe brązy, kwiaty | Handwritten, serif | Slow life, naturalna |
-| **Dark Academia** | Ciemny brąz, burgund, pergamin | Typewriter, serif | Intelektualna, poetycka |
-| **Soft Girl Aesthetic** | Pastelowy róż, lawenda, błękit | Cute, rounded | Emocjonalna, wrażliwa |
-| **Futuristic Femme** | Chrome, srebrne akcenty | Sleek, sans-serif | Tech-wellness, AI |
+| **Cream Calm** | Beige, cream, soft neutrals, biała przestrzeń, rounded shapes | Sans-serif, clean | Spokojna, minimalistyczna |
+| **Green Forest** | Zielone, ciepłe brązy, kwiaty | Handwritten, serif | Slow life, naturalna |
+| **Dark Ink** | Ciemny brąz, burgund, pergamin | Typewriter, serif | Intelektualna, poetycka |
+| **Soft Pink** | Pastelowy róż, lawenda, błękit | Cute, rounded | Emocjonalna, wrażliwa |
+| **Silver Tech** | Chrome, srebrne akcenty | Sleek, sans-serif | Tech-wellness, AI |
 
-* Dodatkowe atmosfery (Premium): retro, vintage, pastel, cyberpunk (placeholder) *
+* Dodatkowe atmosfery (Premium): Vintage Noir, Desert Rose, Ocean Deep (placeholder) *
 
 ### 2.3 Konfiguracja Atmosfery
 
 ```javascript
 const atmospheres = {
-  cleanGirl: {
-    name: 'Clean Girl Aesthetic',
+  creamCalm: {
+    name: 'Cream Calm',
     colors: {
       bg: '#FAF8F5',
       bgSecondary: '#FFFFFF',
@@ -101,8 +101,8 @@ const atmospheres = {
     borderRadius: '24px',
     style: 'soft, minimal, rounded'
   },
-  cottagecore: {
-    name: 'Cottagecore',
+  greenForest: {
+    name: 'Green Forest',
     colors: {
       bg: '#F5F0E8',
       bgSecondary: '#FFFEF8',
@@ -113,8 +113,8 @@ const atmospheres = {
     borderRadius: '8px',
     style: 'nature, handwritten, organic'
   },
-  darkAcademia: {
-    name: 'Dark Academia',
+  darkInk: {
+    name: 'Dark Ink',
     colors: {
       bg: '#1A1512',
       bgSecondary: '#2C2420',
@@ -125,8 +125,8 @@ const atmospheres = {
     borderRadius: '4px',
     style: 'introspective, vintage'
   },
-  softGirl: {
-    name: 'Soft Girl Aesthetic',
+  softPink: {
+    name: 'Soft Pink',
     colors: {
       bg: '#FDF4F8',
       bgSecondary: '#FFFFFF',
@@ -137,8 +137,8 @@ const atmospheres = {
     borderRadius: '20px',
     style: 'cute, pastel, vulnerable'
   },
-  futuristicFemme: {
-    name: 'Futuristic Femme',
+  silverTech: {
+    name: 'Silver Tech',
     colors: {
       bg: '#0A0A0F',
       bgSecondary: '#15151F',

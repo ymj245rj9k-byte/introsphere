@@ -14,12 +14,12 @@
 
 - [ ] Ekran powitalny z wyborem "atmosfery" / "vibe"
 - [ ] 5 atmosfer podstawowych (free):
-  1. **Clean Girl Aesthetic** – calm, minimal, beige/cream/soft neutrals, lots of white space, soft gradients, rounded shapes
-  2. **Cottagecore** – slow life, nature, greens/warm browns, flowers, handwritten fonts
-  3. **Dark Academia** – introspective, intellectual, poetic, dark brown/burgundy/parchment, typewriter fonts
-  4. **Soft Girl Aesthetic** – emotional openness, vulnerability, pastel pink/lavender/baby blue, cute icons
-  5. **Futuristic Femme** – tech-wellness, AI-self-optimization, chrome/silver accents, sleek minimal UI
-- [ ] Dodatkowe atmosfery w premium: retro, vintage, pastel, cyberpunk (placeholder)
+  1. **Cream Calm** – spokój, minimalizm, beże/kremy, dużo bieli, zaokrąglone kształty
+  2. **Green Forest** – natura, życie w spokoju, zielenie/brązy, kwiaty
+  3. **Dark Ink** – introspekcja, poetyka, ciemny brąz/bordowy/pergamin
+  4. **Soft Pink** – delikatność, otwartość emocjonalna, róż lawenda błękit, subtelne ikony
+  5. **Silver Tech** – technologia, wellnes, srebrne akcenty, sleek minimalistyczny UI
+- [ ] Dodatkowe atmosfery w premium: Vintage Noir, Desert Rose, Ocean Deep (placeholder)
 - [ ] Wybór wpływa na kolory/tła w całej aplikacji
 - [ ] Zapis wyboru (atmosfera = default dla wszystkich sesji)
 - [ ] Możliwość zmiany atmosfery w ustawieniach

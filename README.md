@@ -43,7 +43,7 @@ Introsphere to guided journaling app, która prowadzi cię przez pytania dopasow
 | **Koło Emocji** | 8 podstawowych → 24 warianty. Nie musisz umieć nazywać – wystarczy dotknąć. |
 | **Guided Journeys** | 7-dniowe programy: Wewnętrzne Dziecko, Granice, Energia, Wdzięczność, Decyzje, Relacje |
 | **Kalendarz Nastrojów** | Widzisz wzorce: co się zmienia? Kiedy jest ciężej? |
-| **Atmosfery** | Opcjonalne: Clean Girl, Cottagecore, Dark Academia, Soft Girl, Futuristic Femme |
+| **Atmosfery** | Opcjonalne: Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech |
 
 ---
 
@@ -87,6 +87,7 @@ Introsphere to guided journaling app, która prowadzi cię przez pytania dopasow
 - [Resource Analysis](./docs/resource-analysis.md) – czas, budżet, zasoby
 - [Monetization & GTM](./docs/monetization-and-gtm.md) – strategia przychodów i dotarcia
 - [Competitor Audit](./docs/competitor-audit.md) – analiza konkurencji
+- [Statistics](./docs/statistics.md) – statystyki emocji i wzorce
 
 ---
 

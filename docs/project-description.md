@@ -74,7 +74,7 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 - **To jest Twój wgląd** – co się zmienia? Kiedy jest ciężej?
 
 #### 4. Wybór Atmosfery (opcjonalny dodatek)
-- 5 atmosfer: Clean Girl, Cottagecore, Dark Academia, Soft Girl, Futuristic Femme
+- 5 atmosfer: Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech
 - **Drugoplanowe** – opcjonalne, nie wymagane do działania
 - Dla tych, którzy lubią "ładne rzeczy"
 

@@ -11,7 +11,7 @@
 ### Content (Nasz MOAT):
 - ✅ 6 Guided Journeys x 7 dni = **42 pytania**
 - ✅ 24+ pytań do **Koła Emocji** (8 podstawowych → 24 podspektra)
-- ✅ 5 konkretnych atmosfer (Clean Girl, Cottagecore, Dark Academia, Soft Girl, Futuristic Femme)
+- ✅ 5 konkretnych atmosfer (Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech)
 - ✅ Profound, poetyckie pytania (nie byle jakie)
 
 ### Model Biznesowy:
