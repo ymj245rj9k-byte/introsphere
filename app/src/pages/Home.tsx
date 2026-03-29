@@ -149,8 +149,8 @@ export function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Link to="/home">
-              <Button variant="outline" className="w-full">
+            <Link to="/journey">
+              <Button className="w-full">
                 Browse Journeys
               </Button>
             </Link>

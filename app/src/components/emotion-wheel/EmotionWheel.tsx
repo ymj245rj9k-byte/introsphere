@@ -77,9 +77,9 @@ export function EmotionWheel({ onSelect }: EmotionWheelProps) {
           {/* Center circle with gradient - ZGODNE z emotions-wheel.html */}
           <defs>
             <radialGradient id="centerGradient" cx="30%" cy="30%">
-              <stop offset="0%" stopColor="#4a4a6a" />
-              <stop offset="30%" stopColor="#3a3a5a" />
-              <stop offset="100%" stopColor="#1a1a2e" />
+              <stop offset="0%" stopColor="var(--atmosphere-accent)" />
+              <stop offset="30%" stopColor="var(--atmosphere-text-muted)" />
+              <stop offset="100%" stopColor="var(--atmosphere-bg)" />
             </radialGradient>
           </defs>
           <circle

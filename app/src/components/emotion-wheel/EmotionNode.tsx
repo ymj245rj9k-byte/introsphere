@@ -77,7 +77,7 @@ export function EmotionNode({
       </defs>
       <path
         d={path}
-        fill={emotion.color || '#888888'}
+        fill={emotion.color || 'var(--atmosphere-text-muted)'}
         stroke="none"
         strokeWidth={0}
         style={{
@@ -93,7 +93,7 @@ export function EmotionNode({
         y={labelY}
         textAnchor="middle"
         dominantBaseline="middle"
-        fill="#fff"
+        fill="var(--atmosphere-text-heading, #fff)"
         fontSize={isHovered ? '17' : '15'}
         fontWeight="700"
         style={{

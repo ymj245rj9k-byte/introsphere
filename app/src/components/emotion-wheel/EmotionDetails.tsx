@@ -8,21 +8,21 @@ interface EmotionDetailsProps {
   onBack: () => void
 }
 
-// Emotion-specific background tints
+// Emotion-specific background tints - using CSS variables for atmosphere compatibility
 const emotionBackgroundTints: Record<string, string> = {
-  joy: '#fef9e7', // light yellow
-  trust: '#e8f8f0', // light mint green
-  fear: '#e1f7ea', // light gray-blue
-  surprise: '#e9fdfa', 
-  sadness: '#ebf5fb', // light blue
-  disgust: '#f5eef8', // light purple
-  anger: '#fdedec', // light red/pink
-  anticipation: '#fef5e7', // light orange
+  joy: 'var(--emotion-joy-bg, #fef9e7)', // light yellow
+  trust: 'var(--emotion-trust-bg, #e8f8f0)', // light mint green
+  fear: 'var(--emotion-fear-bg, #e1f7ea)', // light gray-blue
+  surprise: 'var(--emotion-surprise-bg, #e9fdfa)', 
+  sadness: 'var(--emotion-sadness-bg, #ebf5fb)', // light blue
+  disgust: 'var(--emotion-disgust-bg, #f5eef8)', // light purple
+  anger: 'var(--emotion-anger-bg, #fdedec)', // light red/pink
+  anticipation: 'var(--emotion-anticipation-bg, #fef5e7)', // light orange
 }
 
 // Helper function to get background tint for an emotion
 function getEmotionBackground(emotionId: string): string {
-  return emotionBackgroundTints[emotionId] || '#f8f9fa'
+  return emotionBackgroundTints[emotionId] || 'var(--atmosphere-bg-secondary)'
 }
 
 // Helper function to darken a hex color slightly
@@ -90,7 +90,7 @@ export function EmotionDetails({
             onClick={() => onSelect(emotion)}
             className="w-full text-left p-4 rounded-xl cursor-pointer transition-all duration-300 border-l-4 hover:translate-x-2"
             style={{
-              borderLeftColor: emotion.color || '#888888',
+              borderLeftColor: emotion.color || 'var(--atmosphere-text-muted)',
               backgroundColor: darkenColor(getEmotionBackground(primaryEmotion.id), 8),
             }}
           >

@@ -85,7 +85,7 @@ export function Session() {
       id: crypto.randomUUID(),
       emotionId: selectedEmotion.id,
       emotionName: selectedEmotion.name_en,
-      emotionColor: selectedEmotion.color || '#888888',
+      emotionColor: selectedEmotion.color || 'var(--atmosphere-text-muted)',
       question,
       response: response.trim(),
       createdAt: new Date().toISOString(),

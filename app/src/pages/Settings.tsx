@@ -4,54 +4,46 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useThemeStore } from '@/stores/themeStore'
 import { AtmosphereType } from '@/types/emotion'
 
-const atmospheres: { id: AtmosphereType; name: string; description: string; color: string }[] = [
-  {
-    id: 'dark-ink',
-    name: 'Dark Ink',
-    description: 'Deep, focused atmosphere',
-    color: '#1a1a2e',
-  },
+const atmospheres: { id: AtmosphereType; name: string; description: string }[] = [
   {
     id: 'cream-calm',
     name: 'Cream Calm',
-    description: 'Warm, peaceful vibes',
-    color: '#f5f5dc',
+    description: 'Spokojna, minimalistyczna - Beige, cream, soft neutrals',
   },
   {
     id: 'green-forest',
     name: 'Green Forest',
-    description: 'Natural, grounding energy',
-    color: '#2d5a27',
+    description: 'Slow life, naturalna - Zielone, ciepłe brązy, kwiaty',
+  },
+  {
+    id: 'dark-ink',
+    name: 'Dark Ink',
+    description: 'Intelektualna, poetycka - Ciemny brąz, burgund, pergamin',
   },
   {
     id: 'soft-pink',
     name: 'Soft Pink',
-    description: 'Gentle, nurturing feel',
-    color: '#ffb6c1',
+    description: 'Emocjonalna, wrażliwa - Pastelowy róż, lawenda, błękit',
   },
   {
     id: 'silver-tech',
     name: 'Silver Tech',
-    description: 'Modern, clean aesthetic',
-    color: '#c0c0c0',
+    description: 'Tech-wellness, AI - Chrome, srebrne akcenty',
   },
   {
-    id: 'vintage-noir',
-    name: 'Vintage Noir',
-    description: 'Classic, timeless mood',
-    color: '#2c2c2c',
+    id: 'solar-flare',
+    name: 'Solar Flare',
+    description: 'Klasyczna, ponadczasowa - Głęboka czerń, złote akcenty',
   },
   {
     id: 'desert-rose',
     name: 'Desert Rose',
-    description: 'Warm, earthy tones',
-    color: '#c9a9a6',
+    description: 'Ciepła, ziemista - Terakota, piasek, suche róże',
   },
   {
     id: 'ocean-deep',
     name: 'Ocean Deep',
-    description: 'Calm, vast expanse',
-    color: '#1e3a5f',
+    description: 'Spokojna, głęboka - Głęboki błękit, morskie tonie',
   },
 ]
 
@@ -156,8 +148,7 @@ export function Settings() {
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className="w-8 h-8 rounded-lg"
-                      style={{ backgroundColor: atm.color }}
+                      className={`w-8 h-8 rounded-lg atmosphere-${atm.id}`}
                     />
                     <div>
                       <div className="font-semibold text-sm">{atm.name}</div>

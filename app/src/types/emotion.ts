@@ -23,7 +23,7 @@ export type AtmosphereType =
   | 'dark-ink'
   | 'soft-pink'
   | 'silver-tech'
-  | 'vintage-noir'
+  | 'solar-flare'
   | 'desert-rose'
   | 'ocean-deep'
 

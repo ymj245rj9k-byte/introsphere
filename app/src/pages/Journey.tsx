@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
+import { JourneyCard, JourneyProgressBar, JourneyDay } from '@/components/journey'
 import { getJourneyById, getActiveJourneys } from '@/data/journeys'
 import { Journey as JourneyType, JourneyProgress } from '@/types/journey'
 
@@ -22,12 +23,15 @@ export function Journey() {
   const [journey, setJourney] = useState<JourneyType | null>(null)
   const [progress, setProgress] = useState<JourneyProgress | null>(null)
   const [responses, setResponses] = useState<JourneyResponse[]>([])
-  const [currentResponse, setCurrentResponse] = useState('')
   const [isSaving, setIsSaving] = useState(false)
 
   // Load journey and progress
   useEffect(() => {
     if (id) {
+      // Clear previous journey data first
+      setProgress(null)
+      setResponses([])
+
       const journeyData = getJourneyById(id)
       if (journeyData) {
         setJourney(journeyData)
@@ -60,8 +64,8 @@ export function Journey() {
   }, [id])
 
   // Save response for current day
-  const handleSaveResponse = async () => {
-    if (!journey || !progress || !currentResponse.trim()) return
+  const handleSaveResponse = async (responseText: string) => {
+    if (!journey || !progress) return
 
     setIsSaving(true)
 
@@ -73,7 +77,7 @@ export function Journey() {
       journeyId: journey.id,
       dayNumber: progress.current_day,
       question: currentDay.question_en,
-      response: currentResponse.trim(),
+      response: responseText,
       emotionId: '',
       emotionName: '',
       emotionColor: '',
@@ -102,7 +106,6 @@ export function Journey() {
       JSON.stringify(updatedProgress)
     )
 
-    setCurrentResponse('')
     setIsSaving(false)
   }
 
@@ -130,7 +133,6 @@ export function Journey() {
     localStorage.removeItem(`introsphere_journey_responses_${journey.id}`)
     setProgress(null)
     setResponses([])
-    setCurrentResponse('')
   }
 
   // If no journey ID, show journey list
@@ -160,46 +162,11 @@ export function Journey() {
             }
 
             return (
-              <Card key={journey.id} className="hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle>{journey.title_en}</CardTitle>
-                    {journeyProgress && (
-                      <span
-                        className={`text-xs px-2 py-1 rounded-full ${
-                          journeyProgress.status === 'completed'
-                            ? 'bg-green-500/20 text-green-400'
-                            : journeyProgress.status === 'in_progress'
-                            ? 'bg-blue-500/20 text-blue-400'
-                            : 'bg-muted text-muted-foreground'
-                        }`}
-                      >
-                        {journeyProgress.status === 'completed'
-                          ? 'Completed'
-                          : journeyProgress.status === 'in_progress'
-                          ? `Day ${journeyProgress.current_day}/7`
-                          : 'Abandoned'}
-                      </span>
-                    )}
-                  </div>
-                  <CardDescription>{journey.subtitle}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span>📅</span>
-                    <span>{journey.days?.length || 7} days</span>
-                  </div>
-                  <Link to={`/journey/${journey.id}`}>
-                    <Button className="w-full">
-                      {journeyProgress?.status === 'in_progress'
-                        ? 'Continue Journey'
-                        : journeyProgress?.status === 'completed'
-                        ? 'View Journey'
-                        : 'Start Journey'}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+              <JourneyCard
+                key={journey.id}
+                journey={journey}
+                progress={journeyProgress}
+              />
             )
           })}
         </div>
@@ -253,24 +220,92 @@ export function Journey() {
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">Your Responses</h2>
           <div className="space-y-3">
-            {responses.map(response => (
-              <Card key={response.id}>
-                <CardContent className="p-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold">Day {response.dayNumber}</span>
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(response.createdAt).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{response.question}</p>
-                    <p className="text-sm">{response.response}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {responses.map(response => {
+              const day = journey.days?.find(d => d.day_number === response.dayNumber)
+              return (
+                <JourneyDay
+                  key={response.id}
+                  day={day!}
+                  response={response.response}
+                />
+              )
+            })}
           </div>
         </div>
+      </div>
+    )
+  }
+
+  // Journey not started yet - show intro and first day
+  if (!progress) {
+    const firstDay = journey.days?.[0]
+
+    return (
+      <div className="p-6 space-y-6">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold">{journey.title_en}</h1>
+          <p className="text-muted-foreground">{journey.subtitle}</p>
+        </div>
+
+        <JourneyProgressBar currentDay={1} totalDays={journey.days?.length || 7} />
+
+        {firstDay && (
+          <JourneyDay
+            key={`${journey.id}-day-${firstDay.day_number}`}
+            day={firstDay}
+            isCurrentDay={true}
+            onSave={(responseText) => {
+              // Initialize progress and save first response
+              const newProgress: JourneyProgress = {
+                id: crypto.randomUUID(),
+                user_id: '',
+                journey_id: journey.id,
+                current_day: 1,
+                status: 'in_progress',
+                started_at: new Date().toISOString(),
+                completed_at: null,
+              }
+              setProgress(newProgress)
+              localStorage.setItem(
+                `introsphere_journey_progress_${journey.id}`,
+                JSON.stringify(newProgress)
+              )
+
+              const newResponse: JourneyResponse = {
+                id: crypto.randomUUID(),
+                journeyId: journey.id,
+                dayNumber: 1,
+                question: firstDay.question_en,
+                response: responseText,
+                emotionId: '',
+                emotionName: '',
+                emotionColor: '',
+                createdAt: new Date().toISOString(),
+              }
+              const updatedResponses = [newResponse]
+              setResponses(updatedResponses)
+              localStorage.setItem(
+                `introsphere_journey_responses_${journey.id}`,
+                JSON.stringify(updatedResponses)
+              )
+
+              // Move to next day
+              const isLastDay = 1 === (journey.days?.length || 0)
+              const updatedProgress: JourneyProgress = {
+                ...newProgress,
+                current_day: isLastDay ? 1 : 2,
+                status: isLastDay ? 'completed' : 'in_progress',
+                completed_at: isLastDay ? new Date().toISOString() : null,
+              }
+              setProgress(updatedProgress)
+              localStorage.setItem(
+                `introsphere_journey_progress_${journey.id}`,
+                JSON.stringify(updatedProgress)
+              )
+            }}
+            isSaving={isSaving}
+          />
+        )}
       </div>
     )
   }
@@ -291,50 +326,20 @@ export function Journey() {
       </div>
 
       {/* Progress */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Progress</span>
-          <span className="font-semibold">
-            Day {progress?.current_day || 1} of {journey.days?.length || 7}
-          </span>
-        </div>
-        <div className="h-2 bg-muted rounded-full overflow-hidden">
-          <div
-            className="h-full bg-primary transition-all"
-            style={{
-              width: `${((progress?.current_day || 1) / (journey.days?.length || 7)) * 100}%`,
-            }}
-          />
-        </div>
-      </div>
+      <JourneyProgressBar
+        currentDay={progress?.current_day || 1}
+        totalDays={journey.days?.length || 7}
+      />
 
       {/* Current Day */}
       {currentDay && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Day {currentDay.day_number}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-lg">{currentDay.question_en}</p>
-
-            <div className="space-y-2">
-              <textarea
-                className="w-full min-h-[150px] p-4 rounded-xl border border-input bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
-                placeholder="Write your response..."
-                value={currentResponse}
-                onChange={(e) => setCurrentResponse(e.target.value)}
-              />
-              <div className="flex justify-end">
-                <Button
-                  onClick={handleSaveResponse}
-                  disabled={!currentResponse.trim() || isSaving}
-                >
-                  {isSaving ? 'Saving...' : 'Save & Continue'}
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <JourneyDay
+          key={`${journey.id}-day-${currentDay.day_number}`}
+          day={currentDay}
+          isCurrentDay={true}
+          onSave={handleSaveResponse}
+          isSaving={isSaving}
+        />
       )}
 
       {/* Previous Days */}
@@ -345,22 +350,16 @@ export function Journey() {
             {responses
               .filter(r => r.dayNumber < (progress?.current_day || 1))
               .reverse()
-              .map(response => (
-                <Card key={response.id}>
-                  <CardContent className="p-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold">Day {response.dayNumber}</span>
-                        <span className="text-xs text-muted-foreground">
-                          {new Date(response.createdAt).toLocaleDateString()}
-                        </span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{response.question}</p>
-                      <p className="text-sm">{response.response}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+              .map(response => {
+                const day = journey.days?.find(d => d.day_number === response.dayNumber)
+                return (
+                  <JourneyDay
+                    key={response.id}
+                    day={day!}
+                    response={response.response}
+                  />
+                )
+              })}
           </div>
         </div>
       )}

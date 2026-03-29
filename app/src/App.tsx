@@ -17,6 +17,7 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/home" element={<Home />} />
         <Route path="/session" element={<Session />} />
+        <Route path="/journey" element={<Journey />} />
         <Route path="/journey/:id" element={<Journey />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/history" element={<History />} />

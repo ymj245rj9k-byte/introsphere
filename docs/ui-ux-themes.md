@@ -8,47 +8,9 @@
 
 ## 1. System Motywów (Theme)
 
-### 1.1 Tryb Jasny (Light Mode)
+Motywy (jasny/ciemny) są zdefiniowane w [`index.css`](../app/src/index.css) jako CSS custom properties w sekcji `:root` i `.dark`.
 
-```css
-/* Palette - White-Orange Theme */
---bg-primary: #FFF8F0;        /* Główne tło - kremowa biel */
---bg-secondary: #FFFFFF;     /* Karty, panele */
---bg-tertiary: #FFECD9;       /* Subtelne akcenty */
-
---text-primary: #2D2A26;       /* Główny tekst */
---text-secondary: #6B6560;    /* Drugorzędny tekst */
---text-muted: #A39E99;         /* Hinty, placeholders */
-
---accent-primary: #FF8C42;    /* Główny pomarańczowy */
---accent-secondary: #FFB074;  /* Jaśniejszy pomarańcz */
---accent-warm: #FFECD9;       /* Ciepły akcent */
-
---border-light: #F0E6DC;       /* Subtelne obramowania */
---shadow-soft: rgba(45, 42, 38, 0.08);
-```
-
-### 1.2 Tryb Ciemny (Dark Mode)
-
-```css
-/* Palette - Deep Night */
---bg-primary: #1A1918;         /* Główne tło - ciepła czerń */
---bg-secondary: #252322;      /* Karty, panele */
---bg-tertiary: #302D2B;       /* Subtelne akcenty */
-
---text-primary: #F5F2EE;       /* Główny tekst */
---text-secondary: #A8A29E;    /* Drugorzędny tekst */
---text-muted: #6B6560;        /* Hinty, placeholders */
-
---accent-primary: #FF9F5E;    /* Pomarańczowy - jaśniejszy dla kontrastu */
---accent-secondary: #FFB586;  /* Cieplejszy akcent */
---accent-deep: #3D3530;        /* Ciemny akcent */
-
---border-dark: #3D3835;        /* Subtelne obramowania */
---shadow-glow: rgba(255, 140, 66, 0.15);
-```
-
-### 1.3 Theme Toggle
+### 1.1 Theme Toggle
 
 ```
 Pozycja: Prawa górna, w pasku header
@@ -74,83 +36,34 @@ Zachowanie:
 - Intensywność cieni
 
 ### 2.2 Domyślne Atmosfery
+| **Nazwa** | **Paleta** | **Typografia** | **Styl wizualny** |
+|---|---|---|---|
+| **Cream Calm** | Kremowy (#faf7f2), ciepły beż (#e8ddd0), złamana biel, akcenty nude | Plus Jakarta Sans — lekki, geometryczny | Brak cieni i dekoracji. Karty z 0.5px ramką. Duże odstępy między sekcjami. Śledzenie nastroju jako rząd geometrycznych kółek. |
+| **Green Forest** | Mech (#4a6741), szałwia (#8aab7e), ciepły brąz (#6b4c2a), kremowy papier (#f5f0e8) | Caveat (nagłówki), Lora (body) | Tekstura tła imitująca papier akwarelowy. Ikonografia botaniczna — cienkie ilustracje liści. Śledzenie nastroju jako rosnąca roślina. |
+| **Dark Ink** | Granat (#1a1f3a), pergamin (#f5eed6), antyczne złoto (#c9a063) | Playfair Display Italic (nagłówki), EB Garamond (body) | Tekstura pergaminu w tle. Nawigacja stylizowana na zakładki księgi. Złote linie jako separatory. Nastroje jako symbole alchemiczne. |
+| **Soft Pink** | Pudrowy róż (#f2dde4), mglisty błękit (#dde8f2), lawenda (#e8ddf2), ciepła biel | Instrument Serif Italic (nagłówki), DM Sans (body) | Dekoracje wektorowe — kokardki i kwiaty jako separatory. Nastroje jako pastelowe bąble z opisami. Zaokrąglone karty z dużym paddingiem. |
+| **Silver Tech** | Grafit (#0f0f13), srebro (#c0c0c8), turkus (#00d4aa) jako akcent | JetBrains Mono (body, tagi), Geist (nagłówki) | Ostre krawędzie, zero border-radius. Nastrój jako badge (`mood: anxious`). Streak jako siatka w stylu GitHub contribution graph. |
+| **Vintage Noir** | Czerń (#0c0c0c), złoto (#c9a84c), ecru (#f5f0e0), bordeaux (#6b1f2a) | Cormorant Garamond (nagłówki), Libre Baskerville (body) | Cienkie złote linie i symetryczne ornamenty art deco. Wysoki kontrast tekstu. Duże, dramatyczne nagłówki z dużym letter-spacing. |
+| **Desert Rose** | Terakota (#c4714a), piasek (#d4b896), brudny róż (#c4907a), kakao (#6b3d2a) | Abril Fatface (nagłówki), Lora (body) | Tekstura tła imitująca glinę. Śledzenie nastroju jako koła w gradiencie terakoty — intensywność przez nasycenie koloru. |
+| **Ocean Deep** | Granat (#0d2137), morska zieleń (#1a4a4a), stalowy błękit (#2a4a6b), turkus (#00b4d8) | Newsreader Italic (nagłówki), Inter (body) | Gradient tła pogłębiający się ku dołowi. Śledzenie nastroju jako skala głębokości. Miękkie, duże border-radius na kartach. |
 
-| Atmosfera | Kolory | Font | Charakter |
-|-----------|--------|------|-----------|
-| **Cream Calm** | Beige, cream, soft neutrals, biała przestrzeń, rounded shapes | Sans-serif, clean | Spokojna, minimalistyczna |
-| **Green Forest** | Zielone, ciepłe brązy, kwiaty | Handwritten, serif | Slow life, naturalna |
-| **Dark Ink** | Ciemny brąz, burgund, pergamin | Typewriter, serif | Intelektualna, poetycka |
-| **Soft Pink** | Pastelowy róż, lawenda, błękit | Cute, rounded | Emocjonalna, wrażliwa |
-| **Silver Tech** | Chrome, srebrne akcenty | Sleek, sans-serif | Tech-wellness, AI |
+### 2.3 Implementacja
 
-* Dodatkowe atmosfery (Premium): Vintage Noir, Desert Rose, Ocean Deep (placeholder) *
-
-### 2.3 Konfiguracja Atmosfery
-
-```javascript
-const atmospheres = {
-  creamCalm: {
-    name: 'Cream Calm',
-    colors: {
-      bg: '#FAF8F5',
-      bgSecondary: '#FFFFFF',
-      accent: '#D4C5B5',
-      text: '#2D2A26',
-    },
-    font: 'Inter',
-    borderRadius: '24px',
-    style: 'soft, minimal, rounded'
-  },
-  greenForest: {
-    name: 'Green Forest',
-    colors: {
-      bg: '#F5F0E8',
-      bgSecondary: '#FFFEF8',
-      accent: '#8B9A6B',
-      text: '#4A4036',
-    },
-    font: 'Caveat',
-    borderRadius: '8px',
-    style: 'nature, handwritten, organic'
-  },
-  darkInk: {
-    name: 'Dark Ink',
-    colors: {
-      bg: '#1A1512',
-      bgSecondary: '#2C2420',
-      accent: '#6B4423',
-      text: '#E8E0D5',
-    },
-    font: 'Courier Prime',
-    borderRadius: '4px',
-    style: 'introspective, vintage'
-  },
-  softPink: {
-    name: 'Soft Pink',
-    colors: {
-      bg: '#FDF4F8',
-      bgSecondary: '#FFFFFF',
-      accent: '#E8B4D9',
-      text: '#4A3F47',
-    },
-    font: 'Nunito',
-    borderRadius: '20px',
-    style: 'cute, pastel, vulnerable'
-  },
-  silverTech: {
-    name: 'Silver Tech',
-    colors: {
-      bg: '#0A0A0F',
-      bgSecondary: '#15151F',
-      accent: '#C0C0C0',
-      text: '#F0F0F5',
-    },
-    font: 'Inter',
-    borderRadius: '12px',
-    style: 'sleek, chrome, tech'
-  }
-};
-```
+> **Źródło prawdy:** Wszystkie kolory i style atmosfer są zdefiniowane w [`index.css`](../app/src/index.css) jako CSS custom properties.
+>
+> Każdy atmosfera ma klasę `.atmosphere-{nazwa}` z wariantami dla trybu jasnego i ciemnego (`.dark.atmosphere-{nazwa}`).
+>
+> **Przykład użycia:**
+> ```css
+> .atmosphere-cream-calm {
+>   --atmosphere-bg: #FAF8F5;
+>   --atmosphere-accent: #D4C5B5;
+>   --atmosphere-font: 'Inter', sans-serif;
+>   --atmosphere-radius: 24px;
+> }
+> ```
+>
+> **Dostępne atmosfery:** Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech, Vintage Noir, Desert Rose, Ocean Deep
 
 ### 2.4 UI Wyboru Atmosfery
 
@@ -162,12 +75,14 @@ Po kliknięciu → Dropdown/Panel:
 ┌─────────────────────────────┐
 │  🎨 Wybierz Atmosferę       │
 ├─────────────────────────────┤
-│  🟠 Sunrise                 │
-│  🔵 Ocean                   │
-│  🟢 Forest                  │
-│  🟣 Lavender                │
-│  ⚫ Monochrome              │
-│  🔴 Midnight               │
+│  🟠 Cream Calm              │
+│  🌿 Green Forest            │
+│  🖋️ Dark Ink                │
+│  🌸 Soft Pink               │
+│  ⚙️ Silver Tech             │
+│  🎭 Vintage Noir            │
+│  🏜️ Desert Rose             │
+│  🌊 Ocean Deep              │
 └─────────────────────────────┘
 
 Zachowanie:

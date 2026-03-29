@@ -10,7 +10,7 @@ export const primaryEmotions: Emotion[] = [
     spectrum: 'primary',
     parent_id: null,
     wheel_pos: 0,
-    color: '#e3f74bff',
+    color: 'var(--emotion-joy)',
     description: 'A feeling of great pleasure and happiness.',
   },
   {
@@ -20,7 +20,7 @@ export const primaryEmotions: Emotion[] = [
     spectrum: 'primary',
     parent_id: null,
     wheel_pos: 45,
-    color: '#8df487ff',
+    color: 'var(--emotion-trust)',
     description: 'Firm belief in the reliability, truth, or ability of someone or something.',
   },
   {
@@ -30,7 +30,7 @@ export const primaryEmotions: Emotion[] = [
     spectrum: 'primary',
     parent_id: null,
     wheel_pos: 90,
-    color: '#327042ff',
+    color: 'var(--emotion-fear)',
     description: 'An unpleasant emotion caused by the threat of danger, pain, or harm.',
   },
   {
@@ -40,7 +40,7 @@ export const primaryEmotions: Emotion[] = [
     spectrum: 'primary',
     parent_id: null,
     wheel_pos: 135,
-    color: '#6bf3e1ff',
+    color: 'var(--emotion-surprise)',
     description: 'A feeling of mild astonishment or shock caused by something unexpected.',
   },
   {
@@ -50,7 +50,7 @@ export const primaryEmotions: Emotion[] = [
     spectrum: 'primary',
     parent_id: null,
     wheel_pos: 180,
-    color: '#4fa4faff',
+    color: 'var(--emotion-sadness)',
     description: 'Emotional pain characterized by feelings of disadvantage, loss, despair, and helplessness.',
   },
   {
@@ -60,7 +60,7 @@ export const primaryEmotions: Emotion[] = [
     spectrum: 'primary',
     parent_id: null,
     wheel_pos: 225,
-    color: '#d06dfaff',
+    color: 'var(--emotion-disgust)',
     description: 'A feeling of revulsion or strong disapproval aroused by something unpleasant or offensive.',
   },
   {
@@ -70,7 +70,7 @@ export const primaryEmotions: Emotion[] = [
     spectrum: 'primary',
     parent_id: null,
     wheel_pos: 270,
-    color: '#f86161ff',
+    color: 'var(--emotion-anger)',
     description: 'A strong feeling of annoyance, displeasure, or hostility.',
   },
   {
@@ -80,7 +80,7 @@ export const primaryEmotions: Emotion[] = [
     spectrum: 'primary',
     parent_id: null,
     wheel_pos: 315,
-    color: '#f9b73cff',
+    color: 'var(--emotion-anticipation)',
     description: 'The act of looking forward to something, especially with pleasure or excitement.',
   },
 ]
@@ -95,7 +95,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'joy',
     wheel_pos: 22.5,
-    color: '#F9E79F',
+    color: 'var(--emotion-serenity)',
     description: 'A state of being calm, peaceful, and untroubled.',
   },
   {
@@ -105,7 +105,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'joy',
     wheel_pos: 67.5,
-    color: '#FADBD8',
+    color: 'var(--emotion-love)',
     description: 'A deep feeling of affection and care towards someone or something.',
   },
   {
@@ -115,7 +115,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'joy',
     wheel_pos: 337.5,
-    color: '#F7DC6F',
+    color: 'var(--emotion-ecstasy)',
     description: 'An overwhelming feeling of great happiness or joyful excitement.',
   },
 
@@ -127,7 +127,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'trust',
     wheel_pos: 22.5,
-    color: '#ABEBC6',
+    color: 'var(--emotion-acceptance)',
     description: 'The action of consenting to receive or undertake something offered.',
   },
   {
@@ -137,7 +137,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'trust',
     wheel_pos: 67.5,
-    color: '#A3E4D7',
+    color: 'var(--emotion-submission)',
     description: 'The action of accepting or yielding to a superior force or to the will or authority of another person.',
   },
 
@@ -149,7 +149,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'fear',
     wheel_pos: 112.5,
-    color: '#76D7C4',
+    color: 'var(--emotion-terror)',
     description: 'Extreme fear or dread, often causing panic or paralysis.',
   },
   {
@@ -159,7 +159,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'fear',
     wheel_pos: 157.5,
-    color: '#A3D9C7',
+    color: 'var(--emotion-apprehension)',
     description: 'Anxiety or fear that something bad or unpleasant will happen.',
   },
   {
@@ -169,7 +169,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'fear',
     wheel_pos: 202.5,
-    color: '#82E0AA',
+    color: 'var(--emotion-awe)',
     description: 'A feeling of reverential respect mixed with fear or wonder.',
   },
 
@@ -181,7 +181,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'surprise',
     wheel_pos: 157.5,
-    color: '#7FDBDA',
+    color: 'var(--emotion-amazement)',
     description: 'A feeling of great surprise or wonder.',
   },
   {
@@ -191,7 +191,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'surprise',
     wheel_pos: 202.5,
-    color: '#47aab8ff',
+    color: 'var(--emotion-distraction)',
     description: 'A thing that prevents someone from concentrating on something else.',
   },
 
@@ -203,7 +203,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'sadness',
     wheel_pos: 247.5,
-    color: '#5D6D7E',
+    color: 'var(--emotion-grief)',
     description: "Deep sorrow or distress, especially caused by someone's death.",
   },
   {
@@ -213,7 +213,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'sadness',
     wheel_pos: 292.5,
-    color: '#85929E',
+    color: 'var(--emotion-pensiveness)',
     description: 'A state of deep or serious thought, often tinged with sadness.',
   },
   {
@@ -223,7 +223,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'sadness',
     wheel_pos: 202.5,
-    color: '#ABB2B9',
+    color: 'var(--emotion-remorse)',
     description: 'Deep regret or guilt for a wrong committed.',
   },
 
@@ -235,7 +235,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'disgust',
     wheel_pos: 247.5,
-    color: '#C39BD3',
+    color: 'var(--emotion-loathing)',
     description: 'A feeling of intense dislike or disgust; abhorrence.',
   },
   {
@@ -245,7 +245,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'disgust',
     wheel_pos: 292.5,
-    color: '#D7BDE2',
+    color: 'var(--emotion-boredom)',
     description: 'A state of being weary and restless through lack of interest.',
   },
   {
@@ -255,7 +255,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'disgust',
     wheel_pos: 337.5,
-    color: '#AF7AC5',
+    color: 'var(--emotion-contempt)',
     description: 'The feeling that a person or a thing is beneath consideration, worthless, or deserving scorn.',
   },
 
@@ -267,7 +267,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'anger',
     wheel_pos: 292.5,
-    color: '#EC7063',
+    color: 'var(--emotion-rage)',
     description: 'Violent, uncontrollable anger that may lead to destructive behavior.',
   },
   {
@@ -277,7 +277,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'anger',
     wheel_pos: 337.5,
-    color: '#F5B7B1',
+    color: 'var(--emotion-annoyance)',
     description: 'A feeling of mild irritation or frustration.',
   },
   {
@@ -287,7 +287,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'anger',
     wheel_pos: 22.5,
-    color: '#E74C3C',
+    color: 'var(--emotion-aggressiveness)',
     description: 'Ready or likely to attack or confront; characterized by aggression.',
   },
 
@@ -299,7 +299,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'anticipation',
     wheel_pos: 67.5,
-    color: '#F9E79F',
+    color: 'var(--emotion-interest)',
     description: 'A feeling of wanting to know or learn about something or someone.',
   },
   {
@@ -309,7 +309,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'anticipation',
     wheel_pos: 112.5,
-    color: '#F8C471',
+    color: 'var(--emotion-vigilance)',
     description: 'The action or state of keeping careful watch for possible danger or difficulties.',
   },
   {
@@ -319,7 +319,7 @@ export const subEmotions: Emotion[] = [
     spectrum: 'subspectrum',
     parent_id: 'anticipation',
     wheel_pos: 22.5,
-    color: '#F7DC6F',
+    color: 'var(--emotion-optimism)',
     description: 'Hopefulness and confidence about the future or the successful outcome of something.',
   },
 ]
@@ -349,6 +349,6 @@ export const emotionSpectra: EmotionSpectrum[] = primaryEmotions.map((primary) =
   id: primary.id,
   name: primary.name,
   name_en: primary.name_en,
-  color: primary.color || '#888888',
+  color: primary.color || 'var(--atmosphere-text-muted)',
   emotions: [primary, ...getSubEmotions(primary.id)],
 }))
