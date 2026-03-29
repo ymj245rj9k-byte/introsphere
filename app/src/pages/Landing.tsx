@@ -11,7 +11,7 @@ export function Landing() {
             Introsphere
           </h1>
           <p className="text-lg text-muted-foreground">
-            Zamiast 30 minut przed pustą stroną – wybierasz nastrój, odpowiadasz na pytanie i od razu widzisz wzorce swoich emocji.
+            Instead of 30 minutes staring at a blank page — choose your mood, answer a question, and immediately see patterns in your emotions.
           </p>
         </div>
 
@@ -19,12 +19,12 @@ export function Landing() {
         <div className="space-y-4">
           <Link to="/session" className="block">
             <Button size="lg" className="w-full pulse">
-              Rozpocznij sesję
+              Start Session
             </Button>
           </Link>
           <Link to="/auth" className="block">
             <Button variant="outline" size="lg" className="w-full">
-              Zaloguj się
+              Sign In
             </Button>
           </Link>
         </div>
@@ -34,26 +34,26 @@ export function Landing() {
           <div className="flex items-start gap-3">
             <div className="w-2 h-2 mt-2 rounded-full bg-primary" />
             <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">Koło emocji</strong> – dotknij koloru, nie musisz umieć nazywać
+              <strong className="text-foreground">Emotion Wheel</strong> — touch a color, no need to name it
             </p>
           </div>
           <div className="flex items-start gap-3">
             <div className="w-2 h-2 mt-2 rounded-full bg-primary" />
             <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">Guided Journeys</strong> – 7-dniowe programy z konkretnymi pytaniami
+              <strong className="text-foreground">Guided Journeys</strong> — 7-day programs with specific questions
             </p>
           </div>
           <div className="flex items-start gap-3">
             <div className="w-2 h-2 mt-2 rounded-full bg-primary" />
             <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">Kalendarz nastrojów</strong> – zobacz wzorce w czasie
+              <strong className="text-foreground">Mood Calendar</strong> — see patterns over time
             </p>
           </div>
         </div>
 
         {/* Disclaimer */}
         <p className="text-xs text-muted-foreground pt-4">
-          To nie jest terapia. To narzędzie do samorefleksji.
+          This is not therapy. It's a tool for self-reflection.
         </p>
       </div>
     </div>

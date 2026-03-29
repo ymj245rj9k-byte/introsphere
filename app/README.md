@@ -1,6 +1,8 @@
 # Introsphere
 
-Journaling dla Gen Z. Wybierz nastrój, odpowiedz na pytanie, zobacz wzorce swoich emocji.
+Journaling for Gen Z. Choose your mood, answer a question, see patterns in your emotions.
+
+**Language:** English (UI in English, Polish documentation for development)
 
 ## Tech Stack
 

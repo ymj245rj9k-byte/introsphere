@@ -4,9 +4,9 @@ import { cn } from '@/lib/utils'
 
 const navItems = [
   { path: '/home', icon: Home, label: 'Home' },
-  { path: '/calendar', icon: Calendar, label: 'Kalendarz' },
-  { path: '/history', icon: History, label: 'Historia' },
-  { path: '/settings', icon: Settings, label: 'Ustawienia' },
+  { path: '/calendar', icon: Calendar, label: 'Calendar' },
+  { path: '/history', icon: History, label: 'History' },
+  { path: '/settings', icon: Settings, label: 'Settings' },
 ]
 
 export function MainLayout() {

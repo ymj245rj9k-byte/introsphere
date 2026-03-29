@@ -6,6 +6,7 @@ export interface Emotion {
   parent_id: string | null
   wheel_pos: number
   color?: string
+  description?: string
 }
 
 export interface EmotionSpectrum {

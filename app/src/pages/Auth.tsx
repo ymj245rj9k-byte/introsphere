@@ -21,12 +21,12 @@ export function Auth() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">
-            {isLogin ? 'Zaloguj się' : 'Zarejestruj się'}
+            {isLogin ? 'Sign In' : 'Sign Up'}
           </CardTitle>
           <CardDescription>
             {isLogin 
-              ? 'Wprowadź swoje dane aby się zalogować' 
-              : 'Utwórz nowe konto'}
+              ? 'Enter your credentials to sign in' 
+              : 'Create a new account'}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -38,7 +38,7 @@ export function Auth() {
               <Input
                 id="email"
                 type="email"
-                placeholder="twoj@email.com"
+                placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -46,7 +46,7 @@ export function Auth() {
             </div>
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium">
-                Hasło
+                Password
               </label>
               <Input
                 id="password"
@@ -58,7 +58,7 @@ export function Auth() {
               />
             </div>
             <Button type="submit" className="w-full">
-              {isLogin ? 'Zaloguj się' : 'Zarejestruj się'}
+              {isLogin ? 'Sign In' : 'Sign Up'}
             </Button>
           </form>
 
@@ -69,8 +69,8 @@ export function Auth() {
               className="text-sm text-muted-foreground hover:text-foreground"
             >
               {isLogin 
-                ? 'Nie masz konta? Zarejestruj się' 
-                : 'Masz już konto? Zaloguj się'}
+                ? "Don't have an account? Sign Up" 
+                : 'Already have an account? Sign In'}
             </button>
           </div>
         </CardContent>
