@@ -8,12 +8,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>Koło Emocji - Introsphere</title>
   <style>
+    /* Reset - usuwa domyślne marginesy i paddingi, ustawia box-sizing */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Body - główne tło strony z gradientem niebieskiego, biały tekst */
     body {
       font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -22,6 +24,7 @@
       padding: 40px 20px;
     }
 
+    /* Container - główny kontener, centruje zawartość, max-width 1200px */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -31,6 +34,7 @@
       gap: 40px;
     }
 
+    /* H1 - tytuł strony z gradientowym tekstem (żółty-czerwony-zielony-niebieski) */
     h1 {
       font-size: 2.5rem;
       text-align: center;
@@ -41,18 +45,21 @@
       background-clip: text;
     }
 
+    /* Subtitle - podtytuł strony, szary tekst */
     .subtitle {
       color: #aaa;
       font-size: 1.1rem;
       margin-bottom: 20px;
     }
 
+    /* Content Wrapper - kontener flex dla koła emocji i panelu subspektrów */
     .content-wrapper {
       display: flex;
       align-items: center;
       gap: 60px;
     }
 
+    /* Wheel Container - kontener koła emocji, 450x450px, pozycja relative */
     .wheel-container {
       position: relative;
       width: 450px;
@@ -60,13 +67,14 @@
       flex-shrink: 0;
     }
 
+    /* Wheel SVG - element SVG koła, obrócony o -22.5 stopnia */
     .wheel-svg {
       width: 100%;
       height: 100%;
       transform: rotate(-22.5deg);
     }
 
-    /* Outer glow ring */
+    /* Wheel Glow - zewnętrzna poświata wokół koła (obecnie nie używana w JS) */
     .wheel-glow {
       position: absolute;
       top: 50%;
@@ -79,28 +87,33 @@
       z-index: -1;
     }
 
+    /* Wheel Segment - grupa SVG dla każdego segmentu koła, cursor pointer, animacje */
     .wheel-segment {
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
+    /* Wheel Segment Path - ścieżka SVG segmentu, biała obwódka z przezroczystością */
     .wheel-segment path {
       transition: all 0.3s ease;
-      stroke: #1a1a2e;
+      stroke: rgba(220, 36, 36, 0.2);
       stroke-width: 2;
     }
 
+    /* Wheel Segment Hover - efekt najechania myszką, pogrubienie obwódki, rozjaśnienie */
     .wheel-segment:hover path,
     .wheel-segment.hovered path {
       stroke-width: 4;
       filter: brightness(1.2);
     }
 
+    /* Wheel Segment Active - aktywny segment (kliknięty), najgrubsza obwódka, największe rozjaśnienie */
     .wheel-segment.active path {
       stroke-width: 5;
       filter: brightness(1.3);
     }
 
+    /* Segment Label - tekst nazwy emocji na segmencie, biały, bold, z cieniem */
     .segment-label {
       font-family: 'Quicksand', sans-serif;
       font-weight: 700;
@@ -111,12 +124,13 @@
       transition: all 0.3s ease;
     }
 
+    /* Segment Label Hover - powiększenie tekstu przy najechaniu */
     .wheel-segment:hover .segment-label,
     .wheel-segment.hovered .segment-label {
       font-size: 15px;
     }
 
-    /* Center circle */
+    /* Wheel Center - środkowy okrąg koła, gradient ciemnego fioletu, cienie, border */
     .wheel-center {
       position: absolute;
       top: 50%;
@@ -140,17 +154,19 @@
       border: 2px solid rgba(255,255,255,0.1);
     }
 
+    /* Wheel Center Hover - efekt najechania na środkowy okrąg, powiększenie */
     .wheel-center:hover {
       transform: translate(-50%, -50%) scale(1.08);
       color: #fff;
     }
 
+    /* Wheel Center Span - tekst w środkowym okręgu */
     .wheel-center span {
       padding: 8px;
       line-height: 1.3;
     }
 
-    /* Hover info tooltip */
+    /* Hover Info - tooltip z nazwą i opisem emocji przy najechaniu, ciemne tło z blur */
     .hover-info {
       position: absolute;
       top: 50%;
@@ -169,24 +185,27 @@
       pointer-events: none;
     }
 
+    /* Hover Info Visible - stan widoczny tooltipa */
     .hover-info.visible {
       opacity: 1;
       visibility: visible;
     }
 
+    /* Hover Info Emotion Name - nazwa emocji w tooltipie, bold, większy tekst */
     .hover-info .emotion-name {
       font-weight: 700;
       font-size: 1.1rem;
       margin-bottom: 8px;
     }
 
+    /* Hover Info Emotion Description - opis emocji w tooltipie, szary tekst */
     .hover-info .emotion-description {
       font-size: 0.85rem;
       color: #ccc;
       line-height: 1.4;
     }
 
-    /* Sub-emotions panel */
+    /* Sub-emotions Panel - panel boczny z subspektrami emocji, szkliste tło, zaokrąglone rogi */
     .sub-emotions-panel {
       width: 340px;
       background: rgba(255,255,255,0.08);
@@ -202,30 +221,36 @@
       border: 1px solid rgba(255,255,255,0.1);
     }
 
+    /* Sub-emotions Panel Visible - stan widoczny panelu */
     .sub-emotions-panel.visible {
       opacity: 1;
       visibility: visible;
     }
 
+    /* Sub-emotions Panel Scrollbar - stylowanie paska przewijania */
     .sub-emotions-panel::-webkit-scrollbar {
       width: 6px;
     }
 
+    /* Sub-emotions Panel Scrollbar Track - tło paska przewijania */
     .sub-emotions-panel::-webkit-scrollbar-track {
       background: rgba(255,255,255,0.1);
       border-radius: 3px;
     }
 
+    /* Sub-emotions Panel Scrollbar Thumb - uchwyt paska przewijania */
     .sub-emotions-panel::-webkit-scrollbar-thumb {
       background: rgba(255,255,255,0.3);
       border-radius: 3px;
     }
 
+    /* Sub-emotions Panel H3 - tytuł panelu (nazwa emocji) */
     .sub-emotions-panel h3 {
       font-size: 1.5rem;
       margin-bottom: 5px;
     }
 
+    /* Sub-emotions Panel Parent Emotion - informacja o poziomie rodzica, szary tekst z dolną obwódką */
     .sub-emotions-panel .parent-emotion {
       font-size: 0.85rem;
       color: #888;
@@ -234,6 +259,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.15);
     }
 
+    /* Stay on Level - przycisk opcji 'zostań na poziomie', gradient tła, zaokrąglone rogi */
     .stay-on-level {
       background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
       padding: 16px;
@@ -244,12 +270,14 @@
       border: 1px solid rgba(255,255,255,0.1);
     }
 
+    /* Stay on Level Hover - efekt najechania na przycisk, rozjaśnienie i przesunięcie */
     .stay-on-level:hover {
       background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.08));
       transform: translateX(-5px);
       border-color: rgba(255,255,255,0.2);
     }
 
+    /* Stay on Level Label - etykieta 'Opcja' nad przyciskiem, mały tekst, uppercase */
     .stay-on-level-label {
       font-size: 0.7rem;
       text-transform: uppercase;
@@ -258,18 +286,21 @@
       margin-bottom: 6px;
     }
 
+    /* Stay on Level Text - tekst główny przycisku 'Zostań na poziomie [nazwa]' */
     .stay-on-level-text {
       font-weight: 600;
       font-size: 1.05rem;
       color: #fff;
     }
 
+    /* Sub-emotions List - kontener flex listy subspektrów */
     .sub-emotions-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
 
+    /* Sub-emotion Item - pojedynczy element subspektrum, lekko przezroczyste tło, lewa obwódka */
     .sub-emotion-item {
       background: rgba(255,255,255,0.05);
       padding: 16px;
@@ -279,24 +310,27 @@
       border-left: 4px solid transparent;
     }
 
+    /* Sub-emotion Item Hover - efekt najechania, rozjaśnienie i przesunięcie w prawo */
     .sub-emotion-item:hover {
       background: rgba(255,255,255,0.15);
       transform: translateX(8px);
     }
 
+    /* Sub-emotion Item Name - nazwa subspektrum, bold */
     .sub-emotion-item .sub-emotion-name {
       font-weight: 600;
       font-size: 1.05rem;
       margin-bottom: 6px;
     }
 
+    /* Sub-emotion Item Description - opis subspektrum, szary tekst */
     .sub-emotion-item .sub-emotion-description {
       font-size: 0.85rem;
       color: #bbb;
       line-height: 1.5;
     }
 
-    /* Instructions */
+    /* Instructions - kontener z instrukcjami użytkowania, flex, centrowanie */
     .instructions {
       display: flex;
       gap: 30px;
@@ -305,6 +339,7 @@
       justify-content: center;
     }
 
+    /* Instruction Item - pojedyncza instrukcja, flex z ikoną i tekstem */
     .instruction-item {
       display: flex;
       align-items: center;
@@ -313,6 +348,7 @@
       font-size: 0.9rem;
     }
 
+    /* Instruction Icon - ikona instrukcji, kwadrat z zaokrąglonymi rogami */
     .instruction-icon {
       width: 32px;
       height: 32px;
@@ -324,7 +360,7 @@
       font-size: 1rem;
     }
 
-    /* Responsive */
+    /* Responsive - responsywność dla ekranów < 900px, zmiana układu na kolumnowy */
     @media (max-width: 900px) {
       .content-wrapper {
         flex-direction: column;
@@ -400,19 +436,19 @@
     // Kolejność: joy, trust, fear, surprise, sadness, disgust, anger, anticipation
     const primaryEmotions = [
       // joy: 0° (góra)
-      { id: "joy", name: "Joy", description: "Positive delight and happiness when something good happens.", wheelPosition: 0, color: "#def658ff", colorDark: "#ecf568ff" },
+      { id: "joy", name: "Joy", description: "Positive delight and happiness when something good happens.", wheelPosition: 0, color: "#F7DC6F", colorDark: "#F7DC6F" },
       // trust: 45°
-      { id: "trust", name: "Trust", description: "Confidence and safety in others.", wheelPosition: 45, color: "#75ea6fff", colorDark: "#2be21eff" },
+      { id: "trust", name: "Trust", description: "Confidence and safety in others.", wheelPosition: 45, color: "#82E0AA", colorDark: "#82E0AA" },
       // fear: 90°
-      { id: "fear", name: "Fear", description: "Unpleasant response to perceived threat.", wheelPosition: 90, color: "#216332ff", colorDark: "#0e4524ff" },
+      { id: "fear", name: "Fear", description: "Unpleasant response to perceived threat.", wheelPosition: 90, color: "#F1948A", colorDark: "#F1948A" },
       // surprise: 135°
-      { id: "surprise", name: "Surprise", description: "Reaction to the unexpected.", wheelPosition: 135, color: "#50d5c3ff", colorDark: "#16c7a4ff" },
+      { id: "surprise", name: "Surprise", description: "Reaction to the unexpected.", wheelPosition: 135, color: "#9B59B6", colorDark: "#9B59B6" },
       // sadness: 180°
-      { id: "sadness", name: "Sadness", description: "Sorrow, grief, or loss.", wheelPosition: 180, color: "#2377cbff", colorDark: "#155087ff" },
+      { id: "sadness", name: "Sadness", description: "Sorrow, grief, or loss.", wheelPosition: 180, color: "#5DADE2", colorDark: "#5DADE2" },
       // disgust: 225°
-      { id: "disgust", name: "Disgust", description: "Aversion and revulsion.", wheelPosition: 225, color: "#8E44AD", colorDark: "#6C3483" },
+      { id: "disgust", name: "Disgust", description: "Aversion and revulsion.", wheelPosition: 225, color: "#AF7AC5", colorDark: "#AF7AC5" },
       // anger: 270°
-      { id: "anger", name: "Anger", description: "Strong displeasure and frustration.", wheelPosition: 270, color: "#f75454ff", colorDark: "#e51a1aff" },
+      { id: "anger", name: "Anger", description: "Strong displeasure and frustration.", wheelPosition: 270, color: "#F5B041", colorDark: "#F5B041" },
       // anticipation: 315°
       { id: "anticipation", name: "Anticipation", description: "Looking forward to what comes next.", wheelPosition: 315, color: "#FFA502", colorDark: "#E69300" }
     ];
@@ -432,38 +468,38 @@
       ],
       // --- FEAR subspectra ---
       "fear": [
-        { id: "terror", name: "Terror", description: "Extreme, paralyzing fear.", color: "#76D7C4" },
-        { id: "apprehension", name: "Apprehension", description: "Mild, lingering worry.", color: "#A3D9C7" },
-        { id: "awe", name: "Awe", description: "Fear and wonder mixed together.", color: "#82E0AA" }
+        { id: "terror", name: "Terror", description: "Extreme, paralyzing fear.", color: "#F1948A" },
+        { id: "apprehension", name: "Apprehension", description: "Mild, lingering worry.", color: "#F5B7B1" },
+        { id: "awe", name: "Awe", description: "Fear and wonder mixed together.", color: "#FADBD8" }
       ],
       // --- SURPRISE subspectra ---
       "surprise": [
-        { id: "amazement", name: "Amazement", description: "Deep astonishment and wonder.", color: "#7FDBDA" },
-        { id: "distraction", name: "Distraction", description: "Being pulled away from focus.", color: "#A9DFBF" }
+        { id: "amazement", name: "Amazement", description: "Deep astonishment and wonder.", color: "#9B59B6" },
+        { id: "distraction", name: "Distraction", description: "Being pulled away from focus.", color: "#BB8FCE" }
       ],
       // --- SADNESS subspectra ---
       "sadness": [
-        { id: "grief", name: "Grief", description: "Intense sorrow over loss.", color: "#5D6D7E" },
-        { id: "pensiveness", name: "Pensiveness", description: "Gentle, thoughtful sadness.", color: "#85929E" },
-        { id: "remorse", name: "Remorse", description: "Painful regret for wrongdoing.", color: "#ABB2B9" }
+        { id: "grief", name: "Grief", description: "Intense sorrow over loss.", color: "#5DADE2" },
+        { id: "pensiveness", name: "Pensiveness", description: "Gentle, thoughtful sadness.", color: "#85C1E9" },
+        { id: "remorse", name: "Remorse", description: "Painful regret for wrongdoing.", color: "#AED6F1" }
       ],
       // --- DISGUST subspectra ---
       "disgust": [
-        { id: "loathing", name: "Loathing", description: "Intense disgust and hatred.", color: "#C39BD3" },
-        { id: "boredom", name: "Boredom", description: "Ennui and listlessness.", color: "#D7BDE2" },
-        { id: "contempt", name: "Contempt", description: "Disgust and superiority mixed.", color: "#AF7AC5" }
+        { id: "loathing", name: "Loathing", description: "Intense disgust and hatred.", color: "#AF7AC5" },
+        { id: "boredom", name: "Boredom", description: "Ennui and listlessness.", color: "#C39BD3" },
+        { id: "contempt", name: "Contempt", description: "Disgust and superiority mixed.", color: "#D7BDE2" }
       ],
       // --- ANGER subspectra ---
       "anger": [
-        { id: "rage", name: "Rage", description: "Intense, uncontrolled anger.", color: "#EC7063" },
-        { id: "annoyance", name: "Annoyance", description: "Mild irritation.", color: "#F5B7B1" },
-        { id: "aggressiveness", name: "Aggressiveness", description: "Forceful, hostile energy.", color: "#E74C3C" }
+        { id: "rage", name: "Rage", description: "Intense, uncontrolled anger.", color: "#F5B041" },
+        { id: "annoyance", name: "Annoyance", description: "Mild irritation.", color: "#F8C471" },
+        { id: "aggressiveness", name: "Aggressiveness", description: "Forceful, hostile energy.", color: "#FAD7A0" }
       ],
       // --- ANTICIPATION subspectra ---
       "anticipation": [
-        { id: "interest", name: "Interest", description: "Attentiveness and curiosity.", color: "#F9E79F" },
-        { id: "vigilance", name: "Vigilance", description: "Alert watchfulness.", color: "#F8C471" },
-        { id: "optimism", name: "Optimism", description: "Hopeful confidence.", color: "#F7DC6F" }
+        { id: "interest", name: "Interest", description: "Attentiveness and curiosity.", color: "#FFA502" },
+        { id: "vigilance", name: "Vigilance", description: "Alert watchfulness.", color: "#E69300" },
+        { id: "optimism", name: "Optimism", description: "Hopeful confidence.", color: "#CC8400" }
       ]
     };
 
@@ -512,7 +548,11 @@
       const innerR = 50;
       const segmentAngle = 360 / 8;
 
-      // Create 3D gradient definitions for each emotion
+      // Create defs element for gradients
+      const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+      svg.appendChild(defs);
+
+      // Create gradient definitions for each emotion
       primaryEmotions.forEach((emotion, index) => {
         const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
         gradient.setAttribute('id', `gradient-${emotion.id}`);
@@ -521,26 +561,20 @@
         gradient.setAttribute('x2', '100%');
         gradient.setAttribute('y2', '100%');
         
-        // 3D effect: lighter at top-left, darker at bottom-right
+        // Use spec colors directly
         const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
         stop1.setAttribute('offset', '0%');
         stop1.setAttribute('stop-color', emotion.color);
         stop1.setAttribute('stop-opacity', '1');
         
         const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop2.setAttribute('offset', '60%');
-        stop2.setAttribute('stop-color', emotion.colorDark);
+        stop2.setAttribute('offset', '100%');
+        stop2.setAttribute('stop-color', emotion.color);
         stop2.setAttribute('stop-opacity', '1');
-        
-        const stop3 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop3.setAttribute('offset', '100%');
-        stop3.setAttribute('stop-color', shadeColor(emotion.colorDark, -20));
-        stop3.setAttribute('stop-opacity', '1');
         
         gradient.appendChild(stop1);
         gradient.appendChild(stop2);
-        gradient.appendChild(stop3);
-        svg.appendChild(gradient);
+        defs.appendChild(gradient);
       });
 
       primaryEmotions.forEach((emotion, index) => {
@@ -692,3 +726,4 @@
   </script>
 </body>
 </html>
+

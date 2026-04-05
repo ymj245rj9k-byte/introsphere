@@ -1,148 +1,148 @@
-# Struktura Pytań (Dla Developera)
+# Nowa Struktura Emocji (Dla Developera)
 
-Bazowane na kole emocji Plutchika.
+Nowa struktura oparta na rozszerzonym modelu emocji z głębszą hierarchią.
 
 ---
 
-## Główne emocje (Plutchik Wheel - 8 bazowych)
+## Główne emocje (Nowe Primary Emotions - 8 bazowych)
 
 ```javascript
 const emotions = {
-  // --- PRIMARY EMOTIONS ---
+  // --- PRIMARY EMOTIONS (New Structure) ---
   
-  "joy": {
-    id: "joy",
-    name: "Radość",
-    nameEn: "Joy",
-    description: "Positive delight and happiness when something good happens.",
+  "ecstasy": {
+    id: "ecstasy",
+    name: "Ekstaza",
+    nameEn: "Ecstasy",
+    description: "Overwhelming feeling of great happiness or joyful excitement.",
     spectrum: "primary",
     parent: null,
-    wheelPosition: 0, // 0° - góra
-    color: "#def658ff", // żółty
-    colorDark: "#ecf568ff",
+    wheelPosition: 0, // 0° - góra (żółty)
+    color: "#F7DC6F", // żółty
+    colorDark: "#F9E79F",
     questions: [
-      "What specifically is making you feel this joy right now — and what does it tell you about what you truly value?",
-      "How fully are you letting yourself receive this feeling, or are you already waiting for it to pass?",
-      "Who in your life deserves to hear about this moment, and what's stopping you from sharing it with them?"
+      "What overwhelming feeling are you experiencing right now — and what does this intensity reveal about what truly matters to you?",
+      "How often do you allow yourself to feel this deeply, or do you pull back from such intense experiences?",
+      "What would it mean to stay with this feeling without trying to dampen or amplify it?"
     ]
   },
   
-  "trust": {
-    id: "trust",
-    name: "Zaufanie",
-    nameEn: "Trust",
-    description: "Confidence and safety in others.",
+  "admiration": {
+    id: "admiration",
+    name: "Podziw",
+    nameEn: "Admiration",
+    description: "Recognition and respect for someone or something perceived as having high quality or value.",
     spectrum: "primary",
     parent: null,
-    wheelPosition: 45,
-    color: "#75ea6fff", // zielony
-    colorDark: "#2be21eff",
+    wheelPosition: 45, // 45° (zielony)
+    color: "#82E0AA", // zielony
+    colorDark: "#ABEBC6",
     questions: [
-      "What is it about this person or situation that makes you feel safe enough to trust? What does that reflect about your needs?",
-      "Have you ever withheld trust from someone or something that deserved it — what was the fear underneath that?",
-      "How does it feel in your body when you fully trust? Can you let yourself rest in that right now?"
+      "What qualities do you see in others that inspire this sense of admiration — and do you recognize any of these in yourself?",
+      "When did you last admire your own abilities or character? What made that moment special?",
+      "What can you learn from the people you admire that might help you grow?"
     ]
   },
   
-  "fear": {
-    id: "fear",
-    name: "Strach",
-    nameEn: "Fear",
-    description: "Unpleasant response to perceived threat.",
+  "terror": {
+    id: "terror",
+    name: "Terror",
+    nameEn: "Terror",
+    description: "Extreme fear or dread, often causing panic or paralysis.",
     spectrum: "primary",
     parent: null,
-    wheelPosition: 135,
-    color: "#216332ff", // ciemnozielony
-    colorDark: "#0e4524ff",
+    wheelPosition: 90, // 90° (ciemnozielony)
+    color: "#2874A6", // ciemnozielony
+    colorDark: "#5499C7",
     questions: [
-      "What is this fear actually trying to protect you from — and is that threat real right now, or is it a memory or story?",
-      "When did you first learn to be afraid of this? Whose voice does this fear sound like?",
-      "If you knew you were completely safe, what would you do differently today?"
+      "What is the source of this extreme fear — and what would happen if you imagined the worst-case scenario already occurred?",
+      "How does terror differ from ordinary fear in your experience, and what does your body need to feel safer?",
+      "What protection mechanisms do you have in place when faced with terrifying situations?"
     ]
   },
   
-  "surprise": {
-    id: "surprise",
-    name: "Zaskoczenie",
-    nameEn: "Surprise",
-    description: "Reaction to the unexpected.",
+  "amazement": {
+    id: "amazement",
+    name: "Zachwyt",
+    nameEn: "Amazement",
+    description: "A feeling of great surprise or wonder.",
     spectrum: "primary",
     parent: null,
-    wheelPosition: 180,
-    color: "#50d5c3ff", // turkusowy/morski
-    colorDark: "#16c7a4ff",
+    wheelPosition: 135, // 135° (morsko-niebieski)
+    color: "#28B4C8", // morsko-niebieski
+    colorDark: "#D2B4DE",
     questions: [
-      "What expectation or assumption got disrupted here — and is it possible the disruption was for your growth?",
-      "What does your reaction to this surprise reveal about what you were holding onto?",
-      "If this unexpected thing turned out to be exactly what you needed, how might you see it differently?"
+      "What has surprised you so deeply that it left you amazed — and what assumptions did it challenge?",
+      "How often do you allow yourself to be amazed by ordinary things in your daily life?",
+      "What would happen if you approached each day with a sense of potential for amazement?"
     ]
   },
   
-  "sadness": {
-    id: "sadness",
-    name: "Smutek",
-    nameEn: "Sadness",
-    description: "Sorrow, grief, or loss.",
+  "grief": {
+    id: "grief",
+    name: "Żałoba",
+    nameEn: "Grief",
+    description: "Deep sorrow or distress, especially caused by someone's death.",
     spectrum: "primary",
     parent: null,
-    wheelPosition: 225,
-    color: "#2377cbff", // granatowy
-    colorDark: "#155087ff",
+    wheelPosition: 180, // 180° (ciemnoniebieski)
+    color: "#1A5276", // ciemnoniebieski
+    colorDark: "#85C1E9",
     questions: [
-      "What or who are you grieving right now — and have you allowed yourself to fully feel that loss without rushing to fix it?",
-      "What does this sadness need from you? Not to solve it — just to be witnessed.",
-      "Is there something beautiful about what you're sad over — something worth honoring before you let it go?"
+      "What are you grieving beyond a person or situation — and what part of your identity is shifting with this loss?",
+      "How does it feel to let yourself be fully present with this grief without trying to move past it quickly?",
+      "What has this experience of loss taught you about what truly matters in life?"
     ]
   },
   
-  "disgust": {
-    id: "disgust",
-    name: "Wstręt",
-    nameEn: "Disgust",
-    description: "Aversion and revulsion.",
+  "loathing": {
+    id: "loathing",
+    name: "Odrazy",
+    nameEn: "Loathing",
+    description: "A feeling of intense dislike or disgust; abhorrence.",
     spectrum: "primary",
     parent: null,
-    wheelPosition: 270,
-    color: "#8E44AD", // fioletowy
-    colorDark: "#6C3483",
+    wheelPosition: 225, // 225° (fioletowy)
+    color: "#7D3C98", // fioletowy
+    colorDark: "#AF7AC5",
     questions: [
-      "What value or boundary is being violated that's causing this feeling of disgust? What does that tell you about what matters to you?",
-      "Is there any part of what repels you that you also recognize — even faintly — in yourself?",
-      "What would it look like to address what disgusts you from a place of values rather than judgment?"
+      "What values are being so deeply violated that you feel this loathing — and how can you protect those values?",
+      "Is there a part of this loathing that reflects something you fear about yourself — and can you meet that with compassion?",
+      "What would it look like to hold your boundaries firmly without being consumed by negative feelings?"
     ]
   },
   
-  "anger": {
-    id: "anger",
-    name: "Złość",
-    nameEn: "Anger",
-    description: "Strong displeasure and frustration.",
+  "rage": {
+    id: "rage",
+    name: "Wściekłość",
+    nameEn: "Rage",
+    description: "Violent, uncontrollable anger that may lead to destructive behavior.",
     spectrum: "primary",
     parent: null,
-    wheelPosition: 315,
-    color: "#f75454ff", // czerwony
-    colorDark: "#e51a1aff",
+    wheelPosition: 270, // 270° (czerwony)
+    color: "#EC7063", // czerwony
+    colorDark: "#F1948A",
     questions: [
-      "What boundary, need, or value feels like it's been crossed right now? Underneath the anger — what's the hurt?",
-      "Is this anger familiar? Does it remind you of a feeling from earlier in your life you never fully expressed?",
-      "What would you need in order to feel truly heard in this situation — and who is the right person to express it to?"
+      "What injustice or violation has triggered this explosive anger — and what deeper wound is it defending?",
+      "How safe is it for you to fully express this rage, and where could you channel it productively?",
+      "What would true justice look like in this situation — separate from revenge or punishment?"
     ]
   },
   
-  "anticipation": {
-    id: "anticipation",
-    name: "Oczekiwanie",
-    nameEn: "Anticipation",
-    description: "Looking forward to what comes next.",
+  "vigilance": {
+    id: "vigilance",
+    name: "Ostrożność",
+    nameEn: "Vigilance",
+    description: "The action or state of keeping careful watch for possible danger or difficulties.",
     spectrum: "primary",
     parent: null,
-    wheelPosition: 90,
-    color: "#FFA502", // pomarańczowy
-    colorDark: "#E69300",
+    wheelPosition: 315, // 315° (pomarańczowy)
+    color: "#F5B041", // pomarańczowy
+    colorDark: "#F8C471",
     questions: [
-      "What are you most looking forward to, and what does that desire reveal about who you're becoming?",
-      "Is your anticipation rooted in hope, or in anxiety about the future? How can you tell the difference right now?",
-      "What can you do today — just one small thing — that honors the future you're moving toward?"
+      "What are you scanning for in your environment — and is this hypervigilance serving or limiting you?",
+      "When was the last time you felt truly safe to lower your guard — and what would it take to create that safety now?",
+      "How can you maintain awareness without living in a state of constant preparation for threats?"
     ]
   }
 };
@@ -150,49 +150,49 @@ const emotions = {
 
 ---
 
-## Podspektra emocji (rozszerzenie koła Plutchika)
+## Pod-emocje (rozszerzenie nowego koła emocji)
 
 ```javascript
 const subEmotions = {
-  // --- JOY subspectra (jaśniejsze żółte) ---
-  "serenity": {
-    id: "serenity",
-    name: "Spokój",
-    nameEn: "Serenity",
-    description: "Calm, peaceful contentment.",
+  // --- ECSTASY subspectra (żółte odcienie) ---
+  "joy": {
+    id: "joy",
+    name: "Radość",
+    nameEn: "Joy",
+    description: "A feeling of great pleasure and happiness.",
     spectrum: "subspectrum",
-    parent: "joy",
+    parent: "ecstasy",
     wheelPosition: 22.5,
     color: "#F9E79F", // jasny żółty
+    questions: [
+      "What specifically is making you feel this joy right now — and what does it tell you about what you truly value?",
+      "How fully are you letting yourself receive this feeling, or are you already waiting for it to pass?",
+      "Who in your life deserves to hear about this moment, and what's stopping you from sharing it with them?"
+    ]
+  },
+  "serenity": {
+    id: "serenity",
+    name: "Spuśćność",
+    nameEn: "Serenity",
+    description: "A state of being calm, peaceful, and untroubled.",
+    spectrum: "subspectrum",
+    parent: "ecstasy",
+    wheelPosition: 67.5,
+    color: "#FCF3CF", // bardzo jasny żółty
     questions: [
       "What conditions in your life right now are allowing you to feel this calm — and how can you protect or cultivate them more intentionally?",
       "Is this serenity something you arrived at, or something you're allowing? What's the difference for you?",
       "What would it mean to trust that you deserve to feel this peaceful — not as a reward, but as your natural state?"
     ]
   },
-  "ecstasy": {
-    id: "ecstasy",
-    name: "Ekstaza",
-    nameEn: "Ecstasy",
-    description: "Intense, overwhelming joy.",
-    spectrum: "subspectrum",
-    parent: "joy",
-    wheelPosition: 337.5,
-    color: "#F7DC6F", // średni żółty
-    questions: [
-      "What is this overwhelming feeling trying to show you about what you're truly alive for?",
-      "Do you let yourself stay in moments this big, or do you shrink from them? What would it take to really let this in?",
-      "How has your capacity to feel joy this deeply been shaped by the hard things you've survived?"
-    ]
-  },
   "love": {
     id: "love",
     name: "Miłość",
     nameEn: "Love",
-    description: "Deep affection and connection.",
+    description: "A deep feeling of affection and care towards someone or something.",
     spectrum: "subspectrum",
-    parent: "joy",
-    wheelPosition: 67.5,
+    parent: "ecstasy",
+    wheelPosition: 337.5,
     color: "#FADBD8", // jasny różowy
     questions: [
       "What is it about this person, place, or thing that makes your heart open — and what does that openness tell you about who you are?",
@@ -201,16 +201,31 @@ const subEmotions = {
     ]
   },
   
-  // --- TRUST subspectra (jaśniejsze zielone) ---
+  // --- ADMIRATION subspectra (zielone odcienie) ---
+  "trust": {
+    id: "trust",
+    name: "Zaufanie",
+    nameEn: "Trust",
+    description: "Firm belief in the reliability, truth, or ability of someone or something.",
+    spectrum: "subspectrum",
+    parent: "admiration",
+    wheelPosition: 22.5,
+    color: "#ABEBC6", // jasny zielony
+    questions: [
+      "What is it about this person or situation that makes you feel safe enough to trust? What does that reflect about your needs?",
+      "Have you ever withheld trust from someone or something that deserved it — what was the fear underneath that?",
+      "How does it feel in your body when you fully trust? Can you let yourself rest in that right now?"
+    ]
+  },
   "acceptance": {
     id: "acceptance",
     name: "Akceptacja",
     nameEn: "Acceptance",
-    description: "Embracing reality as it is.",
+    description: "The action of consenting to receive or undertake something offered.",
     spectrum: "subspectrum",
-    parent: "trust",
-    wheelPosition: 22.5,
-    color: "#ABEBC6", // jasny zielony
+    parent: "admiration",
+    wheelPosition: 67.5,
+    color: "#D5F5E3", // bardzo jasny zielony
     questions: [
       "What are you accepting right now — and is it true acceptance, or is there still a part of you fighting it quietly underneath?",
       "Is there something you've been resisting that you already know, deep down, you need to make peace with?",
@@ -221,10 +236,10 @@ const subEmotions = {
     id: "submission",
     name: "Podporządkowanie",
     nameEn: "Submission",
-    description: "Yielding to others' will.",
+    description: "The action of accepting or yielding to a superior force or to the will or authority of another person.",
     spectrum: "subspectrum",
-    parent: "trust",
-    wheelPosition: 67.5,
+    parent: "admiration",
+    wheelPosition: 337.5,
     color: "#A3E4D7", // jasny turkusowy
     questions: [
       "When you defer to others — to a person, a system, a belief — is it coming from genuine trust, or from a fear of what happens if you don't?",
@@ -233,46 +248,46 @@ const subEmotions = {
     ]
   },
   
-  // --- FEAR subspectra (jaśniejsze zielone/morskie) ---
+  // --- TERROR subspectra (ciemnozielone odcienie) ---
+  "fear": {
+    id: "fear",
+    name: "Strach",
+    nameEn: "Fear",
+    description: "An unpleasant emotion caused by the threat of danger, pain, or harm.",
+    spectrum: "subspectrum",
+    parent: "terror",
+    wheelPosition: 22.5,
+    color: "#5499C7", // jasny niebiesko-zielony
+    questions: [
+      "What is this fear actually trying to protect you from — and is that threat real right now, or is it a memory or story?",
+      "When did you first learn to be afraid of this? Whose voice does this fear sound like?",
+      "If you knew you were completely safe, what would you do differently today?"
+    ]
+  },
   "apprehension": {
     id: "apprehension",
     name: "Niepokój",
     nameEn: "Apprehension",
-    description: "Mild, lingering worry.",
+    description: "Anxiety or fear that something bad or unpleasant will happen.",
     spectrum: "subspectrum",
-    parent: "fear",
-    wheelPosition: 157.5,
-    color: "#A3D9C7", // jasny morski
+    parent: "terror",
+    wheelPosition: 67.5,
+    color: "#A3E4D7", // jasny turkusowy
     questions: [
       "What exactly are you dreading — can you name it clearly, or does it feel too vague to hold? Sometimes naming a fear shrinks it. Try.",
       "Is this unease pointing to something real that needs your attention, or is it an old alarm going off in a situation that no longer requires it?",
       "What would you do right now if this low hum of worry simply wasn't there? What does that tell you about what you want?"
     ]
   },
-  "terror": {
-    id: "terror",
-    name: "Terror",
-    nameEn: "Terror",
-    description: "Extreme, paralyzing fear.",
-    spectrum: "subspectrum",
-    parent: "fear",
-    wheelPosition: 112.5,
-    color: "#76D7C4", // średni morski
-    questions: [
-      "Can you locate where this terror lives in your body right now — your chest, throat, stomach? Place a hand there. What does that part of you need to hear?",
-      "Has your nervous system been here before? How old does this fear feel — is it speaking from the present, or from a much younger version of you?",
-      "You have survived every worst moment that came before this one. What does that survival tell you about your capacity to get through what's in front of you?"
-    ]
-  },
   "awe": {
     id: "awe",
     name: "Podziw",
     nameEn: "Awe",
-    description: "Fear and wonder mixed together.",
+    description: "A feeling of reverential respect mixed with fear or wonder.",
     spectrum: "subspectrum",
-    parent: "fear",
-    wheelPosition: 202.5,
-    color: "#82E0AA", // jasny zielony
+    parent: "terror",
+    wheelPosition: 337.5,
+    color: "#85C1E9", // jasny niebieski
     questions: [
       "What is it about this moment that makes you feel so small — and is smallness here frightening, or actually a relief from having to hold everything together?",
       "When did you last feel genuinely awestruck? What has closed you off from that feeling in the time since?",
@@ -280,125 +295,140 @@ const subEmotions = {
     ]
   },
   
-  // --- SURPRISE subspectra (jaśniejsze morskie) ---
+  // --- AMAZEMENT subspectra (morsko-niebieskie odcienie) ---
+  "surprise": {
+    id: "surprise",
+    name: "Zaskoczenie",
+    nameEn: "Surprise",
+    description: "A feeling of mild astonishment or shock caused by something unexpected.",
+    spectrum: "subspectrum",
+    parent: "amazement",
+    wheelPosition: 22.5,
+    color: "#D2B4DE", // jasny fioletowo-niebieski
+    questions: [
+      "What expectation or assumption got disrupted here — and is it possible the disruption was for your growth?",
+      "What does your reaction to this surprise reveal about what you were holding onto?",
+      "If this unexpected thing turned out to be exactly what you needed, how might you see it differently?"
+    ]
+  },
   "distraction": {
     id: "distraction",
     name: "Rozproszenie",
     nameEn: "Distraction",
-    description: "Being pulled away from focus.",
+    description: "A thing that prevents someone from concentrating on something else.",
     spectrum: "subspectrum",
-    parent: "surprise",
-    wheelPosition: 202.5,
-    color: "#A9DFBF", // jasny morski
+    parent: "amazement",
+    wheelPosition: 67.5,
+    color: "#A3E4D7", // jasny turkusowy
     questions: [
       "What are you distracting yourself from right now — and is the distraction giving you rest, or helping you avoid something that needs your attention?",
       "When you scatter your focus like this, what feeling are you most trying to not sit with?",
       "What would it look like to give just five minutes of full, undivided presence to one thing today — and what comes up when you imagine doing that?"
     ]
   },
-  "amazement": {
-    id: "amazement",
-    name: "Zadziwienie",
-    nameEn: "Amazement",
-    description: "Deep astonishment and wonder.",
+  "disapproval": {
+    id: "disapproval",
+    name: "Nieprzyznanie",
+    nameEn: "Disapproval",
+    description: "A feeling of disapproving of something or someone.",
     spectrum: "subspectrum",
-    parent: "surprise",
-    wheelPosition: 157.5,
-    color: "#7FDBDA", // jasny turkusowy
+    parent: "amazement",
+    wheelPosition: 337.5,
+    color: "#85C1E9", // jasny niebieski
     questions: [
-      "What did you believe that this moment just proved wrong — and does losing that belief feel like a loss, or a liberation?",
-      "How often do you let yourself be genuinely surprised by life, or do you tend to brace for things so you won't be caught off guard?",
-      "What would it mean to move through your days with just a little more openness to being amazed — even by small, ordinary things?"
+      "What value or standard is being violated that triggers this disapproval — and how important is it to defend that value?",
+      "Is your disapproval masking any discomfort with uncertainty or challenges to your beliefs?",
+      "How can you hold your values strongly while remaining open to perspectives that differ from your own?"
     ]
   },
   
-  // --- SADNESS subspectra (jaśniejsze granatowe) ---
+  // --- GRIEF subspectra (ciemnoniebieskie odcienie) ---
+  "sadness": {
+    id: "sadness",
+    name: "Smutek",
+    nameEn: "Sadness",
+    description: "Emotional pain characterized by feelings of disadvantage, loss, despair, and helplessness.",
+    spectrum: "subspectrum",
+    parent: "grief",
+    wheelPosition: 22.5,
+    color: "#85C1E9", // jasny niebieski
+    questions: [
+      "What or who are you grieving right now — and have you allowed yourself to fully feel that loss without rushing to fix it?",
+      "What does this sadness need from you? Not to solve it — just to be witnessed.",
+      "Is there something beautiful about what you're sad over — something worth honoring before you let it go?"
+    ]
+  },
   "pensiveness": {
     id: "pensiveness",
     name: "Zaduma",
     nameEn: "Pensiveness",
-    description: "Gentle, thoughtful sadness.",
+    description: "A state of deep or serious thought, often tinged with sadness.",
     spectrum: "subspectrum",
-    parent: "sadness",
-    wheelPosition: 247.5,
-    color: "#85929E", // jasny granatowy/szary
+    parent: "grief",
+    wheelPosition: 67.5,
+    color: "#A9DFBF", // jasny zielono-niebieski
     questions: [
       "What are you quietly mourning right now — something lost, something that never was, or a version of yourself you've had to let go of?",
       "Is this melancholy asking you to slow down and feel something, or has it become a comfortable place to hide from something harder?",
       "What small, tender thing could you do today to honor this feeling without drowning in it?"
     ]
   },
-  "grief": {
-    id: "grief",
-    name: "Żałoba",
-    nameEn: "Grief",
-    description: "Intense sorrow over loss.",
+  "disappointment": {
+    id: "disappointment",
+    name: "Rozczarowanie",
+    nameEn: "Disappointment",
+    description: "A feeling of dissatisfaction when expectations are not fulfilled.",
     spectrum: "subspectrum",
-    parent: "sadness",
-    wheelPosition: 292.5,
-    color: "#5D6D7E", // średni granatowy
+    parent: "grief",
+    wheelPosition: 337.5,
+    color: "#A3E4D7", // jasny turkusowy
     questions: [
-      "What or who are you grieving — and have you let yourself cry, not to fix anything, but just to say: this mattered, and losing it hurts?",
-      "Grief often carries guilt, anger, or relief inside it. What unexpected emotion is hiding inside yours right now?",
-      "What did the thing you lost give you that you're afraid you won't find again? How can you start to offer that to yourself?"
-    ]
-  },
-  "remorse": {
-    id: "remorse",
-    name: "Skrucha",
-    nameEn: "Remorse",
-    description: "Painful regret for wrongdoing.",
-    spectrum: "subspectrum",
-    parent: "sadness",
-    wheelPosition: 202.5,
-    color: "#ABB2B9", // jasny szary
-    questions: [
-      "What exactly are you holding yourself accountable for — and is this remorse proportionate, or are you punishing yourself beyond what the situation calls for?",
-      "Have you actually made amends where you could — or are you using guilt as a substitute for action?",
-      "What would it take to genuinely forgive yourself? Not to excuse what happened, but to stop letting it define who you are now?"
+      "What expectations were you holding that weren't met — and how can you gently mourn that gap between reality and wish?",
+      "How does it feel to accept that people, situations, or outcomes don't always align with our hopes?",
+      "What can you appreciate about the experience itself, despite the disappointment?"
     ]
   },
   
-  // --- DISGUST subspectra (jaśniejsze fioletowe) ---
+  // --- LOATHING subspectra (fioletowe odcienie) ---
+  "disgust": {
+    id: "disgust",
+    name: "Wstręt",
+    nameEn: "Disgust",
+    description: "A feeling of revulsion or strong disapproval aroused by something unpleasant or offensive.",
+    spectrum: "subspectrum",
+    parent: "loathing",
+    wheelPosition: 22.5,
+    color: "#AF7AC5", // jasny fioletowy
+    questions: [
+      "What value or boundary is being violated that's causing this feeling of disgust? What does that tell you about what matters to you?",
+      "Is there any part of what repels you that you also recognize — even faintly — in yourself?",
+      "What would it look like to address what disgusts you from a place of values rather than judgment?"
+    ]
+  },
   "boredom": {
     id: "boredom",
     name: "Nuda",
     nameEn: "Boredom",
-    description: "Ennui and listlessness.",
+    description: "A state of being weary and restless through lack of interest.",
     spectrum: "subspectrum",
-    parent: "disgust",
-    wheelPosition: 292.5,
-    color: "#D7BDE2", // jasny fioletowy
+    parent: "loathing",
+    wheelPosition: 67.5,
+    color: "#FADBD8", // jasny różowy
     questions: [
       "What in your life has lost its meaning for you — and is this boredom a signal that you've outgrown something, or that you're avoiding the effort something requires?",
       "When did you last feel genuinely engaged and alive in what you were doing? What was different then?",
       "What are you tolerating in your daily life that, if you're honest, you know is slowly draining you?"
     ]
   },
-  "loathing": {
-    id: "loathing",
-    name: "Obrzydzenie",
-    nameEn: "Loathing",
-    description: "Intense disgust and hatred.",
-    spectrum: "subspectrum",
-    parent: "disgust",
-    wheelPosition: 247.5,
-    color: "#C39BD3", // średni fioletowy
-    questions: [
-      "What core value is so deeply violated here that it produces this intensity of feeling? The strength of the reaction usually maps to the depth of the value.",
-      "Is any part of what you loathe something you recognize — even faintly, even uncomfortably — in yourself? This isn't about blame. It's about what this reaction is here to teach you.",
-      "What would it mean to hold your values this fiercely while releasing the consuming energy of loathing itself — to care without being corroded by it?"
-    ]
-  },
   "contempt": {
     id: "contempt",
     name: "Pogarda",
     nameEn: "Contempt",
-    description: "Disgust and superiority mixed.",
+    description: "The feeling that a person or a thing is beneath consideration, worthless, or deserving scorn.",
     spectrum: "subspectrum",
-    parent: "disgust",
+    parent: "loathing",
     wheelPosition: 337.5,
-    color: "#AF7AC5", // jasny fioletowy
+    color: "#F9E79F", // jasny żółty
     questions: [
       "Contempt creates distance — what is the distance protecting you from feeling or confronting in this situation?",
       "Is the judgment you hold toward this person or thing connected to a judgment you hold toward a part of yourself? What would happen if you looked at both with the same eye?",
@@ -406,46 +436,46 @@ const subEmotions = {
     ]
   },
   
-  // --- ANGER subspectra (jaśniejsze czerwone/pomarańczowe) ---
+  // --- RAGE subspectra (czerwone odcienie) ---
+  "anger": {
+    id: "anger",
+    name: "Złość",
+    nameEn: "Anger",
+    description: "A strong feeling of annoyance, displeasure, or hostility.",
+    spectrum: "subspectrum",
+    parent: "rage",
+    wheelPosition: 22.5,
+    color: "#F1948A", // jasny czerwony
+    questions: [
+      "What boundary, need, or value feels like it's been crossed right now? Underneath the anger — what's the hurt?",
+      "Is this anger familiar? Does it remind you of a feeling from earlier in your life you never fully expressed?",
+      "What would you need in order to feel truly heard in this situation — and who is the right person to express it to?"
+    ]
+  },
   "annoyance": {
     id: "annoyance",
     name: "Drażliwość",
     nameEn: "Annoyance",
-    description: "Mild irritation.",
+    description: "A feeling of mild irritation or frustration.",
     spectrum: "subspectrum",
-    parent: "anger",
-    wheelPosition: 337.5,
-    color: "#F5B7B1", // jasny czerwony
+    parent: "rage",
+    wheelPosition: 67.5,
+    color: "#FADBD8", // jasny różowy
     questions: [
       "What small thing is irritating you — and is it actually about this, or is it the latest in a series of things you've been swallowing without saying anything?",
       "Annoyance often points to a need that isn't being met. What do you need right now that you haven't asked for?",
       "What would you say if you knew you could say it without consequence — and why haven't you said it?"
     ]
   },
-  "rage": {
-    id: "rage",
-    name: "Wściekłość",
-    nameEn: "Rage",
-    description: "Intense, uncontrolled anger.",
-    spectrum: "subspectrum",
-    parent: "anger",
-    wheelPosition: 292.5,
-    color: "#EC7063", // średni czerwony
-    questions: [
-      "Before anything else — can you find somewhere safe to let this move through your body? Rage held still in the mind becomes poison. What does your body need to do right now?",
-      "Underneath this rage, what is the deepest wound? Not the trigger — the wound. When did you first feel this powerless, this unseen, this wronged?",
-      "What would justice actually look like here — not revenge, not numbing — but something that would let you feel like your pain was finally acknowledged?"
-    ]
-  },
   "aggressiveness": {
     id: "aggressiveness",
     name: "Agresywność",
     nameEn: "Aggressiveness",
-    description: "Forceful, hostile energy.",
+    description: "Ready or likely to attack or confront; characterized by aggression.",
     spectrum: "subspectrum",
-    parent: "anger",
-    wheelPosition: 22.5,
-    color: "#E74C3C", // czerwony
+    parent: "rage",
+    wheelPosition: 337.5,
+    color: "#F9E79F", // jasny żółty
     questions: [
       "What are you fighting for right now — and is the intensity of your drive proportionate to what's actually at stake, or are older battles bleeding into this one?",
       "Is this forcefulness coming from your strength, or from your fear of what happens if you don't push hard enough?",
@@ -453,46 +483,46 @@ const subEmotions = {
     ]
   },
   
-  // --- ANTICIPATION subspectra (jaśniejsze pomarańczowe/żółte) ---
+  // --- VIGILANCE subspectra (pomarańczowe odcienie) ---
+  "anticipation": {
+    id: "anticipation",
+    name: "Oczekiwanie",
+    nameEn: "Anticipation",
+    description: "The act of looking forward to something, especially with pleasure or excitement.",
+    spectrum: "subspectrum",
+    parent: "vigilance",
+    wheelPosition: 22.5,
+    color: "#F8C471", // jasny pomarańczowy
+    questions: [
+      "What are you most looking forward to, and what does that desire reveal about who you're becoming?",
+      "Is your anticipation rooted in hope, or in anxiety about the future? How can you tell the difference right now?",
+      "What can you do today — just one small thing — that honors the future you're moving toward?"
+    ]
+  },
   "interest": {
     id: "interest",
     name: "Zainteresowanie",
     nameEn: "Interest",
-    description: "Attentiveness and curiosity.",
+    description: "A feeling of wanting to know or learn about something or someone.",
     spectrum: "subspectrum",
-    parent: "anticipation",
+    parent: "vigilance",
     wheelPosition: 67.5,
-    color: "#F9E79F", // jasny żółty
+    color: "#D5F5E3", // bardzo jasny zielony
     questions: [
       "What is pulling your attention right now — and when did you last follow a thread of genuine curiosity just to see where it leads, with no outcome in mind?",
       "Is this interest something new, or a returning signal — something you've been drawn to before but set aside? What made you set it aside?",
       "What would it look like to take this interest seriously, even just for an hour this week?"
     ]
   },
-  "vigilance": {
-    id: "vigilance",
-    name: "Czujność",
-    nameEn: "Vigilance",
-    description: "Alert watchfulness.",
-    spectrum: "subspectrum",
-    parent: "anticipation",
-    wheelPosition: 112.5,
-    color: "#F8C471", // jasny pomarańcz
-    questions: [
-      "Your nervous system is on high alert — what is it scanning for? Is the threat real and present, or has your body learned to prepare for something that already happened long ago?",
-      "What would it feel like to stand down, even briefly — to trust that you don't have to watch everything all the time? What makes that feel impossible right now?",
-      "Who or what taught you that you had to be this vigilant to be safe? Have you ever tried to thank that part of yourself, even as you try to give it some rest?"
-    ]
-  },
   "optimism": {
     id: "optimism",
     name: "Optymizm",
     nameEn: "Optimism",
-    description: "Hopeful confidence.",
+    description: "Hopefulness and confidence about the future or the successful outcome of something.",
     spectrum: "subspectrum",
-    parent: "anticipation",
-    wheelPosition: 22.5,
-    color: "#F7DC6F", // średni żółty
+    parent: "vigilance",
+    wheelPosition: 337.5,
+    color: "#FCF3CF", // bardzo jasny żółty
     questions: [
       "What is this hope built on — is it grounded in something real, or is it protecting you from looking at something you'd rather not see?",
       "Has your optimism ever gotten you hurt? How do you hold hope now without abandoning your own wisdom?",
@@ -528,4 +558,3 @@ function getParentEmotion(subEmotionId) {
 
 // Eksport wszystkich emocji jako jedna struktura
 const allEmotions = { ...emotions, ...subEmotions };
-```
