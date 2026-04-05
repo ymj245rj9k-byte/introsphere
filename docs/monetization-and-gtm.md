@@ -59,7 +59,7 @@
 - **React** (Vite) – szybki start, popularny
 - **Tailwind CSS** – stylowanie
 - **Shadcn UI** – gotowe komponenty (Button, Card, Input, etc.)
-- **Framer Motion** – proste animacje
+- **Zustand** – state management
 
 ### Backend
 - **Supabase** – Auth + PostgreSQL + Hosting
@@ -69,11 +69,6 @@
 - **Figma** (darmowa) – do prototypu UI
 - **GitHub** – kod
 - **Vercel** – deployment
-
-### Alternatywa: Supabase
-- Też darmowy tier
-- Bardziej SQL-like
-- Firebase jest bardziej "plug & play" dla React
 
 ---
 
@@ -141,7 +136,7 @@
 |---------|---------|
 | 1 | Setup projektu + UI components |
 | 2 | Logika: wybór nastroju + pytania |
-| 3 | Formularz + zapis do Firebase |
+| 3 | Formularz + zapis do Supabase |
 | 4 | Historia + kalendarz |
 | 5 | Testy + bugfix + deploy |
 

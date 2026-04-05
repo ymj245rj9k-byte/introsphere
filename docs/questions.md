@@ -4,7 +4,7 @@
 ---
 
 # Ecstasy
-Intense overwhelming happiness
+Overwhelming feeling of great happiness or joyful excitement.
 
 ## Main Questions
 
@@ -13,21 +13,21 @@ Intense overwhelming happiness
 3. What would it mean to stay with this feeling without trying to dampen or amplify it?
 
 ## Joy
-Cheerful contentment
+A feeling of great pleasure and happiness.
 
 1. What specifically is making you feel this joy right now — and what does it tell you about what you truly value?
 2. How fully are you letting yourself receive this feeling, or are you already waiting for it to pass?
 3. Who in your life deserves to hear about this moment, and what's stopping you from sharing it with them?
 
 ## Serenity
-Deep calm
+A state of being calm, peaceful, and untroubled.
 
 1. What conditions in your life right now are allowing you to feel this calm — and how can you protect or cultivate them more intentionally?
 2. Is this serenity something you arrived at, or something you're allowing? What's the difference for you?
 3. What would it mean to trust that you deserve to feel this peaceful — not as a reward, but as your natural state?
 
 ## Love
-Heart-opening love
+A deep feeling of affection and care towards someone or something.
 
 1. What is it about this person, place, or thing that makes your heart open — and what does that openness tell you about who you are?
 2. Are you letting yourself be as loved as you are loving right now, or is receiving harder than giving?
@@ -36,7 +36,7 @@ Heart-opening love
 ---
 
 # Admiration
-Deep respect
+Recognition and respect for someone or something perceived as having high quality or value.
 
 ## Main Questions
 
@@ -45,14 +45,14 @@ Deep respect
 3. What can you learn from the people you admire that might help you grow?
 
 ## Trust
-Safe openness
+Firm belief in the reliability, truth, or ability of someone or something.
 
 1. What is it about this person or situation that makes you feel safe enough to trust? What does that reflect about your needs?
 2. Have you ever withheld trust from someone or something that deserved it — what was the fear underneath that?
 3. How does it feel in your body when you fully trust? Can you let yourself rest in that right now?
 
 ## Acceptance
-Peace with reality
+The action of consenting to receive or undertake something offered.
 
 1. What are you accepting right now — and is it true acceptance, or is there still a part of you fighting it quietly underneath?
 2. Is there something you've been resisting that you already know, deep down, you need to make peace with?
@@ -61,7 +61,7 @@ Peace with reality
 
 
 # Terror
-Paralyzing fear
+Extreme fear or dread, often causing panic or paralysis.
 
 ## Main Questions
 
@@ -70,14 +70,14 @@ Paralyzing fear
 3. What protection mechanisms do you have in place when faced with terrifying situations?
 
 ## Fear
-Instinctive fear
+An unpleasant emotion caused by the threat of danger, pain, or harm.
 
 1. What is this fear actually trying to protect you from — and is that threat real right now, or is it a memory or story?
 2. When did you first learn to be afraid of this? Whose voice does this fear sound like?
 3. If you knew you were completely safe, what would you do differently today?
 
 ## Apprehension
-Underlying unease
+Anxiety or fear that something bad or unpleasant will happen.
 
 1. What exactly are you dreading — can you name it clearly, or does it feel too vague to hold? Sometimes naming a fear shrinks it. Try.
 2. Is this unease pointing to something real that needs your attention, or is it an old alarm going off in a situation that no longer requires it?
@@ -88,7 +88,7 @@ Underlying unease
 ---
 
 # Amazement
-Deep surprise
+A feeling of great surprise or wonder.
 
 ## Main Questions
 
@@ -97,14 +97,14 @@ Deep surprise
 3. What would happen if you approached each day with a sense of potential for amazement?
 
 ## Surprise
-Sudden surprise
+A feeling of mild astonishment or shock caused by something unexpected.
 
 1. What expectation or assumption got disrupted here — and is it possible the disruption was for your growth?
 2. What does your reaction to this surprise reveal about what you were holding onto?
 3. If this unexpected thing turned out to be exactly what you needed, how might you see it differently?
 
 ## Distraction
-Lack of focus
+A thing that prevents someone from concentrating on something else.
 
 1. What are you distracting yourself from right now — and is the distraction giving you rest, or helping you avoid something that needs your attention?
 2. When you scatter your focus like this, what feeling are you most trying to not sit with?
@@ -114,7 +114,7 @@ Lack of focus
 ---
 
 # Grief
-Overwhelming sorrow
+Deep sorrow or distress, especially caused by someone's death.
 
 ## Main Questions
 
@@ -123,14 +123,14 @@ Overwhelming sorrow
 3. What has this experience of loss taught you about what truly matters in life?
 
 ## Sadness
-Quiet sadness
+Emotional pain characterized by feelings of disadvantage, loss, despair, and helplessness.
 
 1. What or who are you grieving right now — and have you allowed yourself to fully feel that loss without rushing to fix it?
 2. What does this sadness need from you? Not to solve it — just to be witnessed.
 3. Is there something beautiful about what you're sad over — something worth honoring before you let it go?
 
 ## Pensiveness
-Reflective sorrow
+A state of deep or serious thought, often tinged with sadness.
 
 1. What are you quietly mourning right now — something lost, something that never was, or a version of yourself you've had to let go of?
 2. Is this melancholy asking you to slow down and feel something, or has it become a comfortable place to hide from something harder?
@@ -140,7 +140,7 @@ Reflective sorrow
 ---
 
 # Loathing
-Intense disgust
+A feeling of intense dislike or disgust; abhorrence.
 
 ## Main Questions
 
@@ -149,14 +149,14 @@ Intense disgust
 3. What would it look like to hold your boundaries firmly without being consumed by negative feelings?
 
 ## Disgust
-Instinctive disgust
+A feeling of revulsion or strong disapproval aroused by something unpleasant or offensive.
 
 1. What value or boundary is being violated that's causing this feeling of disgust? What does that tell you about what matters to you?
 2. Is there any part of what repels you that you also recognize — even faintly — in yourself?
 3. What would it look like to address what disgusts you from a place of values rather than judgment?
 
 ## Boredom
-Empty lack of meaning
+A state of being weary and restless through lack of interest.
 
 1. What in your life has lost its meaning for you — and is this boredom a signal that you've outgrown something, or that you're avoiding the effort something requires?
 2. When did you last feel genuinely engaged and alive in what you were doing? What was different then?
@@ -167,7 +167,7 @@ Empty lack of meaning
 
 
 # Rage
-Explosive anger
+Violent, uncontrollable anger that may lead to destructive behavior.
 
 ## Main Questions
 
@@ -176,14 +176,14 @@ Explosive anger
 3. What would true justice look like in this situation — separate from revenge or punishment?
 
 ## Anger
-Sharp anger
+A strong feeling of annoyance, displeasure, or hostility.
 
 1. What boundary, need, or value feels like it's been crossed right now? Underneath the anger — what's the hurt?
 2. Is this anger familiar? Does it remind you of a feeling from earlier in your life you never fully expressed?
 3. What would you need in order to feel truly heard in this situation — and who is the right person to express it to?
 
 ## Annoyance
-Minor annoyance
+A feeling of mild irritation or frustration.
 
 1. What small thing is irritating you — and is it actually about this, or is it the latest in a series of things you've been swallowing without saying anything?
 2. Annoyance often points to a need that isn't being met. What do you need right now that you haven't asked for?
@@ -192,7 +192,7 @@ Minor annoyance
 
 
 # Vigilance
-Watchful attention
+The action or state of keeping careful watch for possible danger or difficulties.
 
 ## Main Questions
 
@@ -201,14 +201,14 @@ Watchful attention
 3. How can you maintain awareness without living in a state of constant preparation for threats?
 
 ## Anticipation
-Future hope
+The act of looking forward to something, especially with pleasure or excitement.
 
 1. What are you most looking forward to, and what does that desire reveal about who you're becoming?
 2. Is your anticipation rooted in hope, or in anxiety about the future? How can you tell the difference right now?
 3. What can you do today — just one small thing — that honors the future you're moving toward?
 
 ## Interest
-Pulling curiosity
+A feeling of wanting to know or learn about something or someone.
 
 1. What is pulling your attention right now — and when did you last follow a thread of genuine curiosity just to see where it leads, with no outcome in mind?
 2. Is this interest something new, or a returning signal — something you've been drawn to before but set aside? What made you set it aside?

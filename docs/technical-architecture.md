@@ -249,31 +249,7 @@ export type Database = import('./types/database');
 
 ### Row Level Security (RLS)
 
-```sql
--- Enable RLS on all tables
-ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
-ALTER TABLE user_journey_progress ENABLE ROW LEVEL SECURITY;
-ALTER TABLE user_responses ENABLE ROW LEVEL SECURITY;
-ALTER TABLE user_mood_checkins ENABLE ROW LEVEL SECURITY;
-ALTER TABLE mood_calendar ENABLE ROW LEVEL SECURITY;
-ALTER TABLE calendar_entries ENABLE ROW LEVEL SECURITY;
-ALTER TABLE user_settings ENABLE ROW LEVEL SECURITY;
-
--- Policy: Users can only see their own data
-CREATE POLICY "Users can view own profile" ON profiles
-  FOR SELECT USING (auth.uid() = id);
-
-CREATE POLICY "Users can update own profile" ON profiles
-  FOR UPDATE USING (auth.uid() = id);
-
-CREATE POLICY "Users can view own responses" ON user_responses
-  FOR SELECT USING (auth.uid() = user_id);
-
-CREATE POLICY "Users can insert own responses" ON user_responses
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
-
--- ... similar for other tables
-```
+Pełne polityki RLS zdefiniowane w `database-schema.md`.
 
 ### API Routes (Supabase Edge Functions)
 
@@ -636,7 +612,10 @@ export type AtmosphereType =
   | 'green-forest'
   | 'dark-ink'
   | 'soft-pink'
-  | 'silver-tech';
+  | 'silver-tech'
+  | 'desert-rose'
+  | 'ocean-deep'
+  | 'solar-flare';
 
 export interface AtmosphereTheme {
   id: AtmosphereType;

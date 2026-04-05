@@ -23,23 +23,19 @@ Introsphere to aplikacja do **samopoznania poprzez emocje**. Design ma być:
 - **Zachęcający** - użytkownik chce wracać
 - **Intuicyjny** - zero instrukcji, pełna intuicja
 - **Estetyczny** - "aesthetically pleasing" w każdym detalu
-- **Ciemny** - skupienie na wewnętrznych przeżyciach
 
 ### 1.2 Principle Design
 
 | Zasada | Opis |
 |--------|------|
 | **Emocje pierwsze** | Każdy element wzmacnia połączenie z emocjami |
-| **Minimalizm kognitywny** | Tylko niezbędne elementy, każdy ma sens |
 | **Płynność** | Płynne przejścia między stanami |
 | **Personalizacja** | Użytkownik czuje, że to *jego* przestrzeń |
 
 ### 1.3 Typography Base
 
 ```
-Font Primary: "Inter" (Google Fonts) - dla treści
-Font Display: "Playfair Display" - dla nagłówków emocji
-Font Mono: "JetBrains Mono" - dla dat w kalendarzu
+
 
 Scale:
 - H1: 2.5rem / 700
@@ -156,23 +152,7 @@ Zachowanie:
 
 ### 3.2 Jak definiować kolory w CSS
 
-W CSS każda atmosfera definiuje kolory dla obu trybów (light i dark) w sposób dostosowany do toggle theme. System używa klas CSS, które definiują kolory zarówno dla trybu jasnego jak i ciemnego:
-
-```css
-/* Cream Calm - wariant light (domyślny) */
-.atmosphere-cream-calm {
-  --atmosphere-bg: #FAF8F5;
-  --atmosphere-text: #2D2A26;
-  --atmosphere-accent: #D4C5B5;
-}
-
-/* Cream Calm - wariant dark (aktywowany przez klasę .dark dodawaną przez toggle) */
-.dark.atmosphere-cream-calm {
-  --atmosphere-bg: #1A1918;
-  --atmosphere-text: #F5F2EE;
-  --atmosphere-accent: #4A433D;
-}
-```
+W CSS każda atmosfera definiuje kolory dla obu trybów (light i dark) w sposób dostosowany do toggle theme. System używa klas CSS, które definiują kolory zarówno dla trybu jasnego jak i ciemnego, znajdujace sie w pliku index.css 
 
 Każda z 8 atmosfer ma zdefiniowane oba warianty (light i dark). Toggle theme aktywuje klasę `.dark`, która w połączeniu z klasą atmosfery determinuje, które kolory są używane. Przełącznik light/dark działa inaczej dla każdej atmosfery - dostosowuje się do kodu CSS dla atmosfer w obu trybach.
 
@@ -189,6 +169,7 @@ Każda z 8 atmosfer ma zdefiniowane oba warianty (light i dark). Toggle theme ak
 - Intensywność cieni
 
 ### 4.2 Domyślne Atmosfery
+(patrz index.css)
 
 | Atmosphere | Kolory | Charakter |
 |------------|-------|------------|
@@ -197,7 +178,7 @@ Każda z 8 atmosfer ma zdefiniowane oba warianty (light i dark). Toggle theme ak
 | **Dark Ink** | Granat, pergamin | Intelektualna, poetycka, dark academia |
 | **Soft Pink** | Pastelowy róż, lawenda, błękit | Emocjonalna, wrażliwa |
 | **Silver Tech** | Chrome, srebrne akcenty | Tech-wellness, AI, kodowanie |
-| **Vintage Noir** | Głęboka czerń, złote akcenty | Klasyczna, ponadczasowa |
+| **Solar Flare** | Pomarańcz, złoto, blask | Energia, ogień, pasja |
 | **Desert Rose** | Terakota, piasek, suche róże | Ciepła, ziemista |
 | **Ocean Deep** | Głęboki błękit, morskie tonie | Spokojna, głęboka |
 
@@ -243,7 +224,7 @@ Po kliknięciu → Dropdown/Panel:
 │  🖋️ Dark Ink                │
 │  🌸 Soft Pink               │
 │  ⚙️ Silver Tech             │
-│  🎭 Vintage Noir            │
+│  🔥 Solar Flare            │
 │  🏜️ Desert Rose             │
 │  🌊 Ocean Deep              │
 └─────────────────────────────┘
@@ -298,14 +279,14 @@ Segment = {
 
 | Emocja | Kolor | HEX |
 |--------|-------|-----|
-| Ecstasy (Ekstaza) | Żółty | #F7DC6F |
-| Admiration (Podziw) | Zielony | #82E0AA |
-| Terror (Strach) | Ciemnozielony | #2874A6 |
-| Amazement (Zachwyt) | Morsko-niebieski | #28B4C8 |
-| Grief (Żałoba) | Ciemnoniebieski | #1A5276 |
-| Loathing (Odrazy) | Fioletowy | #7D3C98 |
-| Rage (Wściekłość) | Czerwony | #EC7063 |
-| Vigilance (Ostrożność) | Pomarańczowy | #F5B041 |
+| Ecstasy (Ekstaza) | Żółty |
+| Admiration (Podziw) | Zielony | 
+| Terror (Strach) | Ciemnozielony | 
+| Amazement (Zachwyt) | Morsko-niebieski | 
+| Grief (Żałoba) | Ciemnoniebieski | 
+| Loathing (Odrazy) | Fioletowy | 
+| Rage (Wściekłość) | Czerwony | 
+| Vigilance (Ostrożność) | Pomarańczowy | 
 
 ### 5.4 Interakcje z Kołem
 
@@ -368,7 +349,7 @@ Po wyborze sektora (np. ECSTASY), użytkownik widzi listę:
 │     ┌─────────────────────────────────────────────┐    │
 │     │         "PYTANIE..."                         │    │
 │     │                                             │    │
-│     │    ← poprzednie  [1/12]  następne →        │    │
+│     │    ← poprzednie  [1/7]  następne →        │    │
 │     └─────────────────────────────────────────────┘    │
 │                                                         │
 │     Emocja: 😊 Joy / Radość                            │
@@ -394,7 +375,7 @@ Komponent: QuestionCard
 
 Elementy:
 1. Pytanie (duży tekst, centered)
-2. Nawigacja: [<] [numer/np. 3/12] [>]
+2. Nawigacja: [<] [numer/np. 3/7] [>]
 3. Kategoria emocji (mały badge)
 4. 🎲 Przycisk losowania nowego pytania
 
@@ -770,25 +751,18 @@ Loading states:
 ```
 Frontend:
 - React 18+ (Vite)
-- Tailwind CSS (dla utility-first styling)
-- Framer Motion (dla animacji)
-- Lucide React (ikony)
-
-State:
-- Zustand lub Jotai (prosty global state)
-- React Query (server state)
 
 Styling:
-- CSS Variables dla theme/atmosphere
-- Tailwind + custom config
+- Tailwind CSS
+- Shadcn UI (Button, Dialog, Dropdown, Card, Input, etc.)
+- Lucide React (ikony)
+- CSS Variables (theme/atmosphere)
 
-Forms:
-- React Hook Form
-- Zod (validation)
+State:
+- React Context (wbudowany)
 
 Backend:
-- Supabase (Auth + PostgreSQL)
-- Alternatywa: Firebase
+- Supabase (Auth + PostgreSQL + Row Level Security)
 ```
 
 ### 11.2 Struktura Komponentów
@@ -812,21 +786,28 @@ src/
 │   │   ├── Calendar.tsx
 │   │   ├── CalendarDay.tsx
 │   │   └── DayDetail.tsx
-│   └── ui/
-│       ├── Button.tsx
-│       ├── IconButton.tsx
-│       ├── ThemeToggle.tsx
-│       ├── AtmospherePicker.tsx
-│       └── Modal.tsx
-├── hooks/
-│   ├── useTheme.ts
-│   ├── useAtmosphere.ts
-│   └── useAutoSave.ts
+│   ├── ui/                 # Shadcn UI components
+│   │   ├── button.tsx
+│   │   ├── dialog.tsx
+│   │   ├── dropdown-menu.tsx
+│   │   ├── card.tsx
+│   │   ├── input.tsx
+│   │   ├── textarea.tsx
+│   │   ├── badge.tsx
+│   │   ├── skeleton.tsx
+│   │   └── ...
+│   └── hooks/
+│       ├── useTheme.ts
+│       ├── useAtmosphere.ts
+│       └── useAutoSave.ts
+├── lib/
+│   ├── supabase.ts         # Supabase client
+│   └── utils.ts          # cn() utility for Tailwind
 ├── stores/
 │   ├── appStore.ts
 │   └── userStore.ts
 └── styles/
-    └── globals.css (CSS variables)
+    └── globals.css (CSS variables + Tailwind)
 ```
 
 ### 11.3 Ścieżki (Routing)
@@ -876,20 +857,16 @@ POST /api/journey/:id/progress
   - Zapis postępu w journey
 ```
 
-### 11.5 Struktura Bazy Danych (Firebase Firestore / Supabase)
+### 11.5 Struktura Bazy Danych (Supabase PostgreSQL)
 
 ```
-collections:
-  - users/
-    - {userId}/
-      - profile: { email, displayName, createdAt }
-      - settings: { theme, atmosphere, language }
-      - reflections/
-        - {reflectionId}: { emotionId, questionId, answer, createdAt }
-      - journeys/
-        - {journeyId}: { journeyType, currentDay, status, startedAt }
-      - calendar/
-        - {date}: { dominantEmotion, entries[] }
+tables:
+  - users (profile)
+  - reflections: { id, user_id, emotion_id, question_id, answer, created_at }
+  - journeys: { id, title, title_en, subtitle, is_active }
+  - journey_days: { id, journey_id, day_number, question, question_en }
+  - user_journey_progress: { id, user_id, journey_id, current_day, status, started_at }
+  - user_settings: { id, user_id, theme, atmosphere, language }
 ```
 
 ---
@@ -910,7 +887,7 @@ collections:
 - Center click: "How are you?" prompt
 
 ### Worksheet
-- Nagłówek z pytaniem + nawigacja [<] [1/12] [>]
+- Nagłówek z pytaniem + nawigacja [<] [1/7] [>]
 - Textarea min-height 200px, auto-expand
 - Auto-save po 2s, manual save Ctrl/Cmd + Enter
 - Emoji emocji jako badge

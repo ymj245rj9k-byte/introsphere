@@ -295,6 +295,66 @@ CREATE INDEX idx_calendar_entries_user_date ON calendar_entries(user_id, created
 
 ---
 
+## Row Level Security (RLS)
+
+```sql
+-- Włącz RLS na wszystkich tabelach użytkownika
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_journey_progress ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_responses ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_mood_checkins ENABLE ROW LEVEL SECURITY;
+ALTER TABLE mood_calendar ENABLE ROW LEVEL SECURITY;
+ALTER TABLE calendar_entries ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_settings ENABLE ROW LEVEL SECURITY;
+
+-- Polityki dla mood_calendar
+CREATE POLICY "User can view own calendar" ON mood_calendar
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "User can insert own calendar" ON mood_calendar
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "User can update own calendar" ON mood_calendar
+  FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "User can delete own calendar" ON mood_calendar
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- Polityki dla calendar_entries
+CREATE POLICY "User can view own calendar entries" ON calendar_entries
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "User can insert own calendar entries" ON calendar_entries
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "User can update own calendar entries" ON calendar_entries
+  FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "User can delete own calendar entries" ON calendar_entries
+  FOR DELETE USING (auth.uid() = user_id);
+
+-- Polityki dla pozostałych tabel
+CREATE POLICY "User can view own progress" ON user_journey_progress
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "User can insert own progress" ON user_journey_progress
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "User can view own responses" ON user_responses
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "User can insert own responses" ON user_responses
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "User can view own checkins" ON user_mood_checkins
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "User can insert own checkins" ON user_mood_checkins
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+```
+
+---
+
 ## Przykładowe zapytania
 
 ### Pobierz aktywny Journey użytkownika

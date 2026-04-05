@@ -13,13 +13,16 @@
 **[OPCJONALNE – nie wymagane do działania]**
 
 - [ ] Ekran powitalny z wyborem "atmosfery" / "vibe"
-- [ ] 5 atmosfer podstawowych (free):
+- [ ] 8 atmosfer podstawowych (free):
   1. **Cream Calm** – spokój, minimalizm, beże/kremy, dużo bieli, zaokrąglone kształty
   2. **Green Forest** – natura, życie w spokoju, zielenie/brązy, kwiaty
   3. **Dark Ink** – introspekcja, poetyka, ciemny brąz/bordowy/pergamin
   4. **Soft Pink** – delikatność, otwartość emocjonalna, róż lawenda błękit, subtelne ikony
   5. **Silver Tech** – technologia, wellnes, srebrne akcenty, sleek minimalistyczny UI
-- [ ] Dodatkowe atmosfery w premium: Vintage Noir, Desert Rose, Ocean Deep (placeholder)
+  6. **Desert Rose** – ciepło, ziemia, terakota, suche róże
+  7. **Ocean Deep** – spokój, głębia, morski błękit, tonie
+  8. **Solar Flare** – energia, ogień, pomarańcz/złoto, blask
+- [ ] Dodatkowe atmosfery w premium: (placeholders for future)
 - [ ] Wybór wpływa na kolory/tła w całej aplikacji
 - [ ] Zapis wyboru (atmosfera = default dla wszystkich sesji)
 - [ ] Możliwość zmiany atmosfery w ustawieniach
@@ -54,13 +57,15 @@
 
 **[CORE – bez tego nie ma aplikacji]**
 
-- [ ] Wybór ogólnej emocji (8 podstawowych z modelu Plutchika):
-  - 😊 Radość (Joy)
-  - 😢 Smutek (Sadness)
-  - 😠 Złość (Anger)
-  - 😨 Strach (Fear)
-  - 🤢 Wstręt (Disgust)
-  - 😲 Zaskoczenie (Surprise)
+- [ ] Wybór ogólnej emocji (8 głównych sektorów):
+  - 😊 Ecstasy / Radość → Joy, Serenity, Love
+  - 🌿 Admiration / Podziw → Trust, Acceptance, Adoration
+  - 😨 Terror / Strach → Fear, Anxiety, Panic
+  - 😲 Amazement / Zachwyt → Surprise, Wonder, Awe
+  - 😢 Grief / Smutek → Sadness, Sorrow, Longing
+  - 🤢 Loathing / Wstręt → Disgust, Contempt, Revulsion
+  - 😠 Rage / Złość → Anger, Frustration, Irritation
+  - 🟡 Vigilance / Ostrożność → Anticipation, Interest, Curiosity
 - [ ] Opcja "precyzuj" – rozwinięcie emocji:
   - Smutek → tęsknota, samotność, żal, rozczarowanie, zranienie
   - Strach → niepokój, lęk, panika, obawa, niepewność
@@ -89,7 +94,7 @@
 - [ ] Pole tekstowe do wpisania odpowiedzi
 - [ ] Placeholder z提示ą (np. "Nie ma złych odpowiedzi. Pisz, co czujesz.")
 - [ ] Przycisk "Zapisz"
-- [ ] Zapis do localStorage (demo) lub Firebase
+- [ ] Zapis do localStorage (demo) lub Supabase
 
 ---
 
@@ -120,7 +125,7 @@
 ## Should Have (extra – jeśli starczy czasu: +5h)
 
 ### 10. Authentication
-- [ ] Logowanie przez Google (Firebase Auth)
+- [ ] Logowanie przez Google (Supabase Auth)
 - [ ] Zapis sesji w chmurze
 
 ### 11. Dashboard
@@ -144,7 +149,7 @@
 | Formularz odpowiedzi | 1h |
 | Historia sesji | 1h |
 | Kalendarz nastrojów | 2h |
-| Firebase integration | 1h |
+| Supabase integration | 1h |
 | **RAZEM MVP** | **10h** |
 
 **Buffer:** 5h na bugfixy i should have features
@@ -181,6 +186,7 @@
 - Tailwind CSS
 - Shadcn UI
 - Supabase (Auth + PostgreSQL)
+- Zustand (State)
 - React Router
 
 ---
@@ -217,7 +223,7 @@ Po zbudowaniu MVP, Julia powinna móc:
 2. Implementacja koła emocji (2.5h)
 3. Baza pytań + formularz (2h)
 4. Historia + kalendarz (3h)
-5. Firebase + deploy (1.5h)
+5. Supabase + deploy (1.5h)
 6. Test + bugfix (2h)
 
 **Razem: ~15h**

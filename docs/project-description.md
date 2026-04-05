@@ -64,9 +64,16 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 - Buduje nawyk, nie pojedynczą sesję
 
 #### 2. Koło Emocji z Precyzacją
-- 8 podstawowych emocji (Plutchik) → rozwinięcie w 24 warianty
-- Smutek → tęsknota, samotność, żal, rozczarowanie...
-- Nie musisz umieć nazywać – wystarczy dotknąć
+- 8 głównych sektorów emocji → 24 podspektra (po 3 na każdy sektor)
+- Ecstasy (Radość) → Joy, Serenity, Love
+- Admiration (Podziw) → Trust, Acceptance, Adoration
+- Terror (Strach) → Fear, Anxiety, Panic
+- Amazement (Zachwyt) → Surprise, Wonder, Awe
+- Grief (Smutek) → Sadness, Sorrow, Longing
+- Loathing (Wstręt) → Disgust, Contempt, Revulsion
+- Rage (Złość) → Anger, Frustration, Irritation
+- Vigilance (Ostrożność) → Anticipation, Interest, Curiosity
+- Nie musisz umieć nazywać – wystarczy dotknąć koloru
 
 #### 3. Kalendarz Nastrojów
 - Zapisuj codziennie (lub po każdej sesji)
@@ -74,7 +81,7 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 - **To jest Twój wgląd** – co się zmienia? Kiedy jest ciężej?
 
 #### 4. Wybór Atmosfery (opcjonalny dodatek)
-- 5 atmosfer: Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech
+- 8 atmosfer: Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech, Desert Rose, Ocean Deep, Solar Flare
 - **Drugoplanowe** – opcjonalne, nie wymagane do działania
 - Dla tych, którzy lubią "ładne rzeczy"
 
@@ -100,9 +107,10 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 
 ## Technologie (MVP)
 
-- **Frontend:** React + Tailwind CSS + Shadcn
-- **Backend:** Supabase (PostgreSQL)
+- **Frontend:** React + Tailwind CSS + Shadcn UI
+- **Backend:** Supabase (Auth + PostgreSQL)
 - **Hosting:** Vercel (darmowe dla hobby)
+- **State:** Zustand
 - **Limit:** 15 godzin pracy
 
 ---
@@ -111,7 +119,7 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 
 | Plan | Co w cenie | Cena |
 |------|------------|------|
-| **Free** | 3 sesje/miesiąc, podstawowy kalendarz, 5 atmosfer | 0 PLN |
+| **Free** | 3 sesje/miesiąc, podstawowy kalendarz, 8 atmosfer | 0 PLN |
 | **Premium** | Nieograniczone sesje, rozszerzony kalendarz, eksport PDF | 9.99 PLN/mc |
 | **Lifetime** | Wszystko Premium, jeden raz | 99 PLN |
 
