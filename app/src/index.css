@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cream Calm - domyślna atmosfera */
+    --background: 40 33% 96%;
+    --foreground: 30 10% 15%;
+    --surface: 40 30% 92%;
+    --primary: 30 60% 50%;
+    --primary-foreground: 40 33% 96%;
+    --secondary: 35 30% 80%;
+    --secondary-foreground: 30 10% 20%;
+    --muted: 35 20% 88%;
+    --muted-foreground: 30 10% 45%;
+    --accent: 30 50% 60%;
+    --accent-foreground: 40 33% 96%;
+    --border: 35 20% 85%;
+    --ring: 30 60% 50%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
