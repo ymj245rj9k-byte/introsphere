@@ -4,21 +4,409 @@
 
 @layer base {
   :root {
-    /* Cream Calm - domyślna atmosfera */
-    --background: 40 33% 96%;
-    --foreground: 30 10% 15%;
-    --surface: 40 30% 92%;
-    --primary: 30 60% 50%;
-    --primary-foreground: 40 33% 96%;
-    --secondary: 35 30% 80%;
-    --secondary-foreground: 30 10% 20%;
-    --muted: 35 20% 88%;
-    --muted-foreground: 30 10% 45%;
-    --accent: 30 50% 60%;
-    --accent-foreground: 40 33% 96%;
-    --border: 35 20% 85%;
-    --ring: 30 60% 50%;
-    --radius: 0.75rem;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 0 0% 3.9%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 0 0% 20%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 0 0% 3.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+    
+    /* New Emotion Colors - according to updated Emotion Wheel structure */
+    /* Primary emotions (extreme versions) */
+    --emotion-ecstasy: #F7DC6F;
+    --emotion-admiration: #75ea6f;
+    --emotion-terror: #1e5631;
+    --emotion-amazement: #28B4C8;
+    --emotion-grief: #1A5276;
+    --emotion-loathing: #7D3C98;
+    --emotion-rage: #EC7063;
+    --emotion-vigilance: #F5B041;
+
+    /* Sub-emotions from primary emotions */
+    /* Ecstasy subspectra */
+    --emotion-joy: #f5e660;
+    --emotion-serenity: #F9E79F;
+    --emotion-love: #FADBD8;
+    
+    /* Admiration subspectra */
+    --emotion-trust: #75ea6f;
+    --emotion-acceptance: #ABEBC6;
+    
+    /* Terror subspectra */
+    --emotion-fear: #216332;
+    --emotion-apprehension: #A3D9C7;
+    
+    /* Amazement subspectra */
+    --emotion-surprise: #50d5c3;
+    --emotion-distraction: #A9DFBF;
+    
+    /* Grief subspectra */
+    --emotion-sadness: #2377cb;
+    --emotion-pensiveness: #85929E;
+    
+    /* Loathing subspectra */
+    --emotion-disgust: #8E44AD;
+    --emotion-boredom: #D7BDE2;
+    
+    /* Rage subspectra */
+    --emotion-anger: #f75454;
+    --emotion-annoyance: #F5B7B1;
+    
+    /* Vigilance subspectra */
+    --emotion-anticipation: #FFA502;
+    --emotion-interest: #F9E79F;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+
+  /* ============================================
+     ATMOSPHERE: CREAM CALM
+     ============================================ */
+
+  /* Cream Calm - Light */
+  .atmosphere-cream-calm {
+    --atmosphere-bg: #f8f6f2;
+    --atmosphere-bg-secondary: #f5ecde;
+    --atmosphere-accent: #b69b7b;
+    --atmosphere-text: #2D2A26;
+    --atmosphere-text-heading: #1A1815;
+    --atmosphere-text-body: #3D3A36;
+    --atmosphere-text-muted: #9e9690;
+    --atmosphere-text-accent: #a89880;
+    --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
+    --atmosphere-radius: 6px;
+    --atmosphere-shadow: none;
+    --atmosphere-border: 0.5px solid #e8ddd0;
+  }
+
+  /* Cream Calm - Dark */
+  .dark.atmosphere-cream-calm {
+    --atmosphere-bg: #18160f;
+    --atmosphere-bg-secondary: #221f18;
+    --atmosphere-accent: #3a3528;
+    --atmosphere-text: #e8e0d5;
+    --atmosphere-text-heading: #f5f0e8;
+    --atmosphere-text-body: #cfc8be;
+    --atmosphere-text-muted: #7a7268;
+    --atmosphere-text-accent: #b8a888;
+    --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
+    --atmosphere-radius: 6px;
+    --atmosphere-shadow: none;
+    --atmosphere-border: 0.5px solid #3a3528;
+  }
+
+  /* ============================================
+     ATMOSPHERE: GREEN FOREST
+     ============================================ */
+
+  /* Green Forest - Light */
+  .atmosphere-green-forest {
+    --atmosphere-bg: #e8f5d8;
+    --atmosphere-bg-secondary: #b9d79c;
+    --atmosphere-accent: #5a8a4a;
+    --atmosphere-text: #3a2410;
+    --atmosphere-text-heading: #2a1808;
+    --atmosphere-text-body: #4a3018;
+    --atmosphere-text-muted: #7a5a3a;
+    --atmosphere-text-accent: #5a8a4a;
+    --atmosphere-font: 'Caveat', cursive;
+    --atmosphere-font-body: 'Lora', serif;
+    --atmosphere-radius: 14px;
+    --atmosphere-shadow: 0 2px 16px rgba(60, 100, 50, 0.12);
+    --atmosphere-border: 0.5px solid #17150d;
+  }
+
+  /* Green Forest - Dark */
+  .dark.atmosphere-green-forest {
+    --atmosphere-bg: #0a1206;
+    --atmosphere-bg-secondary: #121a0e;
+    --atmosphere-accent: #6a9e5a;
+    --atmosphere-text: #d4c8a8;
+    --atmosphere-text-heading: #e8dcc0;
+    --atmosphere-text-body: #b8aa88;
+    --atmosphere-text-muted: #6a5e40;
+    --atmosphere-text-accent: #6a9e5a;
+    --atmosphere-font: 'Caveat', cursive;
+    --atmosphere-font-body: 'Lora', serif;
+    --atmosphere-radius: 14px;
+    --atmosphere-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+    --atmosphere-border: 0.5px solid #1e3018;
+  }
+
+  /* ============================================
+     ATMOSPHERE: DARK INK
+     ============================================ */
+
+  .atmosphere-dark-ink {
+    --atmosphere-bg: #f5eed6;
+    --atmosphere-bg-secondary: #ede4c4;
+    --atmosphere-accent: #c9a063;
+    --atmosphere-text: #1c234b;
+    --atmosphere-text-heading: #1c286b;
+    --atmosphere-text-body: #171d3f;
+    --atmosphere-text-muted: #192473;
+    --atmosphere-text-accent: #c9a063;
+    --atmosphere-font: 'Cormorant Garamond', serif;
+    --atmosphere-font-body: 'EB Garamond', serif;
+    --atmosphere-radius: 4px;
+    --atmosphere-shadow: 0 2px 12px rgba(26, 31, 58, 0.12);
+    --atmosphere-border: 0.5px solid #16114e;
+  }
+
+  .dark.atmosphere-dark-ink {
+    --atmosphere-bg: #1a1f3a;
+    --atmosphere-bg-secondary: #141828;
+    --atmosphere-accent: #c9a063;
+    --atmosphere-text: #f0e8c8;
+    --atmosphere-text-heading: #f5eed6;
+    --atmosphere-text-body: #d8d0a8;
+    --atmosphere-text-muted: #8888aa;
+    --atmosphere-text-accent: #c9a063;
+    --atmosphere-font: 'Cormorant Garamond', serif;
+    --atmosphere-font-body: 'EB Garamond', serif;
+    --atmosphere-radius: 4px;
+    --atmosphere-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    --atmosphere-border: 0.5px solid #c9a063;
+  }
+
+  /* ============================================
+     ATMOSPHERE: SOFT PINK
+     ============================================ */
+
+  /* Soft Pink - Light */
+  .atmosphere-soft-pink {
+    --atmosphere-bg: #f8f2f5;
+    --atmosphere-bg-secondary: #f6dce6;
+    --atmosphere-accent: #de9ec1;
+    --atmosphere-text: #4a2e3a;
+    --atmosphere-text-heading: #3a1e2a;
+    --atmosphere-text-body: #5a3e4a;
+    --atmosphere-text-muted: #9a7a88;
+    --atmosphere-text-accent: #a870a0;
+    --atmosphere-font: 'Jua', sans-serif;
+    --atmosphere-font-body: 'Jua', sans-serif;
+    --atmosphere-radius: 20px;
+    --atmosphere-shadow: 0 4px 24px rgba(180, 120, 160, 0.15);
+    --atmosphere-border: 0.5px solid #e8b4d9;
+  }
+
+  /* Soft Pink - Dark */
+  .dark.atmosphere-soft-pink {
+    --atmosphere-bg: #1F1518;
+    --atmosphere-bg-secondary: #2A2025;
+    --atmosphere-accent: #C894B9;
+    --atmosphere-text: #E5D5E0;
+    --atmosphere-text-heading: #F5E5F0;
+    --atmosphere-text-body: #D5C5D0;
+    --atmosphere-text-muted: #B5A5B0;
+    --atmosphere-text-accent: #E8B4D9;
+    --atmosphere-font: 'Jua', sans-serif;
+    --atmosphere-radius: 20px;
+    --atmosphere-shadow: 0 4px 20px rgba(200, 148, 185, 0.15);
+    --atmosphere-border: 0.5px solid #C894B9;
+  }
+
+  /* ============================================
+     ATMOSPHERE: SILVER TECH
+     ============================================ */
+
+  /* Silver Tech - Light */
+  .atmosphere-silver-tech {
+    --atmosphere-bg: #f0f0f5;
+    --atmosphere-bg-secondary: #e4e4ec;
+    --atmosphere-accent: #0099aa;
+    --atmosphere-text: #1a1a28;
+    --atmosphere-text-heading: #0a0a18;
+    --atmosphere-text-body: #2a2a38;
+    --atmosphere-text-muted: #6a6a80;
+    --atmosphere-text-accent: #0099aa;
+    --atmosphere-font: 'JetBrains Mono', monospace;
+    --atmosphere-font-body: 'JetBrains Mono', monospace;
+    --atmosphere-radius: 0px;
+    --atmosphere-shadow: none;
+    --atmosphere-border: 0.5px solid #c0c0d0;
+    --atmosphere-letter-spacing: 0.04em;
+  }
+
+  /* Silver Tech - Dark */
+  .dark.atmosphere-silver-tech {
+    --atmosphere-bg: #0f0f13;
+    --atmosphere-bg-secondary: #16161c;
+    --atmosphere-accent: #00d4aa;
+    --atmosphere-text: #c0c0c8;
+    --atmosphere-text-heading: #e8e8f0;
+    --atmosphere-text-body: #a0a0b0;
+    --atmosphere-text-muted: #606070;
+    --atmosphere-text-accent: #00d4aa;
+    --atmosphere-font: 'JetBrains Mono', monospace;
+    --atmosphere-font-body: 'JetBrains Mono', monospace;
+    --atmosphere-radius: 0px;
+    --atmosphere-shadow: none;
+    --atmosphere-border: 0.5px solid #2a2a38;
+    --atmosphere-letter-spacing: 0.04em;
+  }
+
+  /* ============================================
+     ATMOSPHERE: SOLAR FLARE
+     ============================================ */
+
+  /* Solar Flare - Light */
+  .atmosphere-solar-flare {
+    --atmosphere-bg: #fef9e7;
+    --atmosphere-bg-secondary: #fcf9bc;
+    --atmosphere-accent: #f5a800;
+    --atmosphere-text: #2a1a08;
+    --atmosphere-text-heading: #1a0e04;
+    --atmosphere-text-body: #3a2810;
+    --atmosphere-text-muted: #9a7840;
+    --atmosphere-text-accent: #e07800;
+    --atmosphere-font: 'Fraunces', serif;
+    --atmosphere-font-body: 'Lora', serif;
+    --atmosphere-radius: 16px;
+    --atmosphere-shadow: 0 4px 24px rgba(245, 168, 0, 0.15);
+    --atmosphere-border: 0.5px solid #f5a800;
+  }
+
+  /* Solar Flare - Dark */
+  .dark.atmosphere-solar-flare {
+    --atmosphere-bg: #180a04;
+    --atmosphere-bg-secondary: #221008;
+    --atmosphere-accent: #e05a18;
+    --atmosphere-text: #f0d0a0;
+    --atmosphere-text-heading: #f8e0b0;
+    --atmosphere-text-body: #d8b880;
+    --atmosphere-text-muted: #886040;
+    --atmosphere-text-accent: #e05a18;
+    --atmosphere-font: 'Fraunces', serif;
+    --atmosphere-font-body: 'Lora', serif;
+    --atmosphere-radius: 16px;
+    --atmosphere-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    --atmosphere-border: 0.5px solid #e05a18;
+  }
+
+  /* ============================================
+     ATMOSPHERE: DESERT ROSE
+     ============================================ */
+
+  /* Desert Rose - Light */
+  .atmosphere-desert-rose {
+    --atmosphere-bg: #F5EDE8;
+    --atmosphere-bg-secondary: #FFFEF8;
+    --atmosphere-accent: #C9A9A6;
+    --atmosphere-text: #4A3F3A;
+    --atmosphere-text-heading: #3A2F2A;
+    --atmosphere-text-body: #5A4F4A;
+    --atmosphere-text-muted: #7A6F6A;
+    --atmosphere-text-accent: #A98986;
+    --atmosphere-font: 'Lora', serif;
+    --atmosphere-radius: 16px;
+    --atmosphere-shadow: 0 4px 20px rgba(201, 169, 166, 0.15);
+    --atmosphere-border: 0.5px solid #C9A9A6;
+  }
+
+  /* Desert Rose - Dark */
+  .dark.atmosphere-desert-rose {
+    --atmosphere-bg: #1A1512;
+    --atmosphere-bg-secondary: #252018;
+    --atmosphere-accent: #A98986;
+    --atmosphere-text: #E0D5D0;
+    --atmosphere-text-heading: #F0E5E0;
+    --atmosphere-text-body: #D0C5C0;
+    --atmosphere-text-muted: #B0A5A0;
+    --atmosphere-text-accent: #C9A9A6;
+    --atmosphere-font: 'Lora', serif;
+    --atmosphere-radius: 16px;
+    --atmosphere-shadow: 0 4px 20px rgba(169, 137, 134, 0.15);
+    --atmosphere-border: 0.5px solid #A98986;
+  }
+
+  /* ============================================
+     ATMOSPHERE: OCEAN DEEP
+     ============================================ */
+
+  /* Ocean Deep - Light */
+  .atmosphere-ocean-deep {
+    --atmosphere-bg: #e8f4f8;
+    --atmosphere-bg-secondary: #d8ecf4;
+    --atmosphere-accent: #0077a8;
+    --atmosphere-text: #0d2137;
+    --atmosphere-text-heading: #081828;
+    --atmosphere-text-body: #1a3a50;
+    --atmosphere-text-muted: #5a7a90;
+    --atmosphere-text-accent: #0077a8;
+    --atmosphere-font: 'Newsreader', serif;
+    --atmosphere-font-body: 'Inter', sans-serif;
+    --atmosphere-radius: 16px;
+    --atmosphere-shadow: 0 4px 24px rgba(13, 33, 55, 0.08);
+    --atmosphere-border: 0.5px solid #0077a8;
+  }
+
+  /* Ocean Deep - Dark */
+  .dark.atmosphere-ocean-deep {
+    --atmosphere-bg: #0d2137;
+    --atmosphere-bg-secondary: #112840;
+    --atmosphere-accent: #00b4d8;
+    --atmosphere-text: #c8dce8;
+    --atmosphere-text-heading: #e0f0f8;
+    --atmosphere-text-body: #a8c0d0;
+    --atmosphere-text-muted: #5a7a90;
+    --atmosphere-text-accent: #00b4d8;
+    --atmosphere-font: 'Newsreader', serif;
+    --atmosphere-font-body: 'Inter', sans-serif;
+    --atmosphere-radius: 16px;
+    --atmosphere-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    --atmosphere-border: 0.5px solid #00b4d8;
   }
 
   * {
@@ -26,7 +414,10 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply antialiased;
+    background-color: var(--atmosphere-bg, #faf8f5);
+    color: var(--atmosphere-text, #2D2A26);
+    font-family: var(--atmosphere-font, 'Inter', system-ui, sans-serif);
     min-height: 100vh;
   }
 }
@@ -34,5 +425,143 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Atmosphere utility classes */
+  .bg-atm { background-color: var(--atmosphere-bg); }
+  .bg-atm-secondary { background-color: var(--atmosphere-bg-secondary); }
+  .text-atm { color: var(--atmosphere-text); }
+  .text-atm-heading { color: var(--atmosphere-text-heading); }
+  .text-atm-muted { color: var(--atmosphere-text-muted); }
+  .text-atm-accent { color: var(--atmosphere-text-accent); }
+  .border-atm { border-color: var(--atmosphere-border); }
+  .accent-atm { color: var(--atmosphere-accent); }
+
+  /* Atmosphere-aware backgrounds and borders */
+  .bg-atm-focus { background-color: var(--atmosphere-bg-secondary); }
+  .border-atm-border { border-color: var(--atmosphere-border); }
+  .shadow-atm { box-shadow: var(--atmosphere-shadow); }
+  .rounded-atm { border-radius: var(--atmosphere-radius); }
+
+  /* Landing page typography - Lora */
+  .font-landing-heading {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+  }
+  .font-landing-body {
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  .font-landing-display {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+  }
+
+  /* Micro-interactions */
+  .hover-lift {
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--atmosphere-shadow), 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  .hover-lift:active {
+    transform: translateY(0);
+  }
+
+  .focus-ring:focus-visible {
+    outline: none;
+    ring: 2px;
+    ring-color: var(--atmosphere-accent);
+    ring-offset: 2px;
+    ring-offset-color: var(--atmosphere-bg);
+  }
+
+  /* Scale interactions */
+  .hover-scale {
+    transition: transform 150ms ease-out;
+  }
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+  .hover-scale:active {
+    transform: scale(0.98);
+  }
+
+  /* Smooth opacity transitions */
+  .transition-smooth {
+    transition: opacity 200ms ease-out, background-color 200ms ease-out, color 200ms ease-out;
+  }
+
+  /* Page transitions */
+  .fade-in {
+    animation: fadeIn 300ms ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Breathing animation for selected states */
+  @keyframes breathe {
+    0%, 100% {
+      opacity: 0.15;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.25;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--atmosphere-bg-secondary) 25%,
+      var(--atmosphere-bg) 50%,
+      var(--atmosphere-bg-secondary) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  }
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Auto-save indicator */
+  .auto-save-bounce {
+    animation: bounce 0.4s ease-out;
+  }
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* Reduced motion - WCAG 2.1 */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

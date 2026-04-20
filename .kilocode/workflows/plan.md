@@ -10,6 +10,7 @@ This workflow defines the standard pattern for planning and executing work for t
 2. **Single Session Deployable** – Reject planning if the work cannot be completed in ONE AI agent session
 3. **Section-Based** – Plans must be divided into logical sections
 4. **Tested** – Manual testing after each section and overall verification
+5. **Always Test with Tester Agent** – Invoke the Tester agent after implementation to verify the plan works correctly (as specified in `docs/agents/07_tester.md`)
 
 ---
 
@@ -67,6 +68,7 @@ After completing all sections, perform these final checks:
 - [ ] Build application: `npm run build`
 - [ ] Verify build succeeds without errors
 - [ ] Manual verification: [describe what to test manually]
+- [ ] **ALWAYS invoke Tester agent** (docs/agents/07_tester.md) to validate the implementation
 
 ---
 
@@ -150,6 +152,15 @@ When implementing UI components, ALWAYS use colors defined in `@/docs/index.css`
 
 ---
 
+## Typography Rules
+
+- **Line height**: Use sensible line-height (1.5-1.7 for body text, 1.2-1.3 for headings)
+- **Letter spacing**: Proper tracking for readability
+- **Paragraph spacing**: Use `space-y-*` or `leading-relaxed` for text blocks
+- **Never use default line-height** - always specify for typography components
+
+---
+
 ## Quick Reference
 
 | Step | Action |
@@ -159,4 +170,5 @@ When implementing UI components, ALWAYS use colors defined in `@/docs/index.css`
 | 3 | Create sections with numbered checkboxes |
 | 4 | Add manual test after each section |
 | 5 | Add final verification (lint, build, test) |
-| 6 | Save to docs/zaimplementowane-plany.md/[feature]-[date].md |
+| 6 | ALWAYS invoke Tester agent to validate the plan |
+| 7 | Save to docs/zaimplementowane-plany.md/[feature]-[date].md |

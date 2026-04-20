@@ -121,24 +121,8 @@ Scale:
 
 ## 3. Koło Emocji - Główny Interfejs
 
-### 3.1 Wizualizacja
 
-```
-                    JOY (żółty)
-                       ↑
-                       │
-    TRUST (zielony) ←─────→ FEAR (czerwony)
-                       │
-                       ↓
-    SADNESS ←──────●──────→ ANGER
-    (niebieski)    CENTER   (pomarańczowy)
-                       │
-                       ↓
-    DISGUST ←──────────────→ SURPRISE
-    (brązowy)                  (fioletowy)
-```
-
-### 3.2 Budowa Koła
+### 3.1 Budowa Koła
 
 ```
 Struktura:
@@ -205,17 +189,6 @@ Elementy:
 - Wybór podspektra → pytania z tego podspektra
 ```
 
-### 3.6 Kolory Emocji
-
-| Emocja | Kolor | HEX |
-|--------|-------|-----|
-| Joy (Radość) | Żółty | #F7DC6F |
-| Trust (Zaufanie) | Zielony | #82E0AA |
-| Fear (Strach) | Czerwony jasny | #F1948A |
-| Sadness (Smutek) | Niebieski | #5DADE2 |
-| Anger (Złość) | Pomarańczowy | #F5B041 |
-| Disgust (Wstręt) | Fioletowy | #AF7AC5 |
-| Surprise (Zaskoczenie) | Różowy | #9B59B6 |
 
 ---
 

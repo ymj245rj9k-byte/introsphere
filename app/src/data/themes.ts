@@ -1,0 +1,158 @@
+import { AtmosphereTheme } from '@/types/emotion';
+
+export const atmospheres: Record<string, AtmosphereTheme> = {
+  'cream-calm': {
+    id: 'cream-calm',
+    name: 'Cream Calm',
+    colors: {
+      primary: '#D4C5B5',
+      secondary: '#E8E4D9',
+      background: '#f8f6f2',
+      surface: '#f5ecde',
+      text: '#2D2A26',
+      textMuted: '#9e9690',
+      border: '#e8ddd0',
+      accent: '#b69b7b',
+    },
+    font: {
+      heading: 'font-sans',
+      body: 'font-sans',
+    },
+    borderRadius: 'rounded-md',
+  },
+  'green-forest': {
+    id: 'green-forest',
+    name: 'Green Forest',
+    colors: {
+      primary: '#4a6741',
+      secondary: '#8aab7e',
+      background: '#e8f5d8',
+      surface: '#b9d79c',
+      text: '#3a2410',
+      textMuted: '#7a5a3a',
+      border: '#17150d',
+      accent: '#5a8a4a',
+    },
+    font: {
+      heading: 'font-serif',
+      body: 'font-serif',
+    },
+    borderRadius: 'rounded-2xl',
+  },
+  'dark-ink': {
+    id: 'dark-ink',
+    name: 'Dark Ink',
+    colors: {
+      primary: '#c9a063',
+      secondary: '#3a3f5a',
+      background: '#f5eed6',
+      surface: '#ede4c4',
+      text: '#1c234b',
+      textMuted: '#192473',
+      border: '#16114e',
+      accent: '#c9a063',
+    },
+    font: {
+      heading: 'font-serif',
+      body: 'font-serif',
+    },
+    borderRadius: 'rounded',
+  },
+  'soft-pink': {
+    id: 'soft-pink',
+    name: 'Soft Pink',
+    colors: {
+      primary: '#dde8f2',
+      secondary: '#f2dde4',
+      background: '#f8f2f5',
+      surface: '#f6dce6',
+      text: '#4a2e3a',
+      textMuted: '#9a7a88',
+      border: '#e8b4d9',
+      accent: '#de9ec1',
+    },
+    font: {
+      heading: 'font-sans',
+      body: 'font-sans',
+    },
+    borderRadius: 'rounded-3xl',
+  },
+  'silver-tech': {
+    id: 'silver-tech',
+    name: 'Silver Tech',
+    colors: {
+      primary: '#00d4aa',
+      secondary: '#1a1a20',
+      background: '#f0f0f5',
+      surface: '#e4e4ec',
+      text: '#1a1a28',
+      textMuted: '#6a6a80',
+      border: '#c0c0d0',
+      accent: '#0099aa',
+    },
+    font: {
+      heading: 'font-mono',
+      body: 'font-mono',
+    },
+    borderRadius: 'rounded-none',
+  },
+  'solar-flare': {
+    id: 'solar-flare',
+    name: 'Solar Flare',
+    colors: {
+      primary: '#f5a800',
+      secondary: '#F8C24D',
+      background: '#fef9e7',
+      surface: '#fcf9bc',
+      text: '#2a1a08',
+      textMuted: '#9a7840',
+      border: '#f5a800',
+      accent: '#f5a800',
+    },
+    font: {
+      heading: 'font-serif',
+      body: 'font-serif',
+    },
+    borderRadius: 'rounded-2xl',
+  },
+  'desert-rose': {
+    id: 'desert-rose',
+    name: 'Desert Rose',
+    colors: {
+      primary: '#C9A9A6',
+      secondary: '#D9C3C1',
+      background: '#F5EDE8',
+      surface: '#FFFEF8',
+      text: '#4A3F3A',
+      textMuted: '#7A6F6A',
+      border: '#C9A9A6',
+      accent: '#C9A9A6',
+    },
+    font: {
+      heading: 'font-serif',
+      body: 'font-serif',
+    },
+    borderRadius: 'rounded-2xl',
+  },
+  'ocean-deep': {
+    id: 'ocean-deep',
+    name: 'Ocean Deep',
+    colors: {
+      primary: '#0077a8',
+      secondary: '#4DA0C2',
+      background: '#e8f4f8',
+      surface: '#d8ecf4',
+      text: '#0d2137',
+      textMuted: '#5a7a90',
+      border: '#0077a8',
+      accent: '#0077a8',
+    },
+    font: {
+      heading: 'font-serif',
+      body: 'font-sans',
+    },
+    borderRadius: 'rounded-2xl',
+  },
+};
+
+export const defaultAtmosphere = 'cream-calm';

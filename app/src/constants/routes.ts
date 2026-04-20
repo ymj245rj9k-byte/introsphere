@@ -1,8 +1,8 @@
 export const ROUTES = {
   LANDING: '/',
+  HOME: '/home',
   AUTH: '/auth',
   ONBOARDING: '/onboarding',
-  HOME: '/home',
   JOURNEY: '/journey/:id',
   SESSION: '/session',
   CALENDAR: '/calendar',
