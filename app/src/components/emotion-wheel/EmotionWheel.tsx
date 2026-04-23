@@ -9,19 +9,18 @@ interface EmotionWheelProps {
   size?: number;
 }
 
-export function EmotionWheel({ onSelect, selectedId, size = 300 }: EmotionWheelProps) {
+export function EmotionWheel({ onSelect, selectedId, size = 600 }: EmotionWheelProps) {
   const [selectedEmotion, setSelectedEmotion] = useState<Emotion | null>(null);
   const [showDetails, setShowDetails] = useState(false);
   const emotions = level3Emotions.filter(e => e.isActive);
 
   const center = size / 2;
-  const radius = size / 2 - 20;
-  const innerRadius = radius * 0.5;
+  const radius = size / 2 - 40;
+  const innerRadius = radius * 0.35;
 
   const handleEmotionClick = (emotion: Emotion) => {
     setSelectedEmotion(emotion);
     setShowDetails(true);
-    onSelect?.(emotion);
   };
 
   const getSectorPath = (
@@ -129,30 +128,30 @@ export function EmotionWheel({ onSelect, selectedId, size = 300 }: EmotionWheelP
               />
               {/* Emotion label */}
               <text
-                x={center + (radius * 0.75) * Math.cos(((angle - 90) * Math.PI) / 180)}
-                y={center + (radius * 0.75) * Math.sin(((angle - 90) * Math.PI) / 180)}
+                x={center + (radius * 0.78) * Math.cos(((angle - 90) * Math.PI) / 180)}
+                y={center + (radius * 0.78) * Math.sin(((angle - 90) * Math.PI) / 180)}
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="fill-foreground text-xs font-medium pointer-events-none select-none"
                 style={{ 
-                  fontSize: size < 250 ? '8px' : '10px',
+                  fontSize: size < 250 ? '8px' : size < 500 ? '10px' : '14px',
                   fontFamily: 'var(--atmosphere-font-body, sans-serif)'
                 }}
               >
-                {emotion.name}
+                {emotion.nameEn}
               </text>
             </g>
           );
         })}
 
-        {/* Center circle */}
+        {/* Center circle - black, no text */}
         <circle
           cx={center}
           cy={center}
           r={innerRadius}
-          fill="url(#centerGradient)"
-          stroke="var(--atmosphere-border)"
-          strokeWidth="1"
+          fill="var(--surface)"
+          stroke="var(--border)"
+          strokeWidth="2"
           className="transition-all duration-300"
         />
         <text
@@ -188,6 +187,21 @@ export function EmotionWheel({ onSelect, selectedId, size = 300 }: EmotionWheelP
             }}
           />
         )}
+
+        {/* Display selected emotion description */}
+        {selectedEmotion && (
+          <foreignObject
+            x={center - 100}
+            y={center + 15}
+            width="200"
+            height="50"
+            className="text-center"
+          >
+            <div className="text-xs text-center text-gray-600 break-words px-2">
+              {selectedEmotion.description}
+            </div>
+          </foreignObject>
+        )}
       </svg>
 
       {/* Emotion Details Dialog */}
@@ -195,10 +209,16 @@ export function EmotionWheel({ onSelect, selectedId, size = 300 }: EmotionWheelP
         <EmotionDetails
           emotion={selectedEmotion}
           open={showDetails}
-          onClose={() => setShowDetails(false)}
+          onClose={() => {
+            setShowDetails(false);
+            // Clear the selected emotion to hide the description in the center
+            setSelectedEmotion(null);
+          }}
           onConfirm={(emotion) => {
             onSelect?.(emotion);
             setShowDetails(false);
+            // Clear the selected emotion after confirmation
+            setSelectedEmotion(null);
           }}
         />
       )}

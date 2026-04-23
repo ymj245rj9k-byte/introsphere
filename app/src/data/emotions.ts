@@ -15,6 +15,7 @@ export const level3Emotions: Emotion[] = [
     color: '#F7DC6F',
     colorHex: '#F7DC6F',
     isActive: true,
+    description: 'Extreme happiness and joy',
   },
   {
     id: 'admiration',
@@ -26,6 +27,7 @@ export const level3Emotions: Emotion[] = [
     color: '#75ea6f',
     colorHex: '#75ea6f',
     isActive: true,
+    description: 'Deep respect and appreciation',
   },
   {
     id: 'terror',
@@ -37,6 +39,7 @@ export const level3Emotions: Emotion[] = [
     color: '#216332',
     colorHex: '#216332',
     isActive: true,
+    description: 'Overwhelming fear',
   },
   {
     id: 'amazement',
@@ -48,6 +51,7 @@ export const level3Emotions: Emotion[] = [
     color: '#28B4C8',
     colorHex: '#28B4C8',
     isActive: true,
+    description: 'Surprise mixed with wonder',
   },
   {
     id: 'grief',
@@ -59,6 +63,7 @@ export const level3Emotions: Emotion[] = [
     color: '#1A5276',
     colorHex: '#1A5276',
     isActive: true,
+    description: 'Deep sorrow and sadness',
   },
   {
     id: 'loathing',
@@ -70,6 +75,7 @@ export const level3Emotions: Emotion[] = [
     color: '#7D3C98',
     colorHex: '#7D3C98',
     isActive: true,
+    description: 'Strong dislike and disgust',
   },
   {
     id: 'rage',
@@ -81,6 +87,7 @@ export const level3Emotions: Emotion[] = [
     color: '#EC7063',
     colorHex: '#EC7063',
     isActive: true,
+    description: 'Intense anger and fury',
   },
   {
     id: 'vigilance',
@@ -92,6 +99,7 @@ export const level3Emotions: Emotion[] = [
     color: '#F5B041',
     colorHex: '#F5B041',
     isActive: true,
+    description: 'Alert and watchful attention',
   },
 ];
 
@@ -99,37 +107,37 @@ export const level3Emotions: Emotion[] = [
 // These appear when user refines their selection
 export const subSpectrumEmotions: EmotionSubspectrum[] = [
   // JOY FAMILY: Joy (L2) + Serenity (L1) + Love (L3*)
-  { id: 'serenity', name: 'Serenity', nameEn: 'Serenity', parentId: 'joy', intensity: 1 },
-  { id: 'joy', name: 'Joy', nameEn: 'Joy', parentId: 'joy', intensity: 2 },
-  { id: 'love', name: 'Love', nameEn: 'Love', parentId: 'joy', intensity: 3 },
+  { id: 'serenity', name: 'Serenity', nameEn: 'Serenity', parentId: 'joy', intensity: 1, description: 'Peaceful and calm happiness' },
+  { id: 'joy', name: 'Joy', nameEn: 'Joy', parentId: 'joy', intensity: 2, description: 'Simple pleasure and delight' },
+  { id: 'love', name: 'Love', nameEn: 'Love', parentId: 'joy', intensity: 3, description: 'Deep affection and attachment' },
 
   // TRUST FAMILY: Trust (L2) + Acceptance (L1)
-  { id: 'acceptance', name: 'Acceptance', nameEn: 'Acceptance', parentId: 'trust', intensity: 1 },
-  { id: 'trust', name: 'Trust', nameEn: 'Trust', parentId: 'trust', intensity: 2 },
+  { id: 'acceptance', name: 'Acceptance', nameEn: 'Acceptance', parentId: 'trust', intensity: 1, description: 'Willing agreement and approval' },
+  { id: 'trust', name: 'Trust', nameEn: 'Trust', parentId: 'trust', intensity: 2, description: 'Confident reliance on someone' },
 
   // FEAR FAMILY: Fear (L2) + Apprehension (L1)
-  { id: 'apprehension', name: 'Apprehension', nameEn: 'Apprehension', parentId: 'fear', intensity: 1 },
-  { id: 'fear', name: 'Fear', nameEn: 'Fear', parentId: 'fear', intensity: 2 },
+  { id: 'apprehension', name: 'Apprehension', nameEn: 'Apprehension', parentId: 'fear', intensity: 1, description: 'Anxious uncertainty about future' },
+  { id: 'fear', name: 'Fear', nameEn: 'Fear', parentId: 'fear', intensity: 2, description: 'Unpleasant feeling about danger' },
 
   // SURPRISE FAMILY: Surprise (L2) + Distraction (L1)
-  { id: 'distraction', name: 'Distraction', nameEn: 'Distraction', parentId: 'surprise', intensity: 1 },
-  { id: 'surprise', name: 'Surprise', nameEn: 'Surprise', parentId: 'surprise', intensity: 2 },
+  { id: 'distraction', name: 'Distraction', nameEn: 'Distraction', parentId: 'surprise', intensity: 1, description: 'Loss of focus or attention' },
+  { id: 'surprise', name: 'Surprise', nameEn: 'Surprise', parentId: 'surprise', intensity: 2, description: 'Unexpected discovery or event' },
 
   // SADNESS FAMILY: Sadness (L2) + Pensiveness (L1)
-  { id: 'pensiveness', name: 'Pensiveness', nameEn: 'Pensiveness', parentId: 'sadness', intensity: 1 },
-  { id: 'sadness', name: 'Sadness', nameEn: 'Sadness', parentId: 'sadness', intensity: 2 },
+  { id: 'pensiveness', name: 'Pensiveness', nameEn: 'Pensiveness', parentId: 'sadness', intensity: 1, description: 'Contemplative melancholy mood' },
+  { id: 'sadness', name: 'Sadness', nameEn: 'Sadness', parentId: 'sadness', intensity: 2, description: 'Feeling of unhappiness and grief' },
 
   // DISGUST FAMILY: Disgust (L2) + Boredom (L1)
-  { id: 'boredom', name: 'Boredom', nameEn: 'Boredom', parentId: 'disgust', intensity: 1 },
-  { id: 'disgust', name: 'Disgust', nameEn: 'Disgust', parentId: 'disgust', intensity: 2 },
+  { id: 'boredom', name: 'Boredom', nameEn: 'Boredom', parentId: 'disgust', intensity: 1, description: 'Lack of interest or excitement' },
+  { id: 'disgust', name: 'Disgust', nameEn: 'Disgust', parentId: 'disgust', intensity: 2, description: 'Strong dislike and revulsion' },
 
   // ANGER FAMILY: Anger (L2) + Annoyance (L1)
-  { id: 'annoyance', name: 'Annoyance', nameEn: 'Annoyance', parentId: 'anger', intensity: 1 },
-  { id: 'anger', name: 'Anger', nameEn: 'Anger', parentId: 'anger', intensity: 2 },
+  { id: 'annoyance', name: 'Annoyance', nameEn: 'Annoyance', parentId: 'anger', intensity: 1, description: 'Irritation and mild frustration' },
+  { id: 'anger', name: 'Anger', nameEn: 'Anger', parentId: 'anger', intensity: 2, description: 'Strong displeasure and hostility' },
 
   // ANTICIPATION FAMILY: Anticipation (L2) + Interest (L1)
-  { id: 'interest', name: 'Interest', nameEn: 'Interest', parentId: 'anticipation', intensity: 1 },
-  { id: 'anticipation', name: 'Anticipation', nameEn: 'Anticipation', parentId: 'anticipation', intensity: 2 },
+  { id: 'interest', name: 'Interest', nameEn: 'Interest', parentId: 'anticipation', intensity: 1, description: 'Curiosity and engagement' },
+  { id: 'anticipation', name: 'Anticipation', nameEn: 'Anticipation', parentId: 'anticipation', intensity: 2, description: 'Expectation and excitement' },
 ];
 
 // Helper: get L3 emotion for a given family (parentId)

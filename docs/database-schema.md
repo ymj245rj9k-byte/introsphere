@@ -27,17 +27,17 @@ CREATE TABLE profiles (
 
 -- Trigger do automatycznego tworzenia profilu
 CREATE OR REPLACE FUNCTION public.handle_new_user()
-RETURNS TRIGGER AS $
+RETURNS TRIGGER AS $$
 BEGIN
   INSERT INTO public.profiles (id, email)
   VALUES (NEW.id, NEW.email);
   RETURN NEW;
 END;
-$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 CREATE TRIGGER on_auth_user_created
-  AFTER INSERT ON auth.users
-  FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
+AFTER INSERT ON auth.users
+FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 ```
 
 ---
@@ -302,7 +302,8 @@ CREATE INDEX idx_calendar_entries_user_date ON calendar_entries(user_id, created
 SELECT j.*, ujp.current_day, ujp.status
 FROM journeys j
 JOIN user_journey_progress ujp ON j.id = ujp.journey_id
-WHERE ujp.user_id = 'user-uuid' AND ujp.status = 'in_progress'
+WHERE ujp.user_id = auth.uid()
+  AND ujp.status = 'in_progress'
 ORDER BY ujp.started_at DESC
 LIMIT 1;
 ```
@@ -311,8 +312,9 @@ LIMIT 1;
 ```sql
 SELECT jd.question, jd.question_en, jd.day_name
 FROM journey_days jd
-JOIN user_journey_progress ujp ON jd.journey_id = ujp.journey_id
-WHERE ujp.user_id = 'user-uuid' 
+JOIN user_journey_progress ujp 
+  ON jd.journey_id = ujp.journey_id
+WHERE ujp.user_id = auth.uid()
   AND ujp.status = 'in_progress'
   AND jd.day_number = ujp.current_day;
 ```
@@ -333,27 +335,42 @@ WHERE user_journey_progress.user_id = 'user-uuid';
 ### Pobierz wpisy z kalendarza dla użytkownika (miesiąc)
 ```sql
 SELECT 
+  mc.id,
   mc.entry_date,
   mc.primary_emotion_id,
   mc.primary_emotion_name,
   mc.color as primary_color,
-  json_agg(
-    json_build_object(
-      'id', ce.id,
-      'content', ce.content,
-      'emotion_name', ce.emotion_name,
-      'color', ce.color,
-      'source_type', ce.source_type
-    )
+
+  COALESCE(
+    json_agg(
+      json_build_object(
+        'id', ce.id,
+        'content', ce.content,
+        'emotion_name', ce.emotion_name,
+        'color', ce.color,
+        'source_type', ce.source_type
+      )
+    ) FILTER (WHERE ce.id IS NOT NULL),
+    '[]'
   ) as entries
+
 FROM mood_calendar mc
-LEFT JOIN calendar_entries ce ON mc.id = ce.calendar_id
-WHERE mc.user_id = 'user-uuid'
+LEFT JOIN calendar_entries ce 
+  ON mc.id = ce.calendar_id
+
+WHERE mc.user_id = auth.uid()
   AND mc.entry_date BETWEEN '2024-01-01' AND '2024-01-31'
-GROUP BY mc.id
+
+GROUP BY 
+  mc.id, 
+  mc.entry_date,
+  mc.primary_emotion_id,
+  mc.primary_emotion_name,
+  mc.color
+
 ORDER BY mc.entry_date;
 ```
-
+BEZ TEGO TUTAJ 2
 ### Dodaj wpis z Journey do kalendarza
 ```sql
 -- 1. Znajdź lub utwórz dzień w kalendarzu

@@ -3,23 +3,32 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { atmospheres } from '@/data/themes';
 import { useThemeStore } from '@/stores/themeStore';
+import { useAuthStore } from '@/stores/authStore';
 import { AtmosphereType } from '@/types/emotion';
 
 const atmosphereList = Object.values(atmospheres);
 
 export function Settings() {
   const { atmosphere, setAtmosphere, isDark, toggleDark } = useThemeStore();
+  const { user, signOut } = useAuthStore();
+
+  const handleLogout = async () => {
+    await signOut();
+  };
+
+  const userEmail = user?.email || 'user@introsphere.pl';
+  const userDisplayName = user?.user_metadata?.name || user?.email?.split('@')[0] || 'User';
 
   return (
     <div className="p-4 max-w-lg mx-auto">
-      <h1 className="text-2xl font-semibold text-atm-heading mb-6">Ustawienia</h1>
+      <h1 className="text-2xl font-semibold text-atm-heading mb-6">Settings</h1>
 
       <div className="space-y-6">
         {/* Profile */}
         <Card className="p-4" style={{ backgroundColor: 'var(--atmosphere-bg-secondary)', borderColor: 'var(--atmosphere-border)' }}>
           <div className="flex items-center gap-3 mb-4">
             <User className="w-5 h-5 text-atm-muted" />
-            <h2 className="text-lg font-medium text-atm">Profil</h2>
+            <h2 className="text-lg font-medium text-atm">Profile</h2>
           </div>
 
           <div className="flex items-center gap-4">
@@ -27,8 +36,8 @@ export function Settings() {
               <User className="w-8 h-8 text-atm-accent" />
             </div>
             <div>
-              <p className="font-medium text-atm">User</p>
-              <p className="text-sm text-atm-muted">uzytkownik@introsphere.pl</p>
+              <p className="font-medium text-atm">{userDisplayName}</p>
+              <p className="text-sm text-atm-muted">{userEmail}</p>
             </div>
           </div>
         </Card>
@@ -37,7 +46,7 @@ export function Settings() {
         <Card className="p-4" style={{ backgroundColor: 'var(--atmosphere-bg-secondary)', borderColor: 'var(--atmosphere-border)' }}>
           <div className="flex items-center gap-3 mb-4">
             {isDark ? <Moon className="w-5 h-5 text-atm-muted" /> : <Sun className="w-5 h-5 text-atm-muted" />}
-            <h2 className="text-lg font-medium text-atm">Motyw</h2>
+            <h2 className="text-lg font-medium text-atm">Motive</h2>
           </div>
 
           <button
@@ -52,7 +61,7 @@ export function Settings() {
           >
             <span className="flex items-center gap-2 flex-1">
               {isDark ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-              <span className="text-sm">{isDark ? 'Ciemny' : 'Jasny'}</span>
+              <span className="text-sm">{isDark ? 'Dark' : 'Light'}</span>
             </span>
             <span className="text-xs text-atm-muted">Click to change</span>
           </button>
@@ -62,7 +71,7 @@ export function Settings() {
         <Card className="p-4" style={{ backgroundColor: 'var(--atmosphere-bg-secondary)', borderColor: 'var(--atmosphere-border)' }}>
           <div className="flex items-center gap-3 mb-4">
             <Palette className="w-5 h-5 text-atm-muted" />
-            <h2 className="text-lg font-medium text-atm">Atmosfera</h2>
+            <h2 className="text-lg font-medium text-atm">Atmosphere</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -91,7 +100,7 @@ export function Settings() {
                   </p>
                   {isSelected && (
                     <p className="text-xs mt-0.5" style={{ color: atm.colors.accent }}>
-                      ✓ Aktywna
+                      ✓ Active
                     </p>
                   )}
                 </button>
@@ -107,7 +116,7 @@ export function Settings() {
             <h2 className="text-lg font-medium text-atm">Account</h2>
           </div>
 
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full" onClick={handleLogout}>
             <LogOut className="w-4 h-4 mr-2" />
             Log out
           </Button>

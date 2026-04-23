@@ -2,16 +2,16 @@ import { Journey, JourneyDay } from '@/types/journey';
 
 export const journeys: Journey[] = [
   {
-    id: 'wewnetrzne-dziecko',
-    title: 'Inner Child',
-    titleEn: 'Inner Child',
-    subtitle: 'A week of gentle return to yourself - not to fix, but to hear.',
-    subtitleEn: 'A week of gentle return to yourself - not to fix, but to hear.',
-    tone: 'warm, compassionate',
-    toneEn: 'warm, compassionate',
+    id: 'samopoznanie',
+    title: 'Self Discovery',
+    titleEn: 'Self Discovery',
+    subtitle: 'A week of exploring who you are beneath the roles you play.',
+    subtitleEn: 'A week of exploring who you are beneath the roles you play.',
+    tone: 'gentle, exploratory',
+    toneEn: 'gentle, exploratory',
     isActive: true,
     displayOrder: 1,
-    icon: '🌸',
+    icon: '🔍',
   },
   {
     id: 'granice',
@@ -76,7 +76,7 @@ export const journeys: Journey[] = [
 ];
 
 export const journeyDays: Record<string, JourneyDay[]> = {
-  'wewnetrzne-dziecko': [
+  'samopoznanie': [
     { id: 1, journeyId: 'wewnetrzne-dziecko', dayNumber: 1, dayName: 'Monday', question: 'What did you need most as a child but didn\'t receive? Is this something you\'re still seeking in your adult life?', questionEn: 'What did you need most as a child but didn\'t receive?' },
     { id: 2, journeyId: 'wewnetrzne-dziecko', dayNumber: 2, dayName: 'Tuesday', question: 'What phrase - said to you in childhood - do you still hear in your head when something goes wrong?', questionEn: 'What phrase from childhood still echoes in your mind when things go wrong?' },
     { id: 3, journeyId: 'wewnetrzne-dziecko', dayNumber: 3, dayName: 'Wednesday', question: 'What entertained you endlessly before you learned you needed to be "productive"? When did you last do it?', questionEn: 'What did you love doing before you learned you had to be productive?' },

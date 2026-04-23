@@ -3,113 +3,26 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CalendarDay } from './CalendarDay';
 import { CalendarEntryDialog } from './CalendarEntry';
+import { useAuth } from '@/hooks/useAuth';
+import { useCalendar } from '@/hooks/useCalendar';
+import type { MoodCalendarDayEntry, CalendarEntryData } from '@/lib/database';
 
-interface DayEntry {
-  date: number;
-  hasEntry: boolean;
-  isCurrentMonth: boolean;
-  emotionColor?: string;
-  emotion?: string;
-  response?: string;
-  question?: string;
-}
-
-interface CalendarEntryData {
-  id: string;
-  date: string;
-  emotion: string;
-  emotionColor: string;
-  response: string;
-  question?: string;
-}
-
-interface MoodCalendarProps {
-  onDayClick?: (entry: CalendarEntryData) => void;
-}
-
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
 ];
 
-const mockEntries: Record<string, CalendarEntryData> = {
-  '2026-04-20': {
-    id: '1',
-    date: '2026-04-20',
-    emotion: 'Joy',
-    emotionColor: '#F7DC6F',
-    response: 'Really great day at work today. Project is moving forward!',
-    question: 'What made you feel alive today?',
-  },
-  '2026-04-19': {
-    id: '2',
-    date: '2026-04-19',
-    emotion: 'Calm',
-    emotionColor: '#82E0AA',
-    response: 'Evening with a book, tea, silence. It was a good day.',
-    question: 'What are you grateful for today?',
-  },
-  '2026-04-18': {
-    id: '3',
-    date: '2026-04-18',
-    emotion: 'Thoughtful',
-    emotionColor: '#7D3C98',
-    response: 'Thinking about what was and what is coming. Lots on my mind.',
-    question: 'What are you thinking about right now?',
-  },
-};
-
-function generateCalendarDays(year: number, month: number): DayEntry[] {
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
-  const daysInMonth = lastDay.getDate();
-  const startingDayOfWeek = firstDay.getDay();
-
-  const days: DayEntry[] = [];
-
-  for (let i = startingDayOfWeek - 1; i >= 0; i--) {
-    const prevDate = new Date(year, month, -i);
-    days.push({
-      date: prevDate.getDate(),
-      isCurrentMonth: false,
-      hasEntry: false,
-    });
-  }
-
-  for (let i = 1; i <= daysInMonth; i++) {
-    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-    const entry = mockEntries[dateStr];
-    days.push({
-      date: i,
-      isCurrentMonth: true,
-      hasEntry: !!entry,
-      emotionColor: entry?.emotionColor,
-      emotion: entry?.emotion,
-      response: entry?.response,
-      question: entry?.question,
-    });
-  }
-
-  const remainingDays = 42 - days.length;
-  for (let i = 1; i <= remainingDays; i++) {
-    days.push({
-      date: i,
-      isCurrentMonth: false,
-      hasEntry: false,
-    });
-  }
-
-  return days;
-}
-
-export function MoodCalendar({ onDayClick }: MoodCalendarProps) {
+export function MoodCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedEntry, setSelectedEntry] = useState<CalendarEntryData | null>(null);
   const [showDialog, setShowDialog] = useState(false);
 
+  const { user } = useAuth();
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
-  const days = generateCalendarDays(year, month);
+
+  const { entriesMap, getDayEntry } = useCalendar(user, year, month);
 
   const prevMonth = () => {
     setCurrentDate(new Date(year, month - 1, 1));
@@ -119,21 +32,50 @@ export function MoodCalendar({ onDayClick }: MoodCalendarProps) {
     setCurrentDate(new Date(year, month + 1, 1));
   };
 
-  const handleDayClick = (day: DayEntry) => {
-    if (day.hasEntry) {
-      const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`;
-      const entry = mockEntries[dateStr];
-      if (entry) {
-        setSelectedEntry(entry);
+  const handleDayClick = (day: MoodCalendarDayEntry) => {
+    if (day.hasEntry && day.emotion) {
+      const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`;
+      const dayEntries = entriesMap[dateKey] || [];
+      const firstEntry = dayEntries[0];
+
+      if (firstEntry) {
+        setSelectedEntry(firstEntry);
         setShowDialog(true);
-        onDayClick?.(entry);
       }
     }
   };
 
+  // Generate 6-week grid (42 days)
+  const firstDay = new Date(year, month, 1);
+  const startingDayOfWeek = firstDay.getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  const days: MoodCalendarDayEntry[] = [];
+
+  // Previous month days
+  const prevMonthLastDay = new Date(year, month, 0).getDate();
+  for (let i = 0; i < startingDayOfWeek; i++) {
+    const date = prevMonthLastDay - startingDayOfWeek + i + 1;
+    const dayEntry = getDayEntry(date, false);
+    days.push(dayEntry);
+  }
+
+  // Current month days
+  for (let i = 1; i <= daysInMonth; i++) {
+    const dayEntry = getDayEntry(i, true);
+    days.push(dayEntry);
+  }
+
+  // Next month days to fill 42 cells
+  const remainingDays = 42 - days.length;
+  for (let i = 1; i <= remainingDays; i++) {
+    const dayEntry = getDayEntry(i, false);
+    days.push(dayEntry);
+  }
+
   return (
-    <div 
-      className="rounded-xl border p-4 transition-all duration-300 hover:shadow"
+    <div
+      className="w-full rounded-xl border p-3 sm:p-4 flex flex-col transition-all duration-300"
       style={{
         backgroundColor: 'var(--atmosphere-bg, #fff)',
         borderColor: 'var(--atmosphere-border)',
@@ -141,24 +83,24 @@ export function MoodCalendar({ onDayClick }: MoodCalendarProps) {
       }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2 sm:mb-3 flex-shrink-0">
         <Button variant="ghost" size="sm" onClick={prevMonth} aria-label="Previous month">
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4" />
         </Button>
-        <h2 className="text-lg font-semibold text-atm-heading">
+        <h2 className="text-sm sm:text-base font-semibold text-atm-heading px-2">
           {MONTHS[month]} {year}
         </h2>
         <Button variant="ghost" size="sm" onClick={nextMonth} aria-label="Next month">
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-4 h-4" />
         </Button>
       </div>
 
       {/* Day names */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
-        {['Nd', 'Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob'].map((day) => (
+      <div className="grid grid-cols-7 gap-1 mb-1 flex-shrink-0">
+        {DAYS.map((day) => (
           <div
             key={day}
-            className="text-center text-sm font-medium text-atm-muted py-2"
+            className="text-center text-xs font-medium text-atm-muted py-1"
           >
             {day}
           </div>
@@ -166,13 +108,14 @@ export function MoodCalendar({ onDayClick }: MoodCalendarProps) {
       </div>
 
       {/* Days grid */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-1 flex-grow min-h-0">
         {days.map((day, index) => (
-          <CalendarDay
-            key={index}
-            day={day}
-            onClick={handleDayClick}
-          />
+          <div key={index} className="aspect-square">
+            <CalendarDay
+              day={day}
+              onClick={handleDayClick}
+            />
+          </div>
         ))}
       </div>
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Emotion } from '@/types/emotion';
 import { getLevel3Emotions } from '@/data/emotions';
+import { journeys } from '@/data/journeys';
 
 export function Onboarding() {
   const [step, setStep] = useState(1);
@@ -166,9 +167,24 @@ function JourneyStep({
         </p>
       </div>
 
-      {/* Placeholder - will be replaced with real journey cards */}
-      <div className="text-center py-12 text-muted-foreground">
-        Journeys will be available here soon.
+      <div className="grid gap-3">
+        {journeys.map((journey) => (
+          <Link
+            key={journey.id}
+            to={`/journey/${journey.id}`}
+            className="p-4 rounded-xl border border-border hover:border-primary/50 transition-all hover:shadow-md block"
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">{journey.icon}</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-foreground mb-1">{journey.titleEn}</h3>
+                <p className="text-sm text-muted-foreground line-clamp-2">
+                  {journey.subtitleEn}
+                </p>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
 
       <button

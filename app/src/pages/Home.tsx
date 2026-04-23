@@ -1,26 +1,14 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 import { Flame, BookOpen, CalendarDays, Sparkles, TrendingUp } from 'lucide-react';
-
-// --- Mock stats (MVP placeholder until Supabase is wired up) ---
-const mockStats = {
-  streak: 4,
-  totalSessions: 17,
-  topEmotion: { name: 'Joy', nameEn: 'Joy', color: '#f5e660', emoji: '✨' },
-  secondEmotion: { name: 'Sadness', nameEn: 'Sadness', color: '#2377cb', emoji: '🌧' },
-  weekActivity: [true, true, false, true, true, false, false], // Mon–Sun
-  activeJourneyName: 'Inner Child',
-  activeJourneyDay: 3,
-  activeJourneyTotal: 7,
-  activeJourneyId: 'wewnetrzne-dziecko',
-};
+import { useAuth } from '@/hooks/useAuth';
+import { useHomeStats } from '@/hooks/useHomeStats';
 
 const DAYS_SHORT = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
 export function Home() {
-  const s = mockStats;
-  const todayIndex = (new Date().getDay() + 6) % 7; // 0=Mon
-
+  const { user } = useAuth();
+  const { streakDays, totalSessions, topEmotion, weekActivity, loading } = useHomeStats(user);
   return (
     <div className="min-h-screen bg-atm">
       <div className="max-w-2xl mx-auto px-4 py-10 space-y-6">
@@ -47,7 +35,7 @@ export function Home() {
           </Link>
 
           <Link
-            to={`/journey/${s.activeJourneyId}`}
+            to="/journey/samopoznanie"
             className="group flex flex-col gap-2 p-4 rounded-xl border transition-all hover:scale-[1.02] active:scale-[0.98]"
             style={{
               backgroundColor: 'var(--atmosphere-bg-secondary)',
@@ -55,8 +43,8 @@ export function Home() {
             }}
           >
             <BookOpen className="w-5 h-5 text-atm-accent" />
-            <span className="font-medium text-atm text-sm leading-snug">{s.activeJourneyName}</span>
-            <span className="text-xs text-atm-muted">Day {s.activeJourneyDay} of {s.activeJourneyTotal}</span>
+            <span className="font-medium text-atm text-sm leading-snug">Self Discovery</span>
+            <span className="text-xs text-atm-muted">Start first journey</span>
           </Link>
 
           <Link
@@ -68,7 +56,7 @@ export function Home() {
             }}
           >
             <CalendarDays className="w-5 h-5 text-atm-accent" />
-            <span className="font-medium text-atm text-sm leading-snug">Kalendarz</span>
+            <span className="font-medium text-atm text-sm leading-snug">Calendar</span>
             <span className="text-xs text-atm-muted">Mood calendar</span>
           </Link>
 
@@ -82,7 +70,7 @@ export function Home() {
           >
             <TrendingUp className="w-5 h-5 text-atm-accent" />
             <span className="font-medium text-atm text-sm leading-snug">Reflections</span>
-            <span className="text-xs text-atm-muted">Moje wpisy</span>
+            <span className="text-xs text-atm-muted">My entries</span>
           </Link>
         </div>
 
@@ -97,7 +85,9 @@ export function Home() {
             }}
           >
             <Flame className="w-5 h-5" style={{ color: '#f97316' }} />
-            <span className="text-2xl font-bold text-atm-heading">{s.streak}</span>
+            <span className="text-2xl font-bold text-atm-heading">
+              {loading ? '—' : streakDays}
+            </span>
             <span className="text-xs text-atm-muted">day streak</span>
           </div>
 
@@ -110,7 +100,9 @@ export function Home() {
             }}
           >
             <BookOpen className="w-5 h-5 text-atm-accent" />
-            <span className="text-2xl font-bold text-atm-heading">{s.totalSessions}</span>
+            <span className="text-2xl font-bold text-atm-heading">
+              {loading ? '—' : totalSessions}
+            </span>
             <span className="text-xs text-atm-muted">sessions total</span>
           </div>
 
@@ -122,14 +114,27 @@ export function Home() {
               borderColor: 'var(--atmosphere-border)',
             }}
           >
-            <span className="text-xl">{s.topEmotion.emoji}</span>
-            <span
-              className="text-sm font-semibold"
-              style={{ color: s.topEmotion.color }}
-            >
-              {s.topEmotion.nameEn}
-            </span>
-            <span className="text-xs text-atm-muted">top emocja</span>
+            {topEmotion ? (
+              <>
+                <div
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                  style={{ backgroundColor: topEmotion.color }}
+                >
+                  {topEmotion.name[0]}
+                </div>
+                <span className="text-sm font-semibold text-atm-heading truncate max-w-full">
+                  {topEmotion.name}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="text-xl">—</span>
+                <span className="text-sm font-semibold text-atm-muted">
+                  No data yet
+                </span>
+              </>
+            )}
+            <span className="text-xs text-atm-muted">top emotion</span>
           </div>
         </div>
 
@@ -143,37 +148,34 @@ export function Home() {
         >
           <p className="text-xs font-medium text-atm-muted mb-3 uppercase tracking-widest">This week</p>
           <div className="flex items-end gap-2">
-            {s.weekActivity.map((active, i) => (
-              <div key={i} className="flex flex-col items-center gap-1 flex-1">
-                <div
-                  className="w-full rounded-md transition-all"
-                  style={{
-                    height: active ? '28px' : '10px',
-                    backgroundColor: active
-                      ? 'var(--atmosphere-accent)'
-                      : 'var(--atmosphere-border)',
-                    opacity: i === todayIndex ? 1 : active ? 0.7 : 0.4,
-                    outline: i === todayIndex ? '2px solid var(--atmosphere-accent)' : 'none',
-                    outlineOffset: '2px',
-                  }}
-                />
-                <span
-                  className="text-xs"
-                  style={{
-                    color: i === todayIndex
-                      ? 'var(--atmosphere-accent)'
-                      : 'var(--atmosphere-text-muted)',
-                    fontWeight: i === todayIndex ? 600 : 400,
-                  }}
-                >
-                  {DAYS_SHORT[i]}
-                </span>
-              </div>
-            ))}
+            {DAYS_SHORT.map((day, i) => {
+              // weekActivity: [6 days ago, 5, 4, 3, 2, 1, today]
+              const count = weekActivity[i] || 0;
+              // Scale: max height at 3 entries
+              const heightPercent = Math.min((count / 3) * 100, 100);
+              const hasActivity = count > 0;
+              
+              return (
+                <div key={i} className="flex flex-col items-center gap-1 flex-1">
+                  <div
+                    className="w-full rounded-md transition-all"
+                    style={{
+                      height: `${Math.max(10, heightPercent)}%`,
+                      minHeight: '4px',
+                      backgroundColor: hasActivity 
+                        ? 'var(--atmosphere-accent, #8B5CF6)' 
+                        : 'var(--atmosphere-border)',
+                      opacity: hasActivity ? 0.8 : 1,
+                    }}
+                  />
+                  <span className="text-xs text-atm-muted">{day}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Emotion breakdown */}
+        {/* Emotion breakdown - empty state */}
         <div
           className="p-4 rounded-xl border"
           style={{
@@ -182,23 +184,8 @@ export function Home() {
           }}
         >
           <p className="text-xs font-medium text-atm-muted mb-3 uppercase tracking-widest">Top emotions</p>
-          <div className="space-y-2">
-            {[
-              { ...s.topEmotion, pct: 42 },
-              { ...s.secondEmotion, pct: 28 },
-            ].map((e) => (
-              <div key={e.nameEn} className="flex items-center gap-3">
-                <span className="text-base w-5 text-center">{e.emoji}</span>
-                <span className="text-sm text-atm w-16 shrink-0">{e.nameEn}</span>
-                <div className="flex-1 rounded-full overflow-hidden" style={{ height: '6px', backgroundColor: 'var(--atmosphere-border)' }}>
-                  <div
-                    className="h-full rounded-full"
-                    style={{ width: `${e.pct}%`, backgroundColor: e.color }}
-                  />
-                </div>
-                <span className="text-xs text-atm-muted w-8 text-right">{e.pct}%</span>
-              </div>
-            ))}
+          <div className="text-center py-4 text-muted-foreground text-sm">
+            Complete sessions to see your emotion patterns
           </div>
         </div>
 

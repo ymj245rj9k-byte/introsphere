@@ -8,6 +8,7 @@ export interface Emotion {
   color: string;
   colorHex: string;
   isActive: boolean;
+  description?: string;
 }
 
 export interface EmotionSubspectrum {

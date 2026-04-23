@@ -48,15 +48,15 @@ export function CalendarEntryDialog({ entry, open, onClose }: CalendarEntryDialo
         
         <div className="flex items-center gap-3 mb-4">
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center"
+            className="w-12 h-12 rounded-full flex items-center justify-center"
             style={{ backgroundColor: entry.emotionColor }}
           >
-            <span className="text-lg">{entry.emotion[0]}</span>
+            <span className="text-lg font-bold">{entry.emotion[0]}</span>
           </div>
           <div>
-            <h2 className="font-semibold text-atm-heading">{entry.emotion}</h2>
-            <p className="text-sm text-atm-muted flex items-center gap-1">
-              <Calendar className="w-3 h-3" />
+            <h2 className="font-bold text-xl text-atm-heading">{entry.emotion}</h2>
+            <p className="text-base text-atm-muted flex items-center gap-2">
+              <Calendar className="w-4 h-4" />
               {entry.date}
             </p>
           </div>
@@ -64,17 +64,17 @@ export function CalendarEntryDialog({ entry, open, onClose }: CalendarEntryDialo
 
         {entry.question && (
           <div className="mb-4 p-3 rounded-lg" style={{ backgroundColor: 'var(--atmosphere-bg-secondary)' }}>
-            <p className="text-sm text-atm-muted mb-1">Pytanie:</p>
-            <p className="text-atm">{entry.question}</p>
+             <p className="text-base font-semibold text-atm-muted mb-1">Pytanie:</p>
+            <p className="text-lg text-atm">{entry.question}</p>
           </div>
         )}
 
         <div className="mb-6">
-          <p className="text-sm text-atm-muted mb-2">Your answer:</p>
-          <p className="text-atm leading-relaxed">{entry.response}</p>
+          <p className="text-base font-semibold text-atm-muted mb-2">Your answer:</p>
+          <p className="text-lg text-atm leading-relaxed">{entry.response}</p>
         </div>
 
-        <Button onClick={onClose} className="w-full">
+        <Button onClick={onClose} className="w-full text-lg font-semibold">
           Zamknij
         </Button>
       </div>

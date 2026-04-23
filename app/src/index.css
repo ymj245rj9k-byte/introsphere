@@ -116,18 +116,18 @@
 
   /* Cream Calm - Light */
   .atmosphere-cream-calm {
-    --atmosphere-bg: #f8f6f2;
+    --atmosphere-bg: #fbf3e3;
     --atmosphere-bg-secondary: #f5ecde;
     --atmosphere-accent: #b69b7b;
     --atmosphere-text: #2D2A26;
     --atmosphere-text-heading: #1A1815;
     --atmosphere-text-body: #3D3A36;
-    --atmosphere-text-muted: #9e9690;
+
     --atmosphere-text-accent: #a89880;
     --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
     --atmosphere-radius: 6px;
     --atmosphere-shadow: none;
-    --atmosphere-border: 0.5px solid #e8ddd0;
+    --atmosphere-border: 0.5px solid #543f24;
   }
 
   /* Cream Calm - Dark */
@@ -138,65 +138,65 @@
     --atmosphere-text: #e8e0d5;
     --atmosphere-text-heading: #f5f0e8;
     --atmosphere-text-body: #cfc8be;
-    --atmosphere-text-muted: #7a7268;
+
     --atmosphere-text-accent: #b8a888;
     --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
     --atmosphere-radius: 6px;
     --atmosphere-shadow: none;
-    --atmosphere-border: 0.5px solid #3a3528;
+    --atmosphere-border: 0.5px solid #ecdfbd;
   }
 
   /* ============================================
      ATMOSPHERE: GREEN FOREST
      ============================================ */
 
-  /* Green Forest - Light */
-  .atmosphere-green-forest {
-    --atmosphere-bg: #e8f5d8;
-    --atmosphere-bg-secondary: #b9d79c;
-    --atmosphere-accent: #5a8a4a;
-    --atmosphere-text: #3a2410;
-    --atmosphere-text-heading: #2a1808;
-    --atmosphere-text-body: #4a3018;
-    --atmosphere-text-muted: #7a5a3a;
-    --atmosphere-text-accent: #5a8a4a;
-    --atmosphere-font: 'Caveat', cursive;
-    --atmosphere-font-body: 'Lora', serif;
-    --atmosphere-radius: 14px;
-    --atmosphere-shadow: 0 2px 16px rgba(60, 100, 50, 0.12);
-    --atmosphere-border: 0.5px solid #17150d;
-  }
+   /* Green Forest - Light */
+   .atmosphere-green-forest {
+     --atmosphere-bg: #e3ead0;
+     --atmosphere-bg-secondary: #b9d79c;
+     --atmosphere-accent: #5a8a4a;
+     --atmosphere-text: #3a2410;
+     --atmosphere-text-heading: #2a1808;
+     --atmosphere-text-body: #4a3018;
 
-  /* Green Forest - Dark */
-  .dark.atmosphere-green-forest {
-    --atmosphere-bg: #0a1206;
-    --atmosphere-bg-secondary: #121a0e;
-    --atmosphere-accent: #6a9e5a;
-    --atmosphere-text: #d4c8a8;
-    --atmosphere-text-heading: #e8dcc0;
-    --atmosphere-text-body: #b8aa88;
-    --atmosphere-text-muted: #6a5e40;
-    --atmosphere-text-accent: #6a9e5a;
-    --atmosphere-font: 'Caveat', cursive;
-    --atmosphere-font-body: 'Lora', serif;
-    --atmosphere-radius: 14px;
-    --atmosphere-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
-    --atmosphere-border: 0.5px solid #1e3018;
-  }
+     --atmosphere-text-accent: #5a8a4a;
+     --atmosphere-font: 'Montserrat', sans-serif;
+     --atmosphere-font-body: 'Montserrat', sans-serif;
+     --atmosphere-radius: 14px;
+     --atmosphere-shadow: 0 2px 16px rgba(60, 100, 50, 0.12);
+     --atmosphere-border: 0.5px solid #17150d;
+   }
+
+   /* Green Forest - Dark */
+   .dark.atmosphere-green-forest {
+     --atmosphere-bg: #1a2f10;
+     --atmosphere-bg-secondary: #121a0e;
+     --atmosphere-accent: #6a9e5a;
+     --atmosphere-text: #d4c8a8;
+     --atmosphere-text-heading: #e8dcc0;
+     --atmosphere-text-body: #b8aa88;
+
+     --atmosphere-text-accent: #6a9e5a;
+     --atmosphere-font: 'Montserrat', sans-serif;
+     --atmosphere-font-body: 'Montserrat', sans-serif;
+     --atmosphere-radius: 14px;
+     --atmosphere-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+     --atmosphere-border: 0.5px solid #1e3018;
+   }
 
   /* ============================================
      ATMOSPHERE: DARK INK
      ============================================ */
 
   .atmosphere-dark-ink {
-    --atmosphere-bg: #f5eed6;
+    --atmosphere-bg: #fde9cb;
     --atmosphere-bg-secondary: #ede4c4;
     --atmosphere-accent: #c9a063;
     --atmosphere-text: #1c234b;
     --atmosphere-text-heading: #1c286b;
     --atmosphere-text-body: #171d3f;
-    --atmosphere-text-muted: #192473;
-    --atmosphere-text-accent: #c9a063;
+
+    --atmosphere-text-accent: #7b561f;
     --atmosphere-font: 'Cormorant Garamond', serif;
     --atmosphere-font-body: 'EB Garamond', serif;
     --atmosphere-radius: 4px;
@@ -211,7 +211,7 @@
     --atmosphere-text: #f0e8c8;
     --atmosphere-text-heading: #f5eed6;
     --atmosphere-text-body: #d8d0a8;
-    --atmosphere-text-muted: #8888aa;
+
     --atmosphere-text-accent: #c9a063;
     --atmosphere-font: 'Cormorant Garamond', serif;
     --atmosphere-font-body: 'EB Garamond', serif;
@@ -226,14 +226,14 @@
 
   /* Soft Pink - Light */
   .atmosphere-soft-pink {
-    --atmosphere-bg: #f8f2f5;
+    --atmosphere-bg: #f8d7e2;
     --atmosphere-bg-secondary: #f6dce6;
     --atmosphere-accent: #de9ec1;
-    --atmosphere-text: #4a2e3a;
-    --atmosphere-text-heading: #3a1e2a;
-    --atmosphere-text-body: #5a3e4a;
-    --atmosphere-text-muted: #9a7a88;
-    --atmosphere-text-accent: #a870a0;
+    --atmosphere-text: #641c3c;
+    --atmosphere-text-heading: #591834;
+    --atmosphere-text-body: #552037;
+
+    --atmosphere-text-accent: #b42358;
     --atmosphere-font: 'Jua', sans-serif;
     --atmosphere-font-body: 'Jua', sans-serif;
     --atmosphere-radius: 20px;
@@ -243,14 +243,14 @@
 
   /* Soft Pink - Dark */
   .dark.atmosphere-soft-pink {
-    --atmosphere-bg: #1F1518;
+    --atmosphere-bg: #5c2535;
     --atmosphere-bg-secondary: #2A2025;
-    --atmosphere-accent: #C894B9;
+    --atmosphere-accent: #e47aac;
     --atmosphere-text: #E5D5E0;
     --atmosphere-text-heading: #F5E5F0;
-    --atmosphere-text-body: #D5C5D0;
-    --atmosphere-text-muted: #B5A5B0;
-    --atmosphere-text-accent: #E8B4D9;
+    --atmosphere-text-body: #f091b4;
+
+    --atmosphere-text-accent: #f196c2;
     --atmosphere-font: 'Jua', sans-serif;
     --atmosphere-radius: 20px;
     --atmosphere-shadow: 0 4px 20px rgba(200, 148, 185, 0.15);
@@ -269,7 +269,7 @@
     --atmosphere-text: #1a1a28;
     --atmosphere-text-heading: #0a0a18;
     --atmosphere-text-body: #2a2a38;
-    --atmosphere-text-muted: #6a6a80;
+
     --atmosphere-text-accent: #0099aa;
     --atmosphere-font: 'JetBrains Mono', monospace;
     --atmosphere-font-body: 'JetBrains Mono', monospace;
@@ -303,7 +303,7 @@
 
   /* Solar Flare - Light */
   .atmosphere-solar-flare {
-    --atmosphere-bg: #fef9e7;
+    --atmosphere-bg: #f9f5d1;
     --atmosphere-bg-secondary: #fcf9bc;
     --atmosphere-accent: #f5a800;
     --atmosphere-text: #2a1a08;
@@ -377,7 +377,7 @@
 
   /* Ocean Deep - Light */
   .atmosphere-ocean-deep {
-    --atmosphere-bg: #e8f4f8;
+    --atmosphere-bg: #dffffa;
     --atmosphere-bg-secondary: #d8ecf4;
     --atmosphere-accent: #0077a8;
     --atmosphere-text: #0d2137;
@@ -442,6 +442,14 @@
   .border-atm-border { border-color: var(--atmosphere-border); }
   .shadow-atm { box-shadow: var(--atmosphere-shadow); }
   .rounded-atm { border-radius: var(--atmosphere-radius); }
+
+  /* Bile overlay for dark-mode demo block - blends with atmosphere accent */
+  .bg-atm-dark-ink-blend {
+    background-color: white;
+  }
+  .dark .bg-atm-dark-ink-blend {
+    background-color: black;
+  }
 
   /* Landing page typography - Lora */
   .font-landing-heading {

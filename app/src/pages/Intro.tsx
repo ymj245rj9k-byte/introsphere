@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 
-export function Landing() {
+export function Intro() {
   return (
     <div className="min-h-screen bg-atm flex items-center justify-center">
       <div className="max-w-md mx-auto px-6 text-center space-y-8">
@@ -18,13 +18,7 @@ export function Landing() {
             to={ROUTES.HOW_IT_WORKS}
             className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
           >
-            How it Works
-          </Link>
-          <Link
-            to={ROUTES.AUTH}
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium border border-border bg-background text-foreground rounded-lg hover:bg-surface transition-colors"
-          >
-            Log in with Email
+            Get Started
           </Link>
         </div>
       </div>
