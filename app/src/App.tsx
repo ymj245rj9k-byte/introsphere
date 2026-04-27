@@ -6,6 +6,7 @@ import { Landing } from '@/pages/Landing';
 import { Home } from '@/pages/Home';
 import { Onboarding } from '@/pages/Onboarding';
 import { Journey } from '@/pages/Journey';
+import { Journeys } from '@/pages/Journeys';
 import { Calendar } from '@/pages/Calendar';
 import { History } from '@/pages/History';
 import { Settings } from '@/pages/Settings';
@@ -56,11 +57,13 @@ export function App() {
         <Route path={ROUTES.HOW_IT_WORKS} element={<HowItWorks />} />
       </Route>
       
-      {/* Protected routes - auth required */}
-      <Route element={<ProtectedRoute />}>
+       {/* Protected routes - auth required */}
+       <Route element={<ProtectedRoute />}>
         <Route element={<MainLayout />}>
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.ONBOARDING} element={<Onboarding />} />
+          <Route path={ROUTES.JOURNEYS} element={<Journeys />} />
+          <Route path={ROUTES.JOURNEY_DAY} element={<Journey />} />
           <Route path={ROUTES.JOURNEY} element={<Journey />} />
           <Route path={ROUTES.SESSION} element={<Session />} />
           <Route path={ROUTES.CALENDAR} element={<Calendar />} />
@@ -68,7 +71,7 @@ export function App() {
           <Route path={ROUTES.SETTINGS} element={<Settings />} />
           <Route path={ROUTES.EMOTION_REFLECTION} element={<EmotionReflection />} />
         </Route>
-      </Route>
+       </Route>
     </Routes>
   );
 }

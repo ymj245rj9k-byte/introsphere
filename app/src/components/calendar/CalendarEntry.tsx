@@ -11,16 +11,16 @@ interface CalendarEntry {
 }
 
 interface CalendarEntryDialogProps {
-  entry: CalendarEntry | null;
+  entries: CalendarEntry[];
   open: boolean;
   onClose: () => void;
 }
 
-export function CalendarEntryDialog({ entry, open, onClose }: CalendarEntryDialogProps) {
-  if (!open || !entry) return null;
+export function CalendarEntryDialog({ entries, open, onClose }: CalendarEntryDialogProps) {
+  if (!open || !entries || entries.length === 0) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Entry for ${entry.date}`}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={`Entries for ${entries[0].date}`}>
       {/* Backdrop */}
       <div
         className="absolute inset-0 backdrop-blur-sm transition-opacity duration-200"
@@ -28,7 +28,7 @@ export function CalendarEntryDialog({ entry, open, onClose }: CalendarEntryDialo
         onClick={onClose}
         aria-hidden="true"
       />
-
+    
       {/* Dialog */}
       <div 
         className="relative rounded-xl border max-w-md w-full p-6 fade-in"
@@ -46,36 +46,78 @@ export function CalendarEntryDialog({ entry, open, onClose }: CalendarEntryDialo
           <X className="w-5 h-5" />
         </button>
         
-        <div className="flex items-center gap-3 mb-4">
-          <div
-            className="w-12 h-12 rounded-full flex items-center justify-center"
-            style={{ backgroundColor: entry.emotionColor }}
-          >
-            <span className="text-lg font-bold">{entry.emotion[0]}</span>
-          </div>
-          <div>
-            <h2 className="font-bold text-xl text-atm-heading">{entry.emotion}</h2>
-            <p className="text-base text-atm-muted flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              {entry.date}
-            </p>
-          </div>
+        <div className="mb-6">
+          <h2 className="font-bold text-xl text-atm-heading">Entries for {entries[0].date}</h2>
+          <p className="text-base text-atm-muted">You have {entries.length} entries for this day.</p>
         </div>
-
-        {entry.question && (
-          <div className="mb-4 p-3 rounded-lg" style={{ backgroundColor: 'var(--atmosphere-bg-secondary)' }}>
-             <p className="text-base font-semibold text-atm-muted mb-1">Pytanie:</p>
-            <p className="text-lg text-atm">{entry.question}</p>
+        
+        {entries.length > 1 && (
+          <div className="space-y-4">
+            {entries.map((entry) => (
+              <div key={entry.id} className="border rounded-lg p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: entry.emotionColor }}
+                  >
+                    <span className="text-lg font-bold">{entry.emotion[0]}</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-atm-heading">{entry.emotion}</h3>
+                    <p className="text-sm text-atm-muted">{entry.date}</p>
+                  </div>
+                </div>
+                
+                {entry.question && (
+                  <div className="mb-3 p-3 rounded-lg" style={{ backgroundColor: 'var(--atmosphere-bg-secondary)' }}>
+                     <p className="text-base font-semibold text-atm-muted mb-1">Pytanie:</p>
+                    <p className="text-lg text-atm">{entry.question}</p>
+                  </div>
+                )}
+                
+                <div className="mb-4">
+                  <p className="text-base font-semibold text-atm-muted mb-1">Your answer:</p>
+                  <p className="text-lg text-atm leading-relaxed">{entry.response}</p>
+                </div>
+              </div>
+            ))}
           </div>
         )}
-
-        <div className="mb-6">
-          <p className="text-base font-semibold text-atm-muted mb-2">Your answer:</p>
-          <p className="text-lg text-atm leading-relaxed">{entry.response}</p>
-        </div>
-
-        <Button onClick={onClose} className="w-full text-lg font-semibold">
-          Zamknij
+        
+        {entries.length === 1 && (
+          <>
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: entries[0].emotionColor }}
+              >
+                <span className="text-lg font-bold">{entries[0].emotion[0]}</span>
+              </div>
+              <div>
+                <h2 className="font-bold text-xl text-atm-heading">{entries[0].emotion}</h2>
+                <p className="text-base text-atm-muted flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  {entries[0].date}
+                </p>
+              </div>
+            </div>
+            
+            {entries[0].question && (
+              <div className="mb-4 p-3 rounded-lg" style={{ backgroundColor: 'var(--atmosphere-bg-secondary)' }}>
+                 <p className="text-base font-semibold text-atm-muted mb-1">Pytanie:</p>
+                <p className="text-lg text-atm">{entries[0].question}</p>
+              </div>
+            )}
+            
+            <div className="mb-6">
+              <p className="text-base font-semibold text-atm-muted mb-2">Your answer:</p>
+              <p className="text-lg text-atm leading-relaxed">{entries[0].response}</p>
+            </div>
+          </>
+        )}
+        
+        <Button onClick={onClose} className="w-full text-lg font-semibold text-atm-heading mt-6">
+          Close
         </Button>
       </div>
     </div>

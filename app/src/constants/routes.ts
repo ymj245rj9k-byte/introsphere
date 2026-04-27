@@ -5,6 +5,8 @@ export const ROUTES = {
   HOME: '/home',
   ONBOARDING: '/onboarding',
   JOURNEY: '/journey/:id',
+  JOURNEYS: '/journeys',
+  JOURNEY_DAY: '/journey/:id/day/:dayNumber',
   SESSION: '/session',
   EMOTION_REFLECTION: '/emotion-reflection',
   CALENDAR: '/calendar',

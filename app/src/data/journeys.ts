@@ -77,13 +77,13 @@ export const journeys: Journey[] = [
 
 export const journeyDays: Record<string, JourneyDay[]> = {
   'samopoznanie': [
-    { id: 1, journeyId: 'wewnetrzne-dziecko', dayNumber: 1, dayName: 'Monday', question: 'What did you need most as a child but didn\'t receive? Is this something you\'re still seeking in your adult life?', questionEn: 'What did you need most as a child but didn\'t receive?' },
-    { id: 2, journeyId: 'wewnetrzne-dziecko', dayNumber: 2, dayName: 'Tuesday', question: 'What phrase - said to you in childhood - do you still hear in your head when something goes wrong?', questionEn: 'What phrase from childhood still echoes in your mind when things go wrong?' },
-    { id: 3, journeyId: 'wewnetrzne-dziecko', dayNumber: 3, dayName: 'Wednesday', question: 'What entertained you endlessly before you learned you needed to be "productive"? When did you last do it?', questionEn: 'What did you love doing before you learned you had to be productive?' },
-    { id: 4, journeyId: 'wewnetrzne-dziecko', dayNumber: 4, dayName: 'Thursday', question: 'What emotions did you have to hide or suppress as a child to be accepted? What happened to them?', questionEn: 'What emotions did you have to hide as a child to be accepted?' },
-    { id: 5, journeyId: 'wewnetrzne-dziecko', dayNumber: 5, dayName: 'Friday', question: 'Imagine yourself as a little child. What would you want to tell them today - something no one told you back then?', questionEn: 'What would you tell your inner child today?' },
-    { id: 6, journeyId: 'wewnetrzne-dziecko', dayNumber: 6, dayName: 'Saturday', question: 'What did you learn about love when you were small? Does this belief help you today or hold you back?', questionEn: 'What did you learn about love when you were young?' },
-    { id: 7, journeyId: 'wewnetrzne-dziecko', dayNumber: 7, dayName: 'Sunday', question: 'Write a letter to your inner child. You don\'t need to have answers - just let them know you see them.', questionEn: 'Write a letter to your inner child.' },
+    { id: 1, journeyId: 'samopoznanie', dayNumber: 1, dayName: 'Monday', question: 'What did you need most as a child but didn\'t receive? Is this something you\'re still seeking in your adult life?', questionEn: 'What did you need most as a child but didn\'t receive?' },
+    { id: 2, journeyId: 'samopoznanie', dayNumber: 2, dayName: 'Tuesday', question: 'What phrase - said to you in childhood - do you still hear in your head when something goes wrong?', questionEn: 'What phrase from childhood still echoes in your mind when things go wrong?' },
+    { id: 3, journeyId: 'samopoznanie', dayNumber: 3, dayName: 'Wednesday', question: 'What entertained you endlessly before you learned you needed to be "productive"? When did you last do it?', questionEn: 'What did you love doing before you learned you had to be productive?' },
+    { id: 4, journeyId: 'samopoznanie', dayNumber: 4, dayName: 'Thursday', question: 'What emotions did you have to hide or suppress as a child to be accepted? What happened to them?', questionEn: 'What emotions did you have to hide as a child to be accepted?' },
+    { id: 5, journeyId: 'samopoznanie', dayNumber: 5, dayName: 'Friday', question: 'Imagine yourself as a little child. What would you want to tell them today - something no one told you back then?', questionEn: 'What would you tell your inner child today?' },
+    { id: 6, journeyId: 'samopoznanie', dayNumber: 6, dayName: 'Saturday', question: 'What did you learn about love when you were small? Does this belief help you today or hold you back?', questionEn: 'What did you learn about love when you were young?' },
+    { id: 7, journeyId: 'samopoznanie', dayNumber: 7, dayName: 'Sunday', question: 'Write a letter to your inner child. You don\'t need to have answers - just let them know you see them.', questionEn: 'Write a letter to your inner child.' },
   ],
   'granice': [
     { id: 8, journeyId: 'granice', dayNumber: 1, dayName: 'Monday', question: 'In what situation recently did you say "yes" when your whole body was saying "no"? What stopped you?', questionEn: 'When did you recently say yes when your body said no?' },

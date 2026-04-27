@@ -175,18 +175,21 @@ export function Home() {
           </div>
         </div>
 
-        {/* Emotion breakdown - empty state */}
+        {/* Quote of the day */}
         <div
-          className="p-4 rounded-xl border"
+          className="p-6 rounded-xl border"
           style={{
             backgroundColor: 'var(--atmosphere-bg-secondary)',
             borderColor: 'var(--atmosphere-border)',
           }}
         >
-          <p className="text-xs font-medium text-atm-muted mb-3 uppercase tracking-widest">Top emotions</p>
-          <div className="text-center py-4 text-muted-foreground text-sm">
-            Complete sessions to see your emotion patterns
-          </div>
+          <blockquote className="text-base italic text-atm leading-relaxed">
+            "In the depth of winter, I finally learned that within me there lay an 
+            <span className="text-atm-accent font-semibold"> invincible summer</span>."
+          </blockquote>
+          <cite className="block text-right text-sm text-atm-muted mt-3">
+            — Albert Camus
+          </cite>
         </div>
 
       </div>

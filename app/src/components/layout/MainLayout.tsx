@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { BookOpen, Home, Calendar, PlusCircle, Settings, Sun, Moon, LogIn, LogOut } from 'lucide-react';
+import { BookOpen, Home, Calendar, PlusCircle, Settings, Sun, Moon, LogIn, LogOut, List } from 'lucide-react';
 import { ROUTES } from '@/constants';
 import { AtmospherePicker } from '@/components/ui/AtmospherePicker';
 import { useThemeStore } from '@/stores/themeStore';
@@ -13,6 +13,7 @@ const publicNavItems = [
 const protectedNavItems = [
   { path: ROUTES.HOW_IT_WORKS, label: 'How It Works', icon: BookOpen },
   { path: ROUTES.HOME, label: 'Home', icon: Home },
+  { path: ROUTES.JOURNEYS, label: 'Journeys', icon: List },
   { path: ROUTES.CALENDAR, label: 'Calendar', icon: Calendar },
   { path: ROUTES.SESSION, label: 'Session', icon: PlusCircle },
   { path: ROUTES.SETTINGS, label: 'Settings', icon: Settings },

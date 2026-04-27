@@ -177,8 +177,6 @@ export function EmotionReflection() {
         emotionName: emotion.name,
         color: emotion.color,
         response,
-        question: currentQuestion,
-        sourceType: 'mood_checkin',
       });
       // Navigate to calendar after successful save
       navigate('/calendar');

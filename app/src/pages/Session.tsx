@@ -33,6 +33,7 @@ export function Session() {
           <p className="text-lg font-medium text-foreground">
             Click on an emotion on the wheel and receive an individual reflective question.
           </p>
+          
         </div>
 
         {/* Emotion Wheel */}

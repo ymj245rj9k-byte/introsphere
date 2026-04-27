@@ -40,7 +40,6 @@ export async function saveMoodEntry({
   emotionName,
   color,
   response,
-  question: _question,
   sourceType = 'mood_checkin',
 }: {
   userId: string;
@@ -48,7 +47,6 @@ export async function saveMoodEntry({
   emotionName: string;
   color: string;
   response: string;
-  question?: string;
   sourceType?: 'journey' | 'mood_checkin' | 'free_write';
 }): Promise<void> {
   const today = new Date();
@@ -104,6 +102,89 @@ export async function saveMoodEntry({
 
   if (entryError) {
     console.error('Error inserting calendar_entry:', entryError);
+    throw entryError;
+  }
+}
+
+/**
+ * Saves a journey day response to the database.
+ * Creates a calendar_entries record linked to the journey day.
+ * Also creates/updates the mood_calendar entry with the selected emotion if provided.
+ */
+export async function saveJourneyDayResponse({
+  userId,
+  journeyId,
+  dayNumber,
+  response,
+  emotionId,
+  emotionName,
+  color,
+}: {
+  userId: string;
+  journeyId: string;
+  dayNumber: number;
+  response: string;
+  emotionId?: string | null;
+  emotionName?: string | null;
+  color?: string | null;
+}): Promise<void> {
+  const today = new Date();
+  const entryDate = today.toISOString().split('T')[0]; // YYYY-MM-DD
+
+  // If emotion is provided, upsert mood_calendar entry
+  if (emotionId && emotionName && color) {
+    const { error: calendarError } = await supabase
+      .from('mood_calendar')
+      .upsert(
+        {
+          user_id: userId,
+          entry_date: entryDate,
+          primary_emotion_id: emotionId,
+          primary_emotion_name: emotionName,
+          color,
+          secondary_emotions: null,
+        },
+        {
+          onConflict: 'user_id,entry_date',
+        }
+      );
+
+    if (calendarError) {
+      console.error('Error upserting mood_calendar:', calendarError);
+      throw calendarError;
+    }
+  }
+
+  // Fetch the mood_calendar id for this entry (or use a temp approach)
+  const { data: calendarData, error: fetchError } = await supabase
+    .from('mood_calendar')
+    .select('id')
+    .eq('user_id', userId)
+    .eq('entry_date', entryDate)
+    .single();
+
+  if (fetchError || !calendarData) {
+    console.error('Error fetching mood_calendar id:', fetchError);
+    // If calendar entry doesn't exist and no emotion was set, we still need a calendar_id
+    // In this case, we can insert without calendar_id (NULL) or create a minimal mood_calendar entry
+    // For simplicity, we'll insert with calendar_id as null if fetch fails
+  }
+
+  // Insert calendar entry linked to journey
+  const { error: entryError } = await supabase.from('calendar_entries').insert({
+    user_id: userId,
+    calendar_id: calendarData?.id || null,
+    journey_id: journeyId,
+    journey_day: dayNumber,
+    source_type: 'journey',
+    content: response,
+    emotion_id: emotionId || null,
+    emotion_name: emotionName || null,
+    color: color || null,
+  });
+
+  if (entryError) {
+    console.error('Error inserting calendar_entry for journey:', entryError);
     throw entryError;
   }
 }
@@ -344,39 +425,65 @@ export async function getEntriesForDate(
   }));
 }
 
+  /**
+   * Fetches all entries for a user, ordered by creation date (newest first).
+   */
+  export async function getAllEntries(
+    userId: string,
+    limit = 100
+  ): Promise<CalendarEntryData[]> {
+    const { data, error } = await supabase
+      .from('calendar_entries')
+      .select(`
+        id,
+        content,
+        emotion_id,
+        emotion_name,
+        color,
+        created_at,
+        journey_id,
+        journey:journeys!calendar_entries_journey_id_fkey(title_en),
+        calendar:mood_calendar!calendar_id(entry_date)
+      `)
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error('Error fetching all entries:', error);
+      return [];
+    }
+
+    return (data || []).map((entry: any) => ({
+      id: entry.id,
+      date: entry.calendar?.entry_date || '',
+      emotion: entry.emotion_name || (entry.journey_id ? entry.journey?.title_en || 'Unknown' : 'Unknown'),
+      emotionColor: entry.color || '#FFFFFF',
+      response: entry.content,
+      created_at: entry.created_at || undefined,
+    }));
+  }
+
 /**
- * Fetches all entries for a user, ordered by creation date (newest first).
+ * Fetches all completed journey days for a user from calendar_entries.
+ * Returns array of { journey_id, day_number } for entries with source_type='journey'
  */
-export async function getAllEntries(
-  userId: string,
-  limit = 100
-): Promise<CalendarEntryData[]> {
+export async function getJourneyDaysCompleted(userId: string): Promise<{ journey_id: string; day_number: number }[]> {
   const { data, error } = await supabase
     .from('calendar_entries')
-    .select(`
-      id,
-      content,
-      emotion_id,
-      emotion_name,
-      color,
-      created_at,
-      calendar:mood_calendar!calendar_id(entry_date)
-    `)
+    .select('journey_id, journey_day')
     .eq('user_id', userId)
-    .order('created_at', { ascending: false })
-    .limit(limit);
+    .eq('source_type', 'journey')
+    .not('journey_id', 'is', null)
+    .not('journey_day', 'is', null);
 
   if (error) {
-    console.error('Error fetching all entries:', error);
+    console.error('Error fetching journey days completed:', error);
     return [];
   }
 
-  return (data || []).map((entry: any) => ({
-    id: entry.id,
-    date: entry.calendar?.entry_date || '',
-    emotion: entry.emotion_name || 'Unknown',
-    emotionColor: entry.color || '#FFFFFF',
-    response: entry.content,
-    created_at: entry.created_at || undefined,
+  return (data || []).map((entry) => ({
+    journey_id: entry.journey_id,
+    day_number: entry.journey_day as number,
   }));
 }

@@ -69,7 +69,7 @@ export function HowItWorks() {
             </div>
             <div className="order-1 md:order-2 space-y-5">
               <h2 className="text-3xl md:text-4xl text-foreground leading-[1.3] font-medium">
-                Write a session
+                Write 
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed">
                 You get a question matched to your chosen emotion. Write for 2 minutes. Auto-saved, private, no rules.

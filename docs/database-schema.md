@@ -370,7 +370,7 @@ GROUP BY
 
 ORDER BY mc.entry_date;
 ```
-BEZ TEGO TUTAJ 2
+
 ### Dodaj wpis z Journey do kalendarza
 ```sql
 -- 1. Znajdź lub utwórz dzień w kalendarzu

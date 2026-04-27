@@ -15,7 +15,7 @@ const MONTHS = [
 
 export function MoodCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedEntry, setSelectedEntry] = useState<CalendarEntryData | null>(null);
+  const [selectedEntries, setSelectedEntries] = useState<CalendarEntryData[]>([]);
   const [showDialog, setShowDialog] = useState(false);
 
   const { user } = useAuth();
@@ -36,10 +36,9 @@ export function MoodCalendar() {
     if (day.hasEntry && day.emotion) {
       const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`;
       const dayEntries = entriesMap[dateKey] || [];
-      const firstEntry = dayEntries[0];
 
-      if (firstEntry) {
-        setSelectedEntry(firstEntry);
+      if (dayEntries.length > 0) {
+        setSelectedEntries(dayEntries);
         setShowDialog(true);
       }
     }
@@ -119,14 +118,14 @@ export function MoodCalendar() {
         ))}
       </div>
 
-      {/* Entry Dialog */}
-      {selectedEntry && (
-        <CalendarEntryDialog
-          entry={selectedEntry}
-          open={showDialog}
-          onClose={() => setShowDialog(false)}
-        />
-      )}
+       {/* Entry Dialog */}
+       {selectedEntries.length > 0 && (
+         <CalendarEntryDialog
+           entries={selectedEntries}
+           open={showDialog}
+           onClose={() => setShowDialog(false)}
+         />
+       )}
     </div>
   );
 }
