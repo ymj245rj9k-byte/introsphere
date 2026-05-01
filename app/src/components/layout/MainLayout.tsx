@@ -13,9 +13,9 @@ const publicNavItems = [
 const protectedNavItems = [
   { path: ROUTES.HOW_IT_WORKS, label: 'How It Works', icon: BookOpen },
   { path: ROUTES.HOME, label: 'Home', icon: Home },
+  { path: ROUTES.SESSION, label: 'Session', icon: PlusCircle },
   { path: ROUTES.JOURNEYS, label: 'Journeys', icon: List },
   { path: ROUTES.CALENDAR, label: 'Calendar', icon: Calendar },
-  { path: ROUTES.SESSION, label: 'Session', icon: PlusCircle },
   { path: ROUTES.SETTINGS, label: 'Settings', icon: Settings },
 ];
 

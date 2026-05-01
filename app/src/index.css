@@ -154,7 +154,7 @@
     /* Green Forest - Light */
     .atmosphere-green-forest {
       --atmosphere-bg: #e3ead0;
-      --atmosphere-bg-secondary: #b9d79c;
+      --atmosphere-bg-secondary: #afc28f;
       --atmosphere-accent: #5a8a4a;
       --atmosphere-text: #1a2f10;
       --atmosphere-text-heading: #1a2f10;
@@ -171,7 +171,7 @@
      /* Green Forest - Dark */
      .dark.atmosphere-green-forest {
       --atmosphere-bg: #1a2f10;
-      --atmosphere-bg-secondary: #121a0e;
+      --atmosphere-bg-secondary: #1a130c;
       --atmosphere-accent: #6a9e5a;
       --atmosphere-text: #e3ead0;
       --atmosphere-text-heading: #e3ead0;
@@ -191,19 +191,26 @@
 
    .atmosphere-dark-ink {
      --atmosphere-bg: #fde9cb;
-     --atmosphere-bg-secondary: #ede4c4;
+     --atmosphere-bg-secondary: #d4c094;
      --atmosphere-accent: #c9a063;
-     --atmosphere-text: #1a1f3a;
-     --atmosphere-text-heading: #1a1f3a;
-     --atmosphere-text-body: #1a1f3a;
-     --atmosphere-text-muted: #4a5060;
+     --atmosphere-text: #1e2654;
+     --atmosphere-text-heading: #0c1343;
+     --atmosphere-text-body: #0e1437;
+     --atmosphere-text-muted: #0f1a3a;
      --atmosphere-text-accent: #7b561f;
-     --atmosphere-font: 'Cormorant Garamond', serif;
-     --atmosphere-font-body: 'EB Garamond', serif;
+     --atmosphere-font: 'Spectral', serif;
+     --atmosphere-font-body: 'Spectral', serif;
      --atmosphere-radius: 4px;
      --atmosphere-shadow: 0 2px 12px rgba(26, 31, 58, 0.12);
      --atmosphere-border: 0.5px solid #16114e;
+     font-size: 17px;
+     font-family: 'Spectral', serif;
    }
+
+  .atmosphere-dark-ink body {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+  }
 
   .dark.atmosphere-dark-ink {
     --atmosphere-bg: #1a1f3a;
@@ -214,11 +221,18 @@
     --atmosphere-text-body: #fde9cb;
     --atmosphere-text-muted: #ede4c4;
     --atmosphere-text-accent: #c9a063;
-    --atmosphere-font: 'Cormorant Garamond', serif;
-    --atmosphere-font-body: 'EB Garamond', serif;
+    --atmosphere-font: 'Spectral', serif;
+    --atmosphere-font-body: 'Spectral', serif;
     --atmosphere-radius: 4px;
     --atmosphere-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
     --atmosphere-border: 0.5px solid #c9a063;
+    font-size: 17px;
+    font-family: 'Spectral', serif;
+  }
+
+  .dark.atmosphere-dark-ink body {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
   }
 
   /* ============================================
@@ -228,7 +242,7 @@
    /* Soft Pink - Light */
    .atmosphere-soft-pink {
      --atmosphere-bg: #f8d7e2;
-     --atmosphere-bg-secondary: #f6dce6;
+     --atmosphere-bg-secondary: #ebbacd;
      --atmosphere-accent: #de9ec1;
      --atmosphere-text: #000000;
      --atmosphere-text-heading: #000000;
@@ -244,7 +258,7 @@
 
    /* Soft Pink - Dark */
    .dark.atmosphere-soft-pink {
-    --atmosphere-bg: #5c2535;
+    --atmosphere-bg: #401723;
     --atmosphere-bg-secondary: #2A2025;
     --atmosphere-accent: #e47aac;
     --atmosphere-text: #ffffff;
@@ -265,7 +279,7 @@
    /* Silver Tech - Light */
    .atmosphere-silver-tech {
      --atmosphere-bg: #f0f0f5;
-     --atmosphere-bg-secondary: #e4e4ec;
+     --atmosphere-bg-secondary: #cae7e7;
      --atmosphere-accent: #0099aa;
      --atmosphere-text: #000000;
      --atmosphere-text-heading: #000000;
@@ -283,7 +297,7 @@
    /* Silver Tech - Dark */
    .dark.atmosphere-silver-tech {
     --atmosphere-bg: #0f0f13;
-    --atmosphere-bg-secondary: #16161c;
+    --atmosphere-bg-secondary: #4a4a52;
     --atmosphere-accent: #00d4aa;
     --atmosphere-text: #ffffff;
     --atmosphere-text-heading: #ffffff;
@@ -378,13 +392,13 @@
 
    /* Ocean Deep - Light */
    .atmosphere-ocean-deep {
-     --atmosphere-bg: #dffffa;
-     --atmosphere-bg-secondary: #d8ecf4;
+     --atmosphere-bg: #dff6ff;
+     --atmosphere-bg-secondary: #b9d4e0;
      --atmosphere-accent: #0077a8;
      --atmosphere-text: #000000;
      --atmosphere-text-heading: #000000;
      --atmosphere-text-body: #000000;
-     --atmosphere-text-muted: #5a7a90;
+     --atmosphere-text-muted: #1d3443;
      --atmosphere-text-accent: #0077a8;
      --atmosphere-font: 'Newsreader', serif;
      --atmosphere-font-body: 'Inter', sans-serif;
@@ -436,6 +450,9 @@
   .text-atm-heading { color: var(--atmosphere-text-heading); }
   .text-atm-muted { color: var(--atmosphere-text-muted); }
   .text-atm-accent { color: var(--atmosphere-text-accent); }
+
+  /* Override Tailwind's text-muted-foreground to always match atmosphere */
+  .text-muted-foreground { color: var(--atmosphere-text-muted) !important; }
   .border-atm { border-color: var(--atmosphere-border); }
   .accent-atm { color: var(--atmosphere-accent); }
 

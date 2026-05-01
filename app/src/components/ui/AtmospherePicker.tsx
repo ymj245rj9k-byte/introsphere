@@ -40,7 +40,7 @@ export function AtmospherePicker() {
 aria-label="Choose atmosphere"
         aria-expanded={open}
         className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-transparent hover:border-atm transition-colors text-atm-muted hover:text-atm"
-        title="Atmosfera"
+        title="Atmosphere"
       >
         <span
           className="w-3.5 h-3.5 rounded-full inline-block border border-white/20"
@@ -61,7 +61,7 @@ aria-label="Choose atmosphere"
             className="px-3 py-2 text-xs font-semibold tracking-widest uppercase"
             style={{ color: 'var(--atmosphere-text-muted, #9ca3af)' }}
           >
-            Atmosfera
+            Atmosphere
           </div>
 
           <ul role="listbox" aria-label="Choose atmosphere" className="py-1">
