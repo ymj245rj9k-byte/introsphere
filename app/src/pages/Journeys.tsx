@@ -9,26 +9,30 @@ export function Journeys() {
         <p className="text-muted-foreground text-center">
           Choose a reflection journey to begin
         </p>
-        <div className="space-y-4">
-          {journeys.map((journey) => (
-            <Link
-              key={journey.id}
-              to={`/journey/${journey.id}`}
-              className="block bg-surface p-6 rounded-xl border border-border hover:border-primary/20 transition-colors"
-            >
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">{journey.icon}</div>
-                <div className="flex-1 space-y-2">
-                  <h2 className="text-xl font-bold">{journey.titleEn}</h2>
-                  <p className="text-muted-foreground">{journey.subtitleEn}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {journey.toneEn}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+         <div className="space-y-4">
+           {journeys.map((journey) => (
+             <Link
+               key={journey.id}
+               to={`/journey/${journey.id}`}
+               className="group block p-6 rounded-xl border transition-all hover:scale-[1.02] active:scale-[0.98]"
+               style={{
+                 backgroundColor: 'var(--atmosphere-bg-secondary)',
+                 borderColor: 'var(--atmosphere-border)',
+               }}
+             >
+               <div className="flex items-start gap-4">
+                 <div className="text-4xl">{journey.icon}</div>
+                 <div className="flex-1 space-y-2">
+                   <h2 className="text-xl font-bold">{journey.titleEn}</h2>
+                   <p className="text-muted-foreground">{journey.subtitleEn}</p>
+                   <p className="text-xs text-muted-foreground">
+                     {journey.toneEn}
+                   </p>
+                 </div>
+               </div>
+             </Link>
+           ))}
+         </div>
       </div>
     </div>
   );

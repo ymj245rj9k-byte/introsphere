@@ -31,8 +31,10 @@ export function useCalendar(user: User | null | undefined, year: number, month: 
   }, [user, year, month]);
 
   // Helper to get day entry for calendar grid
-  const getDayEntry = (day: number, isCurrentMonth: boolean): MoodCalendarDayEntry => {
-    const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const getDayEntry = (day: number, isCurrentMonth: boolean, useYear?: number, useMonth?: number): MoodCalendarDayEntry => {
+    const displayYear = useYear ?? year;
+    const displayMonth = useMonth ?? month;
+    const dateKey = `${displayYear}-${String(displayMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const dayEntries = entriesMap[dateKey] || [];
     
     // Take first entry for display (color, emotion)

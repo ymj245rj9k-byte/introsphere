@@ -1,5 +1,6 @@
 import { supabase } from './supabase';
 import type { Database } from '@/types/database';
+import { journeys as staticJourneys } from '@/data/journeys';
 
 type CalendarEntryRow = Database['public']['Tables']['calendar_entries']['Row'];
 
@@ -425,44 +426,87 @@ export async function getEntriesForDate(
   }));
 }
 
-  /**
-   * Fetches all entries for a user, ordered by creation date (newest first).
-   */
-  export async function getAllEntries(
-    userId: string,
-    limit = 100
-  ): Promise<CalendarEntryData[]> {
-    const { data, error } = await supabase
-      .from('calendar_entries')
-      .select(`
-        id,
-        content,
-        emotion_id,
-        emotion_name,
-        color,
-        created_at,
-        journey_id,
-        journey:journeys!calendar_entries_journey_id_fkey(title_en),
-        calendar:mood_calendar!calendar_id(entry_date)
-      `)
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false })
-      .limit(limit);
+/**
+ * Fetches all entries for a user, ordered by creation date (newest first).
+ * Combines entries from mood check-ins and journeys.
+ */
+export async function getAllEntries(
+  userId: string,
+  limit = 100
+): Promise<CalendarEntryData[]> {
+  // 1. Fetch calendar entries
+  const { data: entries, error } = await supabase
+    .from('calendar_entries')
+    .select(`
+      id,
+      content,
+      emotion_id,
+      emotion_name,
+      color,
+      created_at,
+      journey_id,
+      calendar_id
+    `)
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
 
-    if (error) {
-      console.error('Error fetching all entries:', error);
-      return [];
+  if (error) {
+    console.error('Error fetching all entries:', error);
+    return [];
+  }
+
+  if (!entries || entries.length === 0) {
+    return [];
+  }
+
+  // 2. Collect unique calendar_ids for mood calendar lookups
+  const calendarIds = entries
+    .map((e) => e.calendar_id)
+    .filter((id): id is string => id != null);
+
+  // 3. Fetch mood_calendar dates in bulk
+  const moodMap = new Map<string, string>();
+  if (calendarIds.length > 0) {
+    const { data: moodData } = await supabase
+      .from('mood_calendar')
+      .select('id, entry_date')
+      .in('id', calendarIds);
+    moodData?.forEach((item) => {
+      moodMap.set(item.id, item.entry_date);
+    });
+  }
+
+  // 4. Build journey title map from static data only (journeys are static in this app)
+  const staticJourneyMap = new Map(staticJourneys.map((j) => [j.id, j.title]));
+
+  // 5. Build result list
+  return entries.map((entry) => {
+    // Determine date: prefer mood_calendar entry_date, fall back to created_at
+    let date = '';
+    if (entry.calendar_id && moodMap.has(entry.calendar_id)) {
+      date = moodMap.get(entry.calendar_id)!;
+    } else if (entry.created_at) {
+      date = entry.created_at.split('T')[0]; // YYYY-MM-DD from timestamp
     }
 
-    return (data || []).map((entry: any) => ({
+    // Determine emotion display name
+    let emotion = entry.emotion_name;
+    if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
+      emotion = staticJourneyMap.get(entry.journey_id);
+    }
+    if (!emotion) emotion = 'Unknown';
+
+    return {
       id: entry.id,
-      date: entry.calendar?.entry_date || '',
-      emotion: entry.emotion_name || (entry.journey_id ? entry.journey?.title_en || 'Unknown' : 'Unknown'),
+      date,
+      emotion,
       emotionColor: entry.color || '#FFFFFF',
       response: entry.content,
       created_at: entry.created_at || undefined,
-    }));
-  }
+    };
+  });
+}
 
 /**
  * Fetches all completed journey days for a user from calendar_entries.

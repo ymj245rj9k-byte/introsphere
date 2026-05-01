@@ -1,25 +1,25 @@
 import { AtmosphereTheme } from '@/types/emotion';
 
 export const atmospheres: Record<string, AtmosphereTheme> = {
-  'cream-calm': {
-    id: 'cream-calm',
-    name: 'Cream Calm',
-    colors: {
-      primary: '#D4C5B5',
-      secondary: '#E8E4D9',
-      background: '#f8f6f2',
-      surface: '#f5ecde',
-      text: '#2D2A26',
-      textMuted: '#9e9690',
-      border: '#e8ddd0',
-      accent: '#b69b7b',
-    },
-    font: {
-      heading: 'font-sans',
-      body: 'font-sans',
-    },
-    borderRadius: 'rounded-md',
-  },
+   'cream-calm': {
+     id: 'cream-calm',
+     name: 'Cream Calm',
+     colors: {
+       primary: '#D4C5B5',
+       secondary: '#E8E4D9',
+       background: '#f8f6f2',
+       surface: '#f5ecde',
+       text: '#2D2A26',
+       textMuted: '#9e9690',
+       border: '#e8ddd0',
+       accent: '#b69b7b',
+     },
+     font: {
+       heading: "'Plus Jakarta Sans', sans-serif",
+       body: "'Plus Jakarta Sans', sans-serif",
+     },
+     borderRadius: 'rounded-md',
+   },
   'green-forest': {
     id: 'green-forest',
     name: 'Green Forest',

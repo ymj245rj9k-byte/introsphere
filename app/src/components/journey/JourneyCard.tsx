@@ -10,7 +10,11 @@ export function JourneyCard({ journey }: JourneyCardProps) {
   return (
     <Link
       to={`${ROUTES.JOURNEY.replace(':id', journey.id)}`}
-      className="group block p-6 rounded-2xl bg-surface border border-border hover:border-primary/30 transition-all hover:shadow-lg hover:scale-[1.02]"
+      className="group block p-6 rounded-xl border transition-all hover:scale-[1.02] active:scale-[0.98]"
+      style={{
+        backgroundColor: 'var(--atmosphere-bg-secondary)',
+        borderColor: 'var(--atmosphere-border)',
+      }}
     >
       <div className="space-y-4">
         <span className="text-4xl">{journey.icon}</span>

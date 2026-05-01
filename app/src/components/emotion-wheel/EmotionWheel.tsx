@@ -144,34 +144,34 @@ export function EmotionWheel({ onSelect, selectedId, size = 600 }: EmotionWheelP
           );
         })}
 
-        {/* Center circle - black, no text */}
-        <circle
-          cx={center}
-          cy={center}
-          r={innerRadius}
-          fill="var(--surface)"
-          stroke="var(--border)"
-          strokeWidth="2"
-          className="transition-all duration-300"
-        />
-        <text
-          x={center}
-          y={center - 8}
-          textAnchor="middle"
-          className="fill-atm text-xs font-medium"
-          style={{ fontFamily: 'var(--atmosphere-font, sans-serif)' }}
-        >
-          How are
-        </text>
-        <text
-          x={center}
-          y={center + 10}
-          textAnchor="middle"
-          className="fill-atm-heading text-sm font-semibold"
-          style={{ fontFamily: 'var(--atmosphere-font, sans-serif)' }}
-        >
-          you?
-        </text>
+         {/* Center circle - black, no text */}
+         <circle
+           cx={center}
+           cy={center}
+           r={innerRadius}
+           fill="var(--surface)"
+           stroke="var(--border)"
+           strokeWidth="2"
+           className="transition-all duration-300"
+         />
+         <text
+           x={center}
+           y={center - 8}
+           textAnchor="middle"
+           className="text-atm text-xs font-medium"
+           style={{ fontFamily: 'var(--atmosphere-font, sans-serif)' }}
+         >
+           How are
+         </text>
+         <text
+           x={center}
+           y={center + 10}
+           textAnchor="middle"
+           className="text-atm-heading text-sm font-semibold"
+           style={{ fontFamily: 'var(--atmosphere-font, sans-serif)' }}
+         >
+           you?
+         </text>
 
         {/* Selected indicator - breathing animation */}
         {selectedId && (

@@ -48,13 +48,8 @@ export function Journey() {
 
   const handleDayComplete = (dayNumber: number, _response: string) => {
     setCompletedDays(id, dayNumber);
-    if (dayNumber < 7) {
-      // Navigate to next day
-      navigate(`/journey/${id}/day/${dayNumber + 1}`);
-    } else {
-      // All days completed, stay on current page
-      navigate(`/journey/${id}`);
-    }
+    // Always navigate back to journey overview after saving
+    navigate(`/journey/${id}`);
   };
 
   // If we're on a specific day page, show the day view

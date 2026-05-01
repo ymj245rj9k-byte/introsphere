@@ -51,11 +51,13 @@ export function MoodCalendar() {
 
   const days: MoodCalendarDayEntry[] = [];
 
-  // Previous month days
   const prevMonthLastDay = new Date(year, month, 0).getDate();
+  const prevMonthForCalc = month - 1;
+  const prevYear = month === 0 ? year - 1 : year;
+  const prevMonthAdjusted = month === 0 ? 11 : prevMonthForCalc;
   for (let i = 0; i < startingDayOfWeek; i++) {
     const date = prevMonthLastDay - startingDayOfWeek + i + 1;
-    const dayEntry = getDayEntry(date, false);
+    const dayEntry = getDayEntry(date, false, prevYear, prevMonthAdjusted);
     days.push(dayEntry);
   }
 
@@ -67,8 +69,11 @@ export function MoodCalendar() {
 
   // Next month days to fill 42 cells
   const remainingDays = 42 - days.length;
+  const nextMonthForCalc = month + 1;
+  const nextYear = month === 11 ? year + 1 : year;
+  const nextMonthAdjusted = month === 11 ? 0 : nextMonthForCalc;
   for (let i = 1; i <= remainingDays; i++) {
-    const dayEntry = getDayEntry(i, false);
+    const dayEntry = getDayEntry(i, false, nextYear, nextMonthAdjusted);
     days.push(dayEntry);
   }
 

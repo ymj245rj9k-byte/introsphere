@@ -68,14 +68,14 @@ export function DayView({
             <label htmlFor="response-textarea" className="text-sm font-medium text-foreground">
               Your reflection
             </label>
-            <Textarea
-              id="response-textarea"
-              placeholder="Write your thoughts here..."
-              value={response}
-              onChange={(e) => setResponse(e.target.value)}
-              className="min-h-[300px] text-base leading-relaxed resize-none bg-background border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
-              disabled={isCompleted || saving}
-            />
+<Textarea
+               id="response-textarea"
+               placeholder="Write your thoughts here..."
+               value={response}
+               onChange={(e) => setResponse(e.target.value)}
+               className="min-h-[300px] text-base leading-relaxed resize-none bg-atm border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
+               disabled={isCompleted || saving}
+             />
           </div>
 
           {error && (

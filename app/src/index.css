@@ -111,106 +111,107 @@
   }
 
   /* ============================================
-     ATMOSPHERE: CREAM CALM
-     ============================================ */
+      ATMOSPHERE: CREAM CALM
+      ============================================ */
 
-  /* Cream Calm - Light */
-  .atmosphere-cream-calm {
-    --atmosphere-bg: #fbf3e3;
-    --atmosphere-bg-secondary: #f5ecde;
-    --atmosphere-accent: #b69b7b;
-    --atmosphere-text: #2D2A26;
-    --atmosphere-text-heading: #1A1815;
-    --atmosphere-text-body: #3D3A36;
+    /* Cream Calm - Light */
+    .atmosphere-cream-calm {
+      --atmosphere-bg: #fbf3e3;
+      --atmosphere-bg-secondary: #ebdbc1;
+      --atmosphere-accent: #b69b7b;
+      --atmosphere-text: #000000;
+      --atmosphere-text-heading: #000000;
+      --atmosphere-text-body: #000000;
 
-    --atmosphere-text-accent: #a89880;
-    --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
-    --atmosphere-radius: 6px;
-    --atmosphere-shadow: none;
-    --atmosphere-border: 0.5px solid #543f24;
-  }
+      --atmosphere-text-accent: #a89880;
+      --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
+      --atmosphere-font-body: 'Plus Jakarta Sans', sans-serif;
+      --atmosphere-radius: 6px;
+      --atmosphere-shadow: none;
+      --atmosphere-border: 0.5px solid #543f24;
+    }
 
-  /* Cream Calm - Dark */
-  .dark.atmosphere-cream-calm {
-    --atmosphere-bg: #18160f;
-    --atmosphere-bg-secondary: #221f18;
-    --atmosphere-accent: #3a3528;
-    --atmosphere-text: #e8e0d5;
-    --atmosphere-text-heading: #f5f0e8;
-    --atmosphere-text-body: #cfc8be;
+   /* Cream Calm - Dark */
+   .dark.atmosphere-cream-calm {
+  --atmosphere-bg: #18160f;
+  --atmosphere-bg-secondary: #443e30;
+  --atmosphere-accent: #3a3528;
+  --atmosphere-text: #ffffff;
+  --atmosphere-text-heading: #ffffff;
+  --atmosphere-text-body: #ffffff;
 
-    --atmosphere-text-accent: #b8a888;
-    --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
-    --atmosphere-radius: 6px;
-    --atmosphere-shadow: none;
-    --atmosphere-border: 0.5px solid #ecdfbd;
-  }
+  --atmosphere-text-accent: #f6eedd;
+  --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
+  --atmosphere-radius: 6px;
+  --atmosphere-shadow: none;
+  --atmosphere-border: 0.5px solid #ecdfbd;
+}
 
   /* ============================================
      ATMOSPHERE: GREEN FOREST
      ============================================ */
 
-   /* Green Forest - Light */
-   .atmosphere-green-forest {
-     --atmosphere-bg: #e3ead0;
-     --atmosphere-bg-secondary: #b9d79c;
-     --atmosphere-accent: #5a8a4a;
-     --atmosphere-text: #3a2410;
-     --atmosphere-text-heading: #2a1808;
-     --atmosphere-text-body: #4a3018;
+    /* Green Forest - Light */
+    .atmosphere-green-forest {
+      --atmosphere-bg: #e3ead0;
+      --atmosphere-bg-secondary: #b9d79c;
+      --atmosphere-accent: #5a8a4a;
+      --atmosphere-text: #000000;
+      --atmosphere-text-heading: #000000;
+      --atmosphere-text-body: #000000;
 
-     --atmosphere-text-accent: #5a8a4a;
-     --atmosphere-font: 'Montserrat', sans-serif;
-     --atmosphere-font-body: 'Montserrat', sans-serif;
-     --atmosphere-radius: 14px;
-     --atmosphere-shadow: 0 2px 16px rgba(60, 100, 50, 0.12);
-     --atmosphere-border: 0.5px solid #17150d;
-   }
+      --atmosphere-text-accent: #5a8a4a;
+      --atmosphere-font: 'Montserrat', sans-serif;
+      --atmosphere-font-body: 'Montserrat', sans-serif;
+      --atmosphere-radius: 14px;
+      --atmosphere-shadow: 0 2px 16px rgba(60, 100, 50, 0.12);
+      --atmosphere-border: 0.5px solid #17150d;
+    }
 
-   /* Green Forest - Dark */
-   .dark.atmosphere-green-forest {
-     --atmosphere-bg: #1a2f10;
-     --atmosphere-bg-secondary: #121a0e;
-     --atmosphere-accent: #6a9e5a;
-     --atmosphere-text: #d4c8a8;
-     --atmosphere-text-heading: #e8dcc0;
-     --atmosphere-text-body: #b8aa88;
+     /* Green Forest - Dark */
+     .dark.atmosphere-green-forest {
+      --atmosphere-bg: #1a2f10;
+      --atmosphere-bg-secondary: #121a0e;
+      --atmosphere-accent: #6a9e5a;
+      --atmosphere-text: #ffffff;
+      --atmosphere-text-heading: #ffffff;
+      --atmosphere-text-body: #ffffff;
 
-     --atmosphere-text-accent: #6a9e5a;
-     --atmosphere-font: 'Montserrat', sans-serif;
-     --atmosphere-font-body: 'Montserrat', sans-serif;
-     --atmosphere-radius: 14px;
-     --atmosphere-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
-     --atmosphere-border: 0.5px solid #1e3018;
-   }
+      --atmosphere-text-accent: #6a9e5a;
+      --atmosphere-font: 'Montserrat', sans-serif;
+      --atmosphere-font-body: 'Montserrat', sans-serif;
+      --atmosphere-radius: 14px;
+      --atmosphere-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+      --atmosphere-border: 0.5px solid #1e3018;
+    }
 
   /* ============================================
      ATMOSPHERE: DARK INK
      ============================================ */
 
-  .atmosphere-dark-ink {
-    --atmosphere-bg: #fde9cb;
-    --atmosphere-bg-secondary: #ede4c4;
-    --atmosphere-accent: #c9a063;
-    --atmosphere-text: #1c234b;
-    --atmosphere-text-heading: #1c286b;
-    --atmosphere-text-body: #171d3f;
+   .atmosphere-dark-ink {
+     --atmosphere-bg: #fde9cb;
+     --atmosphere-bg-secondary: #ede4c4;
+     --atmosphere-accent: #c9a063;
+     --atmosphere-text: #000000;
+     --atmosphere-text-heading: #000000;
+     --atmosphere-text-body: #000000;
 
-    --atmosphere-text-accent: #7b561f;
-    --atmosphere-font: 'Cormorant Garamond', serif;
-    --atmosphere-font-body: 'EB Garamond', serif;
-    --atmosphere-radius: 4px;
-    --atmosphere-shadow: 0 2px 12px rgba(26, 31, 58, 0.12);
-    --atmosphere-border: 0.5px solid #16114e;
-  }
+     --atmosphere-text-accent: #7b561f;
+     --atmosphere-font: 'Cormorant Garamond', serif;
+     --atmosphere-font-body: 'EB Garamond', serif;
+     --atmosphere-radius: 4px;
+     --atmosphere-shadow: 0 2px 12px rgba(26, 31, 58, 0.12);
+     --atmosphere-border: 0.5px solid #16114e;
+   }
 
   .dark.atmosphere-dark-ink {
     --atmosphere-bg: #1a1f3a;
     --atmosphere-bg-secondary: #141828;
     --atmosphere-accent: #c9a063;
-    --atmosphere-text: #f0e8c8;
-    --atmosphere-text-heading: #f5eed6;
-    --atmosphere-text-body: #d8d0a8;
+    --atmosphere-text: #ffffff;
+    --atmosphere-text-heading: #ffffff;
+    --atmosphere-text-body: #ffffff;
 
     --atmosphere-text-accent: #c9a063;
     --atmosphere-font: 'Cormorant Garamond', serif;
@@ -224,31 +225,31 @@
      ATMOSPHERE: SOFT PINK
      ============================================ */
 
-  /* Soft Pink - Light */
-  .atmosphere-soft-pink {
-    --atmosphere-bg: #f8d7e2;
-    --atmosphere-bg-secondary: #f6dce6;
-    --atmosphere-accent: #de9ec1;
-    --atmosphere-text: #641c3c;
-    --atmosphere-text-heading: #591834;
-    --atmosphere-text-body: #552037;
+   /* Soft Pink - Light */
+   .atmosphere-soft-pink {
+     --atmosphere-bg: #f8d7e2;
+     --atmosphere-bg-secondary: #f6dce6;
+     --atmosphere-accent: #de9ec1;
+     --atmosphere-text: #000000;
+     --atmosphere-text-heading: #000000;
+     --atmosphere-text-body: #000000;
 
-    --atmosphere-text-accent: #b42358;
-    --atmosphere-font: 'Jua', sans-serif;
-    --atmosphere-font-body: 'Jua', sans-serif;
-    --atmosphere-radius: 20px;
-    --atmosphere-shadow: 0 4px 24px rgba(180, 120, 160, 0.15);
-    --atmosphere-border: 0.5px solid #e8b4d9;
-  }
+     --atmosphere-text-accent: #b42358;
+     --atmosphere-font: 'Jua', sans-serif;
+     --atmosphere-font-body: 'Jua', sans-serif;
+     --atmosphere-radius: 20px;
+     --atmosphere-shadow: 0 4px 24px rgba(180, 120, 160, 0.15);
+     --atmosphere-border: 0.5px solid #e8b4d9;
+   }
 
-  /* Soft Pink - Dark */
-  .dark.atmosphere-soft-pink {
+   /* Soft Pink - Dark */
+   .dark.atmosphere-soft-pink {
     --atmosphere-bg: #5c2535;
     --atmosphere-bg-secondary: #2A2025;
     --atmosphere-accent: #e47aac;
-    --atmosphere-text: #E5D5E0;
-    --atmosphere-text-heading: #F5E5F0;
-    --atmosphere-text-body: #f091b4;
+    --atmosphere-text: #ffffff;
+    --atmosphere-text-heading: #ffffff;
+    --atmosphere-text-body: #ffffff;
 
     --atmosphere-text-accent: #f196c2;
     --atmosphere-font: 'Jua', sans-serif;
@@ -261,32 +262,32 @@
      ATMOSPHERE: SILVER TECH
      ============================================ */
 
-  /* Silver Tech - Light */
-  .atmosphere-silver-tech {
-    --atmosphere-bg: #f0f0f5;
-    --atmosphere-bg-secondary: #e4e4ec;
-    --atmosphere-accent: #0099aa;
-    --atmosphere-text: #1a1a28;
-    --atmosphere-text-heading: #0a0a18;
-    --atmosphere-text-body: #2a2a38;
+   /* Silver Tech - Light */
+   .atmosphere-silver-tech {
+     --atmosphere-bg: #f0f0f5;
+     --atmosphere-bg-secondary: #e4e4ec;
+     --atmosphere-accent: #0099aa;
+     --atmosphere-text: #000000;
+     --atmosphere-text-heading: #000000;
+     --atmosphere-text-body: #000000;
 
-    --atmosphere-text-accent: #0099aa;
-    --atmosphere-font: 'JetBrains Mono', monospace;
-    --atmosphere-font-body: 'JetBrains Mono', monospace;
-    --atmosphere-radius: 0px;
-    --atmosphere-shadow: none;
-    --atmosphere-border: 0.5px solid #c0c0d0;
-    --atmosphere-letter-spacing: 0.04em;
-  }
+     --atmosphere-text-accent: #0099aa;
+     --atmosphere-font: 'JetBrains Mono', monospace;
+     --atmosphere-font-body: 'JetBrains Mono', monospace;
+     --atmosphere-radius: 0px;
+     --atmosphere-shadow: none;
+     --atmosphere-border: 0.5px solid #c0c0d0;
+     --atmosphere-letter-spacing: 0.04em;
+   }
 
-  /* Silver Tech - Dark */
-  .dark.atmosphere-silver-tech {
+   /* Silver Tech - Dark */
+   .dark.atmosphere-silver-tech {
     --atmosphere-bg: #0f0f13;
     --atmosphere-bg-secondary: #16161c;
     --atmosphere-accent: #00d4aa;
-    --atmosphere-text: #c0c0c8;
-    --atmosphere-text-heading: #e8e8f0;
-    --atmosphere-text-body: #a0a0b0;
+    --atmosphere-text: #ffffff;
+    --atmosphere-text-heading: #ffffff;
+    --atmosphere-text-body: #ffffff;
     --atmosphere-text-muted: #606070;
     --atmosphere-text-accent: #00d4aa;
     --atmosphere-font: 'JetBrains Mono', monospace;
@@ -301,31 +302,31 @@
      ATMOSPHERE: SOLAR FLARE
      ============================================ */
 
-  /* Solar Flare - Light */
-  .atmosphere-solar-flare {
-    --atmosphere-bg: #f9f5d1;
-    --atmosphere-bg-secondary: #fcf9bc;
-    --atmosphere-accent: #f5a800;
-    --atmosphere-text: #2a1a08;
-    --atmosphere-text-heading: #1a0e04;
-    --atmosphere-text-body: #3a2810;
-    --atmosphere-text-muted: #9a7840;
-    --atmosphere-text-accent: #e07800;
-    --atmosphere-font: 'Fraunces', serif;
-    --atmosphere-font-body: 'Lora', serif;
-    --atmosphere-radius: 16px;
-    --atmosphere-shadow: 0 4px 24px rgba(245, 168, 0, 0.15);
-    --atmosphere-border: 0.5px solid #f5a800;
-  }
+   /* Solar Flare - Light */
+   .atmosphere-solar-flare {
+     --atmosphere-bg: #f9f5d1;
+     --atmosphere-bg-secondary: #fcf9bc;
+     --atmosphere-accent: #f5a800;
+     --atmosphere-text: #000000;
+     --atmosphere-text-heading: #000000;
+     --atmosphere-text-body: #000000;
+     --atmosphere-text-muted: #9a7840;
+     --atmosphere-text-accent: #e07800;
+     --atmosphere-font: 'Fraunces', serif;
+     --atmosphere-font-body: 'Lora', serif;
+     --atmosphere-radius: 16px;
+     --atmosphere-shadow: 0 4px 24px rgba(245, 168, 0, 0.15);
+     --atmosphere-border: 0.5px solid #f5a800;
+   }
 
   /* Solar Flare - Dark */
   .dark.atmosphere-solar-flare {
     --atmosphere-bg: #180a04;
     --atmosphere-bg-secondary: #221008;
     --atmosphere-accent: #e05a18;
-    --atmosphere-text: #f0d0a0;
-    --atmosphere-text-heading: #f8e0b0;
-    --atmosphere-text-body: #d8b880;
+    --atmosphere-text: #ffffff;
+    --atmosphere-text-heading: #ffffff;
+    --atmosphere-text-body: #ffffff;
     --atmosphere-text-muted: #886040;
     --atmosphere-text-accent: #e05a18;
     --atmosphere-font: 'Fraunces', serif;
@@ -339,30 +340,30 @@
      ATMOSPHERE: DESERT ROSE
      ============================================ */
 
-  /* Desert Rose - Light */
-  .atmosphere-desert-rose {
-    --atmosphere-bg: #F5EDE8;
-    --atmosphere-bg-secondary: #FFFEF8;
-    --atmosphere-accent: #C9A9A6;
-    --atmosphere-text: #4A3F3A;
-    --atmosphere-text-heading: #3A2F2A;
-    --atmosphere-text-body: #5A4F4A;
-    --atmosphere-text-muted: #7A6F6A;
-    --atmosphere-text-accent: #A98986;
-    --atmosphere-font: 'Lora', serif;
-    --atmosphere-radius: 16px;
-    --atmosphere-shadow: 0 4px 20px rgba(201, 169, 166, 0.15);
-    --atmosphere-border: 0.5px solid #C9A9A6;
-  }
+   /* Desert Rose - Light */
+   .atmosphere-desert-rose {
+     --atmosphere-bg: #F5EDE8;
+     --atmosphere-bg-secondary: #FFFEF8;
+     --atmosphere-accent: #C9A9A6;
+     --atmosphere-text: #000000;
+     --atmosphere-text-heading: #000000;
+     --atmosphere-text-body: #000000;
+     --atmosphere-text-muted: #7A6F6A;
+     --atmosphere-text-accent: #A98986;
+     --atmosphere-font: 'Lora', serif;
+     --atmosphere-radius: 16px;
+     --atmosphere-shadow: 0 4px 20px rgba(201, 169, 166, 0.15);
+     --atmosphere-border: 0.5px solid #C9A9A6;
+   }
 
-  /* Desert Rose - Dark */
-  .dark.atmosphere-desert-rose {
+   /* Desert Rose - Dark */
+   .dark.atmosphere-desert-rose {
     --atmosphere-bg: #1A1512;
     --atmosphere-bg-secondary: #252018;
     --atmosphere-accent: #A98986;
-    --atmosphere-text: #E0D5D0;
-    --atmosphere-text-heading: #F0E5E0;
-    --atmosphere-text-body: #D0C5C0;
+    --atmosphere-text: #ffffff;
+    --atmosphere-text-heading: #ffffff;
+    --atmosphere-text-body: #ffffff;
     --atmosphere-text-muted: #B0A5A0;
     --atmosphere-text-accent: #C9A9A6;
     --atmosphere-font: 'Lora', serif;
@@ -375,31 +376,31 @@
      ATMOSPHERE: OCEAN DEEP
      ============================================ */
 
-  /* Ocean Deep - Light */
-  .atmosphere-ocean-deep {
-    --atmosphere-bg: #dffffa;
-    --atmosphere-bg-secondary: #d8ecf4;
-    --atmosphere-accent: #0077a8;
-    --atmosphere-text: #0d2137;
-    --atmosphere-text-heading: #081828;
-    --atmosphere-text-body: #1a3a50;
-    --atmosphere-text-muted: #5a7a90;
-    --atmosphere-text-accent: #0077a8;
-    --atmosphere-font: 'Newsreader', serif;
-    --atmosphere-font-body: 'Inter', sans-serif;
-    --atmosphere-radius: 16px;
-    --atmosphere-shadow: 0 4px 24px rgba(13, 33, 55, 0.08);
-    --atmosphere-border: 0.5px solid #0077a8;
-  }
+   /* Ocean Deep - Light */
+   .atmosphere-ocean-deep {
+     --atmosphere-bg: #dffffa;
+     --atmosphere-bg-secondary: #d8ecf4;
+     --atmosphere-accent: #0077a8;
+     --atmosphere-text: #000000;
+     --atmosphere-text-heading: #000000;
+     --atmosphere-text-body: #000000;
+     --atmosphere-text-muted: #5a7a90;
+     --atmosphere-text-accent: #0077a8;
+     --atmosphere-font: 'Newsreader', serif;
+     --atmosphere-font-body: 'Inter', sans-serif;
+     --atmosphere-radius: 16px;
+     --atmosphere-shadow: 0 4px 24px rgba(13, 33, 55, 0.08);
+     --atmosphere-border: 0.5px solid #0077a8;
+   }
 
-  /* Ocean Deep - Dark */
-  .dark.atmosphere-ocean-deep {
+   /* Ocean Deep - Dark */
+   .dark.atmosphere-ocean-deep {
     --atmosphere-bg: #0d2137;
     --atmosphere-bg-secondary: #112840;
     --atmosphere-accent: #00b4d8;
-    --atmosphere-text: #c8dce8;
-    --atmosphere-text-heading: #e0f0f8;
-    --atmosphere-text-body: #a8c0d0;
+    --atmosphere-text: #ffffff;
+    --atmosphere-text-heading: #ffffff;
+    --atmosphere-text-body: #ffffff;
     --atmosphere-text-muted: #5a7a90;
     --atmosphere-text-accent: #00b4d8;
     --atmosphere-font: 'Newsreader', serif;
@@ -416,7 +417,7 @@
   body {
     @apply antialiased;
     background-color: var(--atmosphere-bg, #faf8f5);
-    color: var(--atmosphere-text, #2D2A26);
+    color: var(--atmosphere-text, #000000);
     font-family: var(--atmosphere-font, 'Inter', system-ui, sans-serif);
     min-height: 100vh;
   }

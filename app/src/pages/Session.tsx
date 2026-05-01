@@ -24,24 +24,44 @@ export function Session() {
       </div>
 
       <div className="space-y-8">
-        {/* Question */}
-        <div className="text-center">
-          <p className="text-xl md:text-2xl text-muted-foreground mb-2 flex items-center justify-center gap-2">
+        {/* Emotion Wheel Section */}
+        <div className="text-center space-y-4">
+          <p className="text-xl md:text-2xl text-muted-foreground flex items-center justify-center gap-2">
             <Sparkles className="w-4 h-4 text-primary" />
-            Select your emotion
+            Choose your current emotion
           </p>
           <p className="text-lg font-medium text-foreground">
-            Click on an emotion on the wheel and receive an individual reflective question.
+            Click on an emotion on the wheel to reflect
           </p>
-          
         </div>
 
         {/* Emotion Wheel */}
         <div className="flex flex-col items-center">
-          
           <EmotionWheel
             onSelect={handleEmotionSelect}
           />
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-4">
+          <div className="flex-1 h-px bg-border"></div>
+          <span className="text-sm text-muted-foreground">or</span>
+          <div className="flex-1 h-px bg-border"></div>
+        </div>
+
+        {/* Start a Journey Section */}
+        <div className="text-center space-y-4">
+          <p className="text-lg font-semibold text-foreground">Start a guided journey</p>
+          <p className="text-sm text-muted-foreground">
+            7-day reflection programs for deeper exploration
+          </p>
+          <Button 
+            onClick={() => navigate('/journeys')}
+            className="w-full"
+            size="lg"
+          >
+            Browse Journeys
+          </Button>
         </div>
       </div>
     </div>

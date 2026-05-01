@@ -5,6 +5,16 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { useHistory } from '@/hooks/useHistory';
 
+function formatDate(dateStr: string): string {
+  if (!dateStr) return '';
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
 export function History() {
   const [searchQuery, setSearchQuery] = useState('');
   const { entries, loading, error } = useHistory();
@@ -58,10 +68,10 @@ export function History() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-medium text-foreground">{entry.emotion}</span>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <Calendar className="w-3 h-3" />
-                        {entry.date}
-                      </div>
+                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <Calendar className="w-3 h-3" />
+                      {formatDate(entry.date)}
+                    </div>
                     </div>
                     <p className="text-sm text-muted-foreground line-clamp-2">
                       {entry.response}
