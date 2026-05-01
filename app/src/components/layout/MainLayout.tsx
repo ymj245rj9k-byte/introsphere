@@ -123,7 +123,7 @@ export function MainLayout() {
             {user ? (
               <button
                 onClick={handleSignOut}
-                className="ml-2 px-3 py-1.5 text-sm font-medium rounded-lg border border-border hover:bg-surface transition-colors text-atm"
+                className="ml-2 px-3 py-1.5 text-sm font-medium rounded-lg border border-atm hover:bg-surface transition-colors text-atm"
               >
                 Sign Out
               </button>

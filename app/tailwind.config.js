@@ -29,6 +29,11 @@ export default {
         },
         border: 'hsl(var(--border))',
         ring: 'hsl(var(--ring))',
+        // Atmosphere dynamic colors
+        'atm-accent': 'var(--atmosphere-accent)',
+        'atm-bg': 'var(--atmosphere-bg)',
+        'atm-secondary': 'var(--atmosphere-bg-secondary)',
+        'atm-border': 'var(--atmosphere-border)',
       },
       borderRadius: {
         lg: 'var(--radius)',

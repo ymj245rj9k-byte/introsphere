@@ -139,7 +139,7 @@
   --atmosphere-text: #f0f0f0;
   --atmosphere-text-heading: #f0f0f0;
   --atmosphere-text-body: #f0f0f0;
-  --atmosphere-text-muted: #aaaaaa;
+  --atmosphere-text-muted: #decccc;
   --atmosphere-text-accent: #f6eedd;
   --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
   --atmosphere-radius: 6px;
@@ -176,7 +176,7 @@
       --atmosphere-text: #e3ead0;
       --atmosphere-text-heading: #e3ead0;
       --atmosphere-text-body: #e3ead0;
-      --atmosphere-text-muted: #b9d79c;
+      --atmosphere-text-muted: #e1efd4;
       --atmosphere-text-accent: #6a9e5a;
       --atmosphere-font: 'Montserrat', sans-serif;
       --atmosphere-font-body: 'Montserrat', sans-serif;
@@ -288,7 +288,7 @@
     --atmosphere-text: #ffffff;
     --atmosphere-text-heading: #ffffff;
     --atmosphere-text-body: #ffffff;
-    --atmosphere-text-muted: #606070;
+    --atmosphere-text-muted: #dfdff5;
     --atmosphere-text-accent: #00d4aa;
     --atmosphere-font: 'JetBrains Mono', monospace;
     --atmosphere-font-body: 'JetBrains Mono', monospace;
@@ -327,7 +327,7 @@
     --atmosphere-text: #ffffff;
     --atmosphere-text-heading: #ffffff;
     --atmosphere-text-body: #ffffff;
-    --atmosphere-text-muted: #886040;
+    --atmosphere-text-muted: #e7b58b;
     --atmosphere-text-accent: #e05a18;
     --atmosphere-font: 'Fraunces', serif;
     --atmosphere-font-body: 'Lora', serif;
@@ -364,7 +364,7 @@
     --atmosphere-text: #ffffff;
     --atmosphere-text-heading: #ffffff;
     --atmosphere-text-body: #ffffff;
-    --atmosphere-text-muted: #B0A5A0;
+    --atmosphere-text-muted: #ece0db;
     --atmosphere-text-accent: #C9A9A6;
     --atmosphere-font: 'Lora', serif;
     --atmosphere-radius: 16px;
@@ -401,7 +401,7 @@
     --atmosphere-text: #ffffff;
     --atmosphere-text-heading: #ffffff;
     --atmosphere-text-body: #ffffff;
-    --atmosphere-text-muted: #5a7a90;
+    --atmosphere-text-muted: #bfd3e1;
     --atmosphere-text-accent: #00b4d8;
     --atmosphere-font: 'Newsreader', serif;
     --atmosphere-font-body: 'Inter', sans-serif;
@@ -431,6 +431,7 @@
   /* Atmosphere utility classes */
   .bg-atm { background-color: var(--atmosphere-bg); }
   .bg-atm-secondary { background-color: var(--atmosphere-bg-secondary); }
+  .bg-atm-accent { background-color: var(--atmosphere-accent); }
   .text-atm { color: var(--atmosphere-text); }
   .text-atm-heading { color: var(--atmosphere-text-heading); }
   .text-atm-muted { color: var(--atmosphere-text-muted); }
@@ -548,6 +549,14 @@
     100% {
       background-position: -200% 0;
     }
+  }
+
+  /* Emotion wheel label glow for readability */
+  .emotion-label {
+    filter: url(#textGlowLight);
+  }
+  .dark .emotion-label {
+    filter: url(#textGlowDark);
   }
 
   /* Auto-save indicator */

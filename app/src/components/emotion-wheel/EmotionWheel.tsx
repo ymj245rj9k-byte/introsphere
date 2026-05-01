@@ -74,6 +74,28 @@ export function EmotionWheel({ onSelect, selectedId, size = 600 }: EmotionWheelP
             <stop offset="0%" stopColor="var(--atmosphere-accent)" stopOpacity="0.1" />
             <stop offset="100%" stopColor="var(--atmosphere-accent)" stopOpacity="0.05" />
           </linearGradient>
+          {/* White glow for light mode */}
+          <filter id="textGlowLight" x="-30%" y="-30%" width="160%" height="160%">
+            <feMorphology operator="dilate" radius="0.8" in="SourceAlpha" result="expanded" />
+            <feFlood floodColor="white" floodOpacity="0.9" result="glowColor" />
+            <feComposite in="glowColor" in2="expanded" operator="in" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          {/* Dark glow for dark mode */}
+          <filter id="textGlowDark" x="-30%" y="-30%" width="160%" height="160%">
+            <feMorphology operator="dilate" radius="0.8" in="SourceAlpha" result="expanded" />
+            <feFlood floodColor="#111111" floodOpacity="0.85" result="glowColor" />
+            <feComposite in="glowColor" in2="expanded" operator="in" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
 
         {/* Background circle */}
@@ -132,7 +154,7 @@ export function EmotionWheel({ onSelect, selectedId, size = 600 }: EmotionWheelP
                 y={center + (radius * 0.78) * Math.sin(((angle - 90) * Math.PI) / 180)}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className="fill-foreground text-xs font-medium pointer-events-none select-none"
+                className="fill-foreground font-medium pointer-events-none select-none emotion-label"
                 style={{ 
                   fontSize: size < 250 ? '8px' : size < 500 ? '10px' : '14px',
                   fontFamily: 'var(--atmosphere-font-body, sans-serif)'

@@ -115,7 +115,7 @@ export function Journey() {
         </div>
 
         {/* Progress */}
-        <div className="bg-surface p-4 rounded-xl border border-border">
+        <div className="bg-atm-secondary p-4 rounded-xl border border-atm shadow-atm">
           <JourneyProgress
             currentDay={currentDay}
             completedDays={journeyCompletedDays}
@@ -132,7 +132,7 @@ export function Journey() {
 
         {journeyCompletedDays.length > 0 && journeyCompletedDays.length < 7 && (
           <Button
-            className="w-full"
+            className="w-full bg-atm-secondary border border-atm shadow-atm"
             variant="outline"
             onClick={() => navigate(`/journey/${id}/day/${currentDay}`)}
           >

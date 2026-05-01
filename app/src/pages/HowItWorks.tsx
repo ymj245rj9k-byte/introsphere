@@ -36,7 +36,7 @@ export function HowItWorks() {
               <h2 className="text-3xl md:text-4xl text-foreground leading-[1.3] font-medium">
                 Pick an emotion
               </h2>
-              <p className="text-base text-muted-foreground leading-relaxed">
+              <p className="text-base text-foreground leading-relaxed">
                 Start at the Emotion Wheel. 8 primary emotions arranged in a circle, each with 3 intensity levels.
               </p>
             </div>
@@ -71,7 +71,7 @@ export function HowItWorks() {
               <h2 className="text-3xl md:text-4xl text-foreground leading-[1.3] font-medium">
                 Write 
               </h2>
-              <p className="text-base text-muted-foreground leading-relaxed">
+              <p className="text-base text-foreground leading-relaxed">
                 You get a question matched to your chosen emotion. Write for 2 minutes. Auto-saved, private, no rules.
               </p>
             </div>
@@ -87,7 +87,7 @@ export function HowItWorks() {
               <h2 className="text-3xl md:text-4xl text-foreground leading-[1.3] font-medium">
                 Go on a journey
               </h2>
-              <p className="text-base text-muted-foreground leading-relaxed">
+              <p className="text-base text-foreground leading-relaxed">
                 7-day guided programs with daily questions. Each day builds on the previous one, helping you see patterns and go deeper.
               </p>
             </div>
@@ -143,7 +143,7 @@ export function HowItWorks() {
               <h2 className="text-3xl md:text-4xl text-foreground leading-[1.3] font-medium">
                 Choose your atmosphere
               </h2>
-              <p className="text-base text-muted-foreground leading-relaxed">
+              <p className="text-base text-foreground leading-relaxed">
                 8 visual themes change colors, fonts, and border radius. Pick one that matches your mood.
               </p>
             </div>
@@ -177,60 +177,79 @@ export function HowItWorks() {
 
   function EmotionWheelPreview({ emotions }: { emotions: Emotion[] }) {
     const size = 280;
-    const cx = size / 2;
-    const cy = size / 2;
-    const outerR = size / 2 - 8;
-    const innerR = 42;
+    const center = size / 2;
+    const radius = size / 2 - 8;
+    const innerRadius = radius * 0.35;
+
+  const getSectorPath = (
+    cx: number,
+    cy: number,
+    innerR: number,
+    outerR: number,
+    startAngle: number,
+    endAngle: number
+  ): string => {
+    const startRad = ((startAngle - 90) * Math.PI) / 180;
+    const endRad = ((endAngle - 90) * Math.PI) / 180;
+
+    const x1 = cx + innerR * Math.cos(startRad);
+    const y1 = cy + innerR * Math.sin(startRad);
+    const x2 = cx + outerR * Math.cos(startRad);
+    const y2 = cy + outerR * Math.sin(startRad);
+    const x3 = cx + outerR * Math.cos(endRad);
+    const y3 = cy + outerR * Math.sin(endRad);
+    const x4 = cx + innerR * Math.cos(endRad);
+    const y4 = cy + innerR * Math.sin(endRad);
+
+    const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+
+    return `M ${x1} ${y1} L ${x2} ${y2} A ${outerR} ${outerR} 0 ${largeArc} 1 ${x3} ${y3} L ${x4} ${y4} A ${innerR} ${innerR} 0 ${largeArc} 0 ${x1} ${y1} Z`;
+  };
 
   return (
     <svg
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
-      className="drop-shadow-2xl select-none"
+      className="drop-shadow-xl select-none"
       aria-label="Emotion wheel preview"
       role="img"
     >
+      <defs>
+        <filter id="preview-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.15" />
+        </filter>
+      </defs>
+
+      {/* Background circle */}
+      <circle
+        cx={center}
+        cy={center}
+        r={radius}
+        fill="var(--surface)"
+        stroke="var(--border)"
+        strokeWidth="2"
+      />
+
       {emotions.map((emotion: Emotion) => {
-        const segAngle = 360 / emotions.length;
-        const startDeg = emotion.wheelPos - segAngle / 2 - 90;
-        const endDeg = emotion.wheelPos + segAngle / 2 - 90;
-        const startRad = (startDeg * Math.PI) / 180;
-        const endRad = (endDeg * Math.PI) / 180;
+        const angle = emotion.wheelPos;
+        const sectorAngle = 360 / emotions.length;
+        const startAngle = angle - sectorAngle / 2;
+        const endAngle = angle + sectorAngle / 2;
+        const path = getSectorPath(center, center, innerRadius, radius, startAngle, endAngle);
 
-        const x1 = cx + outerR * Math.cos(startRad);
-        const y1 = cy + outerR * Math.sin(startRad);
-        const x2 = cx + outerR * Math.cos(endRad);
-        const y2 = cy + outerR * Math.sin(endRad);
-        const ix1 = cx + innerR * Math.cos(startRad);
-        const iy1 = cy + innerR * Math.sin(startRad);
-        const ix2 = cx + innerR * Math.cos(endRad);
-        const iy2 = cy + innerR * Math.sin(endRad);
-
-        const d = [
-          `M ${ix1} ${iy1}`,
-          `L ${x1} ${y1}`,
-          `A ${outerR} ${outerR} 0 0 1 ${x2} ${y2}`,
-          `L ${ix2} ${iy2}`,
-          `A ${innerR} ${innerR} 0 0 0 ${ix1} ${iy1}`,
-          'Z',
-        ].join(' ');
-
-        const midDeg = emotion.wheelPos - 90;
-        const midRad = (midDeg * Math.PI) / 180;
-        const labelR = (outerR + innerR) / 2;
-        const lx = cx + labelR * Math.cos(midRad);
-        const ly = cy + labelR * Math.sin(midRad);
+        const midRad = ((angle - 90) * Math.PI) / 180;
+        const lx = center + (radius * 0.78) * Math.cos(midRad);
+        const ly = center + (radius * 0.78) * Math.sin(midRad);
 
         return (
           <g key={emotion.id}>
             <path
-              key={emotion.id}
-              d={d}
-              fill={emotion.colorHex}
-              stroke="white"
+              d={path}
+              fill={emotion.color}
+              stroke="var(--background)"
               strokeWidth="2"
-              className="transition-opacity hover:opacity-80"
+              filter="url(#preview-shadow)"
               aria-label={emotion.nameEn}
             />
             <text
@@ -238,10 +257,10 @@ export function HowItWorks() {
               y={ly}
               textAnchor="middle"
               dominantBaseline="middle"
-              fontSize="7"
-              fontWeight="600"
-              fill="rgba(0,0,0,0.55)"
-              style={{ pointerEvents: 'none' }}
+              fontSize="9"
+              fontWeight="500"
+              className="fill-foreground"
+              style={{ pointerEvents: 'none', fontFamily: 'var(--atmosphere-font-body, sans-serif)' }}
             >
               {emotion.nameEn}
             </text>
@@ -249,7 +268,38 @@ export function HowItWorks() {
         );
       })}
 
-       <circle cx={cx} cy={cy} r={innerR - 2} fill="white" />
+      {/* Center circle */}
+      <circle
+        cx={center}
+        cy={center}
+        r={innerRadius}
+        fill="var(--surface)"
+        stroke="var(--border)"
+        strokeWidth="2"
+      />
+      <text
+        x={center}
+        y={center - 6}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontSize="9"
+        className="fill-muted-foreground"
+        style={{ fontFamily: 'var(--atmosphere-font-body, sans-serif)' }}
+      >
+        How are
+      </text>
+      <text
+        x={center}
+        y={center + 8}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontSize="10"
+        fontWeight="600"
+        className="fill-foreground"
+        style={{ fontFamily: 'var(--atmosphere-font-body, sans-serif)' }}
+      >
+        you?
+      </text>
     </svg>
   );
 }

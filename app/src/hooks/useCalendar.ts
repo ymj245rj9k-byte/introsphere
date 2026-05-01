@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { User } from '@supabase/supabase-js';
-import { getCalendarEntriesForMonth } from '@/lib/database';
+import { getCalendarEntriesForDateRange } from '@/lib/database';
 import type { CalendarEntryData, MoodCalendarDayEntry } from '@/lib/database';
 
 export function useCalendar(user: User | null | undefined, year: number, month: number) {
@@ -18,7 +18,26 @@ export function useCalendar(user: User | null | undefined, year: number, month: 
     setLoading(true);
     setError(null);
 
-    getCalendarEntriesForMonth(user.id, year, month)
+    // Calculate full grid range including padding days from adjacent months
+    const firstDayOfMonth = new Date(year, month, 1);
+    const startingDayOfWeek = firstDayOfMonth.getDay();
+    const gridStart = new Date(year, month, 1 - startingDayOfWeek);
+
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+    const endingDayOfWeek = lastDayOfMonth.getDay();
+    const remainingDays = endingDayOfWeek === 6 ? 0 : 6 - endingDayOfWeek;
+    const gridEnd = new Date(year, month + 1, remainingDays);
+
+    // Ensure we always cover 42 cells
+    const totalDays = Math.round((gridEnd.getTime() - gridStart.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+    if (totalDays < 42) {
+      gridEnd.setDate(gridEnd.getDate() + (42 - totalDays));
+    }
+
+    const startDate = gridStart.toISOString().split('T')[0];
+    const endDate = gridEnd.toISOString().split('T')[0];
+
+    getCalendarEntriesForDateRange(user.id, startDate, endDate)
       .then((data) => {
         setEntriesMap(data);
       })
@@ -42,6 +61,7 @@ export function useCalendar(user: User | null | undefined, year: number, month: 
     
     return {
       date: day,
+      dateKey,
       hasEntry: dayEntries.length > 0,
       isCurrentMonth,
       emotionColor: firstEntry?.emotionColor,

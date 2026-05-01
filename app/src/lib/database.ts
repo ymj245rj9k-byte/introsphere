@@ -2,6 +2,8 @@ import { supabase } from './supabase';
 import type { Database } from '@/types/database';
 import { journeys as staticJourneys } from '@/data/journeys';
 
+const staticJourneyMap = new Map(staticJourneys.map((j) => [j.id, j.title]));
+
 type CalendarEntryRow = Database['public']['Tables']['calendar_entries']['Row'];
 
 export interface CalendarEntryData {
@@ -12,10 +14,13 @@ export interface CalendarEntryData {
   response: string;
   question?: string;
   created_at?: string;
+  journey_id?: string | null;
+  journey_day?: number | null;
 }
 
 export interface MoodCalendarDayEntry {
   date: number;
+  dateKey: string; // YYYY-MM-DD
   hasEntry: boolean;
   isCurrentMonth: boolean;
   emotionColor?: string;
@@ -191,6 +196,72 @@ export async function saveJourneyDayResponse({
 }
 
 /**
+ * Fetches calendar entries for a given date range.
+ * Returns a map: date string (YYYY-MM-DD) -> CalendarEntryData[]
+ */
+export async function getCalendarEntriesForDateRange(
+  userId: string,
+  startDate: string, // YYYY-MM-DD
+  endDate: string    // YYYY-MM-DD
+): Promise<Record<string, CalendarEntryData[]>> {
+  const { data, error } = await supabase
+    .from('mood_calendar')
+    .select(`
+      id,
+      entry_date,
+      primary_emotion_name,
+      color,
+      entries:calendar_entries(
+        id,
+        content,
+        emotion_id,
+        emotion_name,
+        color,
+        created_at,
+        journey_id,
+        journey_day,
+        source_type
+      )
+    `)
+    .eq('user_id', userId)
+    .gte('entry_date', startDate)
+    .lte('entry_date', endDate)
+    .order('entry_date', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching calendar entries:', error);
+    return {};
+  }
+
+  const entriesMap: Record<string, CalendarEntryData[]> = {};
+
+  data?.forEach((day) => {
+    const dateKey = day.entry_date;
+    if (day.entries && Array.isArray(day.entries)) {
+      entriesMap[dateKey] = (day.entries as CalendarEntryRow[]).map((entry) => {
+        let emotion = entry.emotion_name;
+        if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
+          emotion = staticJourneyMap.get(entry.journey_id)!;
+        }
+        if (!emotion) emotion = 'Unknown';
+        return {
+          id: entry.id,
+          date: dateKey,
+          emotion,
+          emotionColor: entry.color || '#FFFFFF',
+          response: entry.content,
+          created_at: entry.created_at || undefined,
+          journey_id: entry.journey_id ?? null,
+          journey_day: entry.journey_day ?? null,
+        };
+      });
+    }
+  });
+
+  return entriesMap;
+}
+
+/**
  * Fetches calendar entries for a given month/year.
  * Returns a map: date string (YYYY-MM-DD) -> CalendarEntryData[]
  */
@@ -217,7 +288,10 @@ export async function getCalendarEntriesForMonth(
         emotion_id,
         emotion_name,
         color,
-        created_at
+        created_at,
+        journey_id,
+        journey_day,
+        source_type
       )
     `)
     .eq('user_id', userId)
@@ -236,14 +310,23 @@ export async function getCalendarEntriesForMonth(
   data?.forEach((day) => {
     const dateKey = day.entry_date;
     if (day.entries && Array.isArray(day.entries)) {
-      entriesMap[dateKey] = (day.entries as CalendarEntryRow[]).map((entry) => ({
-        id: entry.id,
-        date: dateKey,
-        emotion: entry.emotion_name || 'Unknown',
-        emotionColor: entry.color || '#FFFFFF',
-        response: entry.content,
-        created_at: entry.created_at || undefined,
-      }));
+      entriesMap[dateKey] = (day.entries as CalendarEntryRow[]).map((entry) => {
+        let emotion = entry.emotion_name;
+        if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
+          emotion = staticJourneyMap.get(entry.journey_id)!;
+        }
+        if (!emotion) emotion = 'Unknown';
+        return {
+          id: entry.id,
+          date: dateKey,
+          emotion,
+          emotionColor: entry.color || '#FFFFFF',
+          response: entry.content,
+          created_at: entry.created_at || undefined,
+          journey_id: entry.journey_id ?? null,
+          journey_day: entry.journey_day ?? null,
+        };
+      });
     }
   });
 
@@ -297,21 +380,24 @@ export async function getUserStats(userId: string): Promise<UserStats> {
     streakDays = streak;
   }
 
-  // Get top emotion (most frequent primary emotion)
+  // Get top emotion (most frequent emotion across all sessions)
+  // Uses calendar_entries instead of mood_calendar to count every session individually,
+  // not just once per day (mood_calendar upserts overwrite the emotion per day).
   const { data: topEmotionData } = await supabase
-    .from('mood_calendar')
-    .select('primary_emotion_name, color, entry_date')
+    .from('calendar_entries')
+    .select('emotion_name, color')
     .eq('user_id', userId)
-    .order('entry_date', { ascending: false })
-    .limit(100); // Get recent entries
+    .not('emotion_name', 'is', null)
+    .order('created_at', { ascending: false })
+    .limit(100);
 
   let topEmotion: { name: string; color: string } | null = null;
   if (topEmotionData && topEmotionData.length > 0) {
     // Count frequency
     const counts: Record<string, { count: number; color: string }> = {};
     topEmotionData.forEach((entry) => {
-      if (entry.primary_emotion_name && entry.color) {
-        const name = entry.primary_emotion_name;
+      if (entry.emotion_name && entry.color) {
+        const name = entry.emotion_name;
         if (!counts[name]) {
           counts[name] = { count: 0, color: entry.color };
         }
@@ -423,6 +509,8 @@ export async function getEntriesForDate(
     response: entry.content,
     question: undefined,
     created_at: entry.created_at || undefined,
+    journey_id: null, // calendar_entries in this query doesn't include journey_id
+    journey_day: null,
   }));
 }
 
@@ -504,6 +592,7 @@ export async function getAllEntries(
       emotionColor: entry.color || '#FFFFFF',
       response: entry.content,
       created_at: entry.created_at || undefined,
+      journey_id: entry.journey_id,
     };
   });
 }

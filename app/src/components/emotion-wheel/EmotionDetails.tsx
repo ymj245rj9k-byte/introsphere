@@ -69,6 +69,25 @@ export function EmotionDetails({ emotion, open, onClose, onConfirm }: EmotionDet
         <div className="mb-6">
           <p className="text-sm font-medium text-foreground mb-3">Choose more specifically:</p>
           <div className="grid grid-cols-2 gap-2">
+            {/* Stay with emotion - first option */}
+            <button
+              className={`p-3 rounded-lg border text-left transition-all duration-200 ${
+                selectedSubEmotion?.id === emotion.id
+                  ? 'border-primary bg-primary/20 ring-2 ring-primary/30 scale-105'
+                  : 'border-border hover:border-muted-foreground/30 hover:scale-[1.02]'
+              }`}
+              style={{ 
+                backgroundColor: selectedSubEmotion?.id === emotion.id ? `${emotion.color}30` : `${emotion.color}20`, 
+                borderColor: emotion.color 
+              }}
+              onClick={() => setSelectedSubEmotion(emotion)}
+            >
+              <p className="font-medium text-foreground">Stay with {emotion.nameEn}</p>
+              {emotion.description && (
+                <p className="text-xs text-muted-foreground mt-1">{emotion.description}</p>
+              )}
+            </button>
+
             {subSpectrum.map((sub) => {
               const fullEmotion = getEmotion(sub.id);
               return (
@@ -102,15 +121,6 @@ export function EmotionDetails({ emotion, open, onClose, onConfirm }: EmotionDet
             className="flex-1"
           >
             Cancel
-          </Button>
-          <Button 
-            variant="outline" 
-            onClick={() => {
-              setSelectedSubEmotion(emotion);
-            }} 
-            className="flex-1"
-          >
-            Stay with {emotion.nameEn}
           </Button>
           <Button 
             onClick={handleConfirm} 

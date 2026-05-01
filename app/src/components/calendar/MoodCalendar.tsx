@@ -33,10 +33,8 @@ export function MoodCalendar() {
   };
 
   const handleDayClick = (day: MoodCalendarDayEntry) => {
-    if (day.hasEntry && day.emotion) {
-      const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`;
-      const dayEntries = entriesMap[dateKey] || [];
-
+    if (day.hasEntry) {
+      const dayEntries = entriesMap[day.dateKey] || [];
       if (dayEntries.length > 0) {
         setSelectedEntries(dayEntries);
         setShowDialog(true);

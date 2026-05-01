@@ -53,10 +53,10 @@ export function DayView({
   };
 
   return (
-    <div className="min-h-screen bg-background p-4">
+    <div className="min-h-screen p-4">
       <div className="max-w-2xl mx-auto">
         {/* Question Block - Card at the top */}
-        <div className="bg-surface border border-border rounded-xl p-6 mb-6 shadow-sm">
+        <div className="bg-atm-secondary border border-atm rounded-xl p-6 mb-6 shadow-atm">
           <p className="text-xl font-medium text-foreground leading-relaxed">
             {day.question}
           </p>
@@ -73,7 +73,7 @@ export function DayView({
                placeholder="Write your thoughts here..."
                value={response}
                onChange={(e) => setResponse(e.target.value)}
-               className="min-h-[300px] text-base leading-relaxed resize-none bg-atm border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
+               className="min-h-[300px] text-base leading-relaxed resize-none bg-atm-secondary border-atm focus:border-primary focus:ring-2 focus:ring-primary/20"
                disabled={isCompleted || saving}
              />
           </div>

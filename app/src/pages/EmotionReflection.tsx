@@ -210,10 +210,9 @@ export function EmotionReflection() {
             >
               <span className="text-2xl text-white">{emotion.nameEn[0]}</span>
             </div>
-            <div>
-              <p className="font-semibold text-xl text-foreground">{emotion.name}</p>
-              <p className="text-sm text-muted-foreground">{emotion.nameEn}</p>
-            </div>
+              <div>
+                <p className="font-semibold text-xl text-foreground">{emotion.nameEn}</p>
+              </div>
           </div>
         </div>
 

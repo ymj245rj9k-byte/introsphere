@@ -26,12 +26,12 @@ export function Session() {
       <div className="space-y-8">
         {/* Emotion Wheel Section */}
         <div className="text-center space-y-4">
-          <p className="text-xl md:text-2xl text-muted-foreground flex items-center justify-center gap-2">
+          <p className="text-xl md:text-2xl text-foreground flex items-center justify-center gap-2">
             <Sparkles className="w-4 h-4 text-primary" />
-            Choose your current emotion
-          </p>
-          <p className="text-lg font-medium text-foreground">
             Click on an emotion on the wheel to reflect
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Tip: emotion details are available after clicking on it
           </p>
         </div>
 
