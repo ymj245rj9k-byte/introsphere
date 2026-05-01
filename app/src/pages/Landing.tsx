@@ -22,7 +22,7 @@ export function Landing() {
           </Link>
           <Link
             to={ROUTES.AUTH}
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium border border-border bg-background text-foreground rounded-lg hover:bg-surface transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
           >
             Log in with Email
           </Link>
