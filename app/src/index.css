@@ -119,10 +119,10 @@
       --atmosphere-bg: #fbf3e3;
       --atmosphere-bg-secondary: #ebdbc1;
       --atmosphere-accent: #b69b7b;
-      --atmosphere-text: #000000;
-      --atmosphere-text-heading: #000000;
-      --atmosphere-text-body: #000000;
-
+      --atmosphere-text: #1a1a1a;
+      --atmosphere-text-heading: #1a1a1a;
+      --atmosphere-text-body: #1a1a1a;
+      --atmosphere-text-muted: #555555;
       --atmosphere-text-accent: #a89880;
       --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
       --atmosphere-font-body: 'Plus Jakarta Sans', sans-serif;
@@ -136,10 +136,10 @@
   --atmosphere-bg: #18160f;
   --atmosphere-bg-secondary: #443e30;
   --atmosphere-accent: #3a3528;
-  --atmosphere-text: #ffffff;
-  --atmosphere-text-heading: #ffffff;
-  --atmosphere-text-body: #ffffff;
-
+  --atmosphere-text: #f0f0f0;
+  --atmosphere-text-heading: #f0f0f0;
+  --atmosphere-text-body: #f0f0f0;
+  --atmosphere-text-muted: #aaaaaa;
   --atmosphere-text-accent: #f6eedd;
   --atmosphere-font: 'Plus Jakarta Sans', sans-serif;
   --atmosphere-radius: 6px;
@@ -156,10 +156,10 @@
       --atmosphere-bg: #e3ead0;
       --atmosphere-bg-secondary: #b9d79c;
       --atmosphere-accent: #5a8a4a;
-      --atmosphere-text: #000000;
-      --atmosphere-text-heading: #000000;
-      --atmosphere-text-body: #000000;
-
+      --atmosphere-text: #1a2f10;
+      --atmosphere-text-heading: #1a2f10;
+      --atmosphere-text-body: #1a2f10;
+      --atmosphere-text-muted: #4a5a3a;
       --atmosphere-text-accent: #5a8a4a;
       --atmosphere-font: 'Montserrat', sans-serif;
       --atmosphere-font-body: 'Montserrat', sans-serif;
@@ -173,10 +173,10 @@
       --atmosphere-bg: #1a2f10;
       --atmosphere-bg-secondary: #121a0e;
       --atmosphere-accent: #6a9e5a;
-      --atmosphere-text: #ffffff;
-      --atmosphere-text-heading: #ffffff;
-      --atmosphere-text-body: #ffffff;
-
+      --atmosphere-text: #e3ead0;
+      --atmosphere-text-heading: #e3ead0;
+      --atmosphere-text-body: #e3ead0;
+      --atmosphere-text-muted: #b9d79c;
       --atmosphere-text-accent: #6a9e5a;
       --atmosphere-font: 'Montserrat', sans-serif;
       --atmosphere-font-body: 'Montserrat', sans-serif;
@@ -193,10 +193,10 @@
      --atmosphere-bg: #fde9cb;
      --atmosphere-bg-secondary: #ede4c4;
      --atmosphere-accent: #c9a063;
-     --atmosphere-text: #000000;
-     --atmosphere-text-heading: #000000;
-     --atmosphere-text-body: #000000;
-
+     --atmosphere-text: #1a1f3a;
+     --atmosphere-text-heading: #1a1f3a;
+     --atmosphere-text-body: #1a1f3a;
+     --atmosphere-text-muted: #4a5060;
      --atmosphere-text-accent: #7b561f;
      --atmosphere-font: 'Cormorant Garamond', serif;
      --atmosphere-font-body: 'EB Garamond', serif;
@@ -209,10 +209,10 @@
     --atmosphere-bg: #1a1f3a;
     --atmosphere-bg-secondary: #141828;
     --atmosphere-accent: #c9a063;
-    --atmosphere-text: #ffffff;
-    --atmosphere-text-heading: #ffffff;
-    --atmosphere-text-body: #ffffff;
-
+    --atmosphere-text: #fde9cb;
+    --atmosphere-text-heading: #fde9cb;
+    --atmosphere-text-body: #fde9cb;
+    --atmosphere-text-muted: #ede4c4;
     --atmosphere-text-accent: #c9a063;
     --atmosphere-font: 'Cormorant Garamond', serif;
     --atmosphere-font-body: 'EB Garamond', serif;

@@ -22,8 +22,8 @@ export function CalendarDay({ day, onClick }: CalendarDayProps) {
             w-full h-full flex flex-col items-center justify-center rounded-lg text-sm transition-all duration-200 ease-out border
             ${day.isCurrentMonth ? 'text-atm font-medium' : 'text-atm-muted/30'}
             ${day.hasEntry 
-              ? 'bg-atm-secondary border-atm cursor-pointer hover:scale-[1.02] active:scale-[0.98]' 
-              : 'hover:bg-atm-secondary/30 cursor-default border-atm/20'}
+              ? 'bg-atm-secondary border-atm-border cursor-pointer hover:scale-[1.02] active:scale-[0.98]' 
+              : 'hover:bg-atm-secondary/30 cursor-default border-atm-border'}
             text-center relative
           `}
           disabled={!day.hasEntry}
