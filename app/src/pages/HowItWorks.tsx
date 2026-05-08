@@ -1,11 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 import { journeys } from '@/data/journeys';
 import { EmotionWheel } from '@/components/emotion-wheel';
 
 export function HowItWorks() {
-  const navigate = useNavigate();
-  
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: 'var(--atmosphere-bg)' }}>
 
