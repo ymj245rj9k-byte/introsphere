@@ -118,12 +118,12 @@ export function CalendarEntryDialog({ entries, open, onClose, onEntriesUpdate }:
               </button>
               
               <div className="flex items-center gap-3 mb-3">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: entry.emotionColor }}
-                >
-                  <span className="text-lg font-bold">{entry.emotion[0]}</span>
-                </div>
+<div
+                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                   style={{ backgroundColor: entry.emotionColor }}
+                 >
+                   <span className="text-lg font-bold text-black">{entry.emotion[0]}</span>
+                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-atm-heading">{entry.emotion}</h3>
                   <p className="text-sm text-atm-muted flex items-center gap-1">

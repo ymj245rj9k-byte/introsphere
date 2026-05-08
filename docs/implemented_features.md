@@ -5,7 +5,7 @@
 ### Baza Funkcji (MVP)
 - [x] Koło emocji (8 podstawowych + 24 warianty)
 - [x] 6 Journeys (7 dni każdy, 42 pytania łącznie)
-- [x] System atmosfer (5 motywów wizualnych)
+- [x] System atmosfer (8 motywów wizualnych)
 - [x] Rejestracja i autoryzacja użytkowników
 - [x] Strona główna (Hero, Koło emocji, Journeys)
 - [x] Onboarding (3-krokowy wizard)

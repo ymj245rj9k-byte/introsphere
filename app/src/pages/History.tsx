@@ -81,12 +81,12 @@ function ReflectionDetailDialog({ entry, onClose, onDelete }: ReflectionDetailDi
         {/* Header */}
         <div className="mb-4 flex-shrink-0 pl-8">
           <div className="flex items-center gap-3 mb-2">
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: entry.emotionColor }}
-            >
-              <span className="text-lg font-bold">{entry.emotion[0]}</span>
-            </div>
+<div
+               className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+               style={{ backgroundColor: entry.emotionColor }}
+             >
+               <span className="text-lg font-bold text-black">{entry.emotion[0]}</span>
+             </div>
             <div>
               <h2 className="font-bold text-xl text-atm-heading">{entry.emotion}</h2>
               <p className="text-sm text-atm-muted flex items-center gap-1">
