@@ -16,8 +16,7 @@ export function Home() {
 
         {/* Greeting */}
         <div>
-          <h1 className="text-2xl font-semibold text-atm-heading">Hey 👋</h1>
-          <p className="text-atm-muted mt-1 text-sm">How are you feeling today?</p>
+          <h1 className="text-2xl font-semibold text-atm-heading">Home</h1>
         </div>
 
         {/* Quick actions */}
