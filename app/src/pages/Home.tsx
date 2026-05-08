@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants';
-import { Flame, BookOpen, CalendarDays, Sparkles, TrendingUp, FileText } from 'lucide-react';
+import { Flame, BookOpen, CalendarDays, Sparkles, TrendingUp, FileText, Settings } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useHomeStats } from '@/hooks/useHomeStats';
 
@@ -15,8 +15,15 @@ export function Home() {
       <div className="max-w-2xl mx-auto px-4 py-10 space-y-6">
 
         {/* Greeting */}
-        <div>
+        <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold text-atm-heading">Home</h1>
+          <Link
+            to={ROUTES.SETTINGS}
+            className="md:hidden p-2 rounded-lg text-atm-muted hover:text-atm hover:bg-atm-secondary transition-colors"
+            aria-label="Settings"
+          >
+            <Settings className="w-5 h-5" />
+          </Link>
         </div>
 
         {/* Quick actions */}

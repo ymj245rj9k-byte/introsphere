@@ -167,32 +167,32 @@ function getColorForSubspectrumEmotion(id: string): string {
     case 'love': return '#FADBD8';
     
     // Trust family
-    case 'acceptance': return '#ABEBC6';
-    case 'trust': return '#75ea6f';
+    case 'acceptance': return '#88e38dff';
+    case 'trust': return '#a9f4a5ff';
     
     // Fear family
-    case 'apprehension': return '#A3D9C7';
-    case 'fear': return '#216332';
+    case 'apprehension': return '#508b59ff';
+    case 'fear': return '#50785aff';
     
     // Surprise family
     case 'distraction': return '#A9DFBF';
     case 'surprise': return '#50d5c3';
     
     // Sadness family
-    case 'pensiveness': return '#85929E';
-    case 'sadness': return '#2377cb';
+    case 'pensiveness': return '#4d81b3ff';
+    case 'sadness': return '#5781aaff';
     
     // Disgust family
-    case 'boredom': return '#D7BDE2';
-    case 'disgust': return '#8E44AD';
+    case 'boredom': return '#ad85bfff';
+    case 'disgust': return '#b591c5ff';
     
     // Anger family
-    case 'annoyance': return '#F5B7B1';
-    case 'anger': return '#f75454';
+    case 'annoyance': return '#f59188ff';
+    case 'anger': return '#d07c7cff';
     
     // Anticipation family
-    case 'interest': return '#F9E79F';
-    case 'anticipation': return '#FFA502';
+    case 'interest': return '#f0cd88ff';
+    case 'anticipation': return '#f5bf5aff';
     
     default: return '#FFFFFF';
   }
