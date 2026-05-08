@@ -44,6 +44,7 @@
 
 ### Kolejne Etapy
 - [x] Delete entries from calendar and entries list
+- [x] Reflections filter by emotion (English) or journey (English) - 32 emotions + 6 journeys via dropdown
 - [ ] Full mood calendar with history
 - [ ] PDF export of journals
 - [ ] Push notifications

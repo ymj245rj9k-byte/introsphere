@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Calendar, Search, Filter, X, Trash2 } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Calendar, Search, Filter, X, Trash2, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -10,6 +10,11 @@ import { deleteEntry } from '@/lib/database';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { toast } from 'sonner';
 import type { CalendarEntryData } from '@/lib/database';
+import { level3Emotions, subSpectrumEmotions } from '@/data/emotions';
+import { journeys } from '@/data/journeys';
+
+// Combine all emotions for filtering
+const allEmotions = [...level3Emotions, ...subSpectrumEmotions];
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return '';
@@ -142,15 +147,55 @@ function ReflectionDetailDialog({ entry, onClose, onDelete }: ReflectionDetailDi
 export function History() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedEntry, setSelectedEntry] = useState<CalendarEntryData | null>(null);
+  const [filterType, setFilterType] = useState<'emotion' | 'journey' | null>(null);
+  const [filterValue, setFilterValue] = useState<string | null>(null);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const filterRef = useRef<HTMLDivElement>(null);
   const { entries, loading, error, mutate: refreshHistory } = useHistory();
   const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useAuth();
 
-  const filteredEntries = entries.filter(
-    (entry) =>
+  const filteredEntries = entries.filter((entry) => {
+    // First apply text search filter
+    const matchesSearch =
       entry.response.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      entry.emotion.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      entry.emotion.toLowerCase().includes(searchQuery.toLowerCase());
+
+    // Then apply type-specific filter
+    if (!matchesSearch) return false;
+
+    if (filterType === 'emotion' && filterValue) {
+      // Filter by emotion - check emotionId first, then by emotion name if emotionId not available
+      return entry.emotionId?.toLowerCase() === filterValue.toLowerCase() ||
+             entry.emotion.toLowerCase() === filterValue.toLowerCase();
+    }
+
+    if (filterType === 'journey' && filterValue) {
+      // Filter by journey id
+      return entry.journey_id === filterValue;
+    }
+
+    return true;
+  });
+
+  // Clear filter when search query changes
+  useEffect(() => {
+    if (searchQuery && filterValue) {
+      setFilterValue(null);
+      setFilterType(null);
+    }
+  }, [searchQuery]);
+
+  // Close filter dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
+        setFilterOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Open entry dialog when ?entry=ID is present in URL
   useEffect(() => {
@@ -203,9 +248,104 @@ export function History() {
             className="pl-10"
           />
         </div>
-        <Button variant="outline" size="icon">
-          <Filter className="w-4 h-4" />
-        </Button>
+        
+        <div className="relative" ref={filterRef}>
+          <Button 
+            variant={filterValue ? "default" : "outline"} 
+            size="icon"
+            onClick={() => setFilterOpen(!filterOpen)}
+            aria-label="Filter entries"
+          >
+            <Filter className="w-4 h-4" />
+          </Button>
+          
+          {filterOpen && (
+            <div 
+              className="absolute right-0 mt-2 w-64 rounded-xl border shadow-lg z-50"
+              style={{
+                backgroundColor: 'var(--atmosphere-bg)',
+                borderColor: 'var(--atmosphere-border)',
+              }}
+            >
+              <div className="p-3 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-semibold text-atm-heading">Filter by</span>
+                  {filterValue && (
+                    <button
+                      onClick={() => {
+                        setFilterValue(null);
+                        setFilterType(null);
+                      }}
+                      className="text-xs text-atm-muted hover:text-atm-accent"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                
+{/* Emotion Dropdown */}
+                 <div>
+                   <label className="text-xs font-medium text-atm-muted mb-1 block">Emotion</label>
+                   <div className="relative">
+                     <select
+                       value={filterType === 'emotion' ? filterValue || '' : ''}
+                       onChange={(e) => {
+                         const value = e.target.value;
+                         if (value) {
+                           setFilterType('emotion');
+                           setFilterValue(value);
+                         } else {
+                           setFilterType(null);
+                           setFilterValue(null);
+                         }
+                         setFilterOpen(false);
+                       }}
+                       className="w-full appearance-none bg-atm-secondary border border-atm-border rounded-lg px-3 py-2 text-sm text-atm pr-10"
+                     >
+                       <option value="">All emotions</option>
+                       {allEmotions.map((emotion) => (
+                         <option key={emotion.id} value={emotion.id}>
+                           {emotion.nameEn}
+                         </option>
+                       ))}
+                     </select>
+                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-atm-muted pointer-events-none" />
+                   </div>
+                 </div>
+                 
+                 {/* Journey Dropdown */}
+                 <div>
+                   <label className="text-xs font-medium text-atm-muted mb-1 block">Journey</label>
+                   <div className="relative">
+                     <select
+                       value={filterType === 'journey' ? filterValue || '' : ''}
+                       onChange={(e) => {
+                         const value = e.target.value;
+                         if (value) {
+                           setFilterType('journey');
+                           setFilterValue(value);
+                         } else {
+                           setFilterType(null);
+                           setFilterValue(null);
+                         }
+                         setFilterOpen(false);
+                       }}
+                       className="w-full appearance-none bg-atm-secondary border border-atm-border rounded-lg px-3 py-2 text-sm text-atm pr-10"
+                     >
+                       <option value="">All journeys</option>
+                       {journeys.map((journey) => (
+                         <option key={journey.id} value={journey.id}>
+                           {journey.titleEn}
+                         </option>
+                       ))}
+                     </select>
+                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-atm-muted pointer-events-none" />
+                   </div>
+                 </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {loading && (

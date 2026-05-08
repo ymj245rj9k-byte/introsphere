@@ -11,6 +11,7 @@ export interface CalendarEntryData {
   date: string;
   emotion: string;
   emotionColor: string;
+  emotionId?: string | null;
   response: string;
   question?: string;
   created_at?: string;
@@ -592,6 +593,7 @@ export async function getAllEntries(
       date,
       emotion,
       emotionColor: entry.color || '#FFFFFF',
+      emotionId: entry.emotion_id,
       response: entry.content,
       created_at: entry.created_at || undefined,
       journey_id: entry.journey_id,
