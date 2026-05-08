@@ -61,7 +61,7 @@ export function EmotionDetails({ emotion, open, onClose, onConfirm }: EmotionDet
           <div>
             <h2 className="text-xl font-semibold text-foreground">{emotion.nameEn}</h2>
             {emotion.description && (
-              <p className="text-sm text-muted-foreground mt-1">{emotion.description}</p>
+              <p className="text-sm text-foreground mt-1">{emotion.description}</p>
             )}
           </div>
         </div>
@@ -77,14 +77,14 @@ export function EmotionDetails({ emotion, open, onClose, onConfirm }: EmotionDet
                   : 'border-border hover:border-muted-foreground/30 hover:scale-[1.02]'
               }`}
               style={{ 
-                backgroundColor: selectedSubEmotion?.id === emotion.id ? `${emotion.color}30` : `${emotion.color}20`, 
+                backgroundColor: selectedSubEmotion?.id === emotion.id ? emotion.color : `rgba(${parseInt(emotion.color.slice(1, 3), 16)}, ${parseInt(emotion.color.slice(3, 5), 16)}, ${parseInt(emotion.color.slice(5, 7), 16)}, 0.9)`, 
                 borderColor: emotion.color 
               }}
               onClick={() => setSelectedSubEmotion(emotion)}
             >
               <p className="font-medium text-foreground">Stay with {emotion.nameEn}</p>
               {emotion.description && (
-                <p className="text-xs text-muted-foreground mt-1">{emotion.description}</p>
+                <p className="text-xs text-foreground mt-1">{emotion.description}</p>
               )}
             </button>
 
@@ -99,14 +99,14 @@ export function EmotionDetails({ emotion, open, onClose, onConfirm }: EmotionDet
                       : 'border-border hover:border-muted-foreground/30 hover:scale-[1.02]'
                   }`}
                   style={{ 
-                    backgroundColor: selectedSubEmotion?.id === sub.id ? `${sub.color}30` : `${sub.color}20`, 
+                    backgroundColor: selectedSubEmotion?.id === sub.id ? sub.color : `rgba(${parseInt(sub.color.slice(1, 3), 16)}, ${parseInt(sub.color.slice(3, 5), 16)}, ${parseInt(sub.color.slice(5, 7), 16)}, 0.9)`, 
                     borderColor: sub.color 
                   }}
                   onClick={() => sub.id ? setSelectedSubEmotion(getEmotion(sub.id) as Emotion) : undefined}
                 >
                   <p className="font-medium text-foreground">{sub.nameEn}</p>
                   {fullEmotion?.description && (
-                    <p className="text-xs text-muted-foreground mt-1">{fullEmotion.description}</p>
+                    <p className="text-xs text-foreground mt-1">{fullEmotion.description}</p>
                   )}
                 </button>
               );

@@ -8,27 +8,27 @@ export function useHistory() {
   const [error, setError] = useState<Error | null>(null);
   const { user } = useAuthStore();
 
-  useEffect(() => {
-    async function fetchEntries() {
-      if (!user) {
-        setEntries([]);
-        setLoading(false);
-        return;
-      }
-
-      try {
-        setLoading(true);
-        const data = await getAllEntries(user.id);
-        setEntries(data);
-      } catch (err) {
-        setError(err instanceof Error ? err : new Error('Failed to fetch entries'));
-      } finally {
-        setLoading(false);
-      }
+  const fetchEntries = async () => {
+    if (!user) {
+      setEntries([]);
+      setLoading(false);
+      return;
     }
 
+    try {
+      setLoading(true);
+      const data = await getAllEntries(user.id);
+      setEntries(data);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to fetch entries'));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchEntries();
   }, [user]);
 
-  return { entries, loading, error };
+  return { entries, loading, error, mutate: fetchEntries }; // Expose the refresh function
 }

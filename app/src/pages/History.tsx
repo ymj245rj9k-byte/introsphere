@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Search, Filter, X } from 'lucide-react';
+import { Calendar, Search, Filter, X, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { useHistory } from '@/hooks/useHistory';
 import { useSearchParams } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
+import { deleteEntry } from '@/lib/database';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { toast } from 'sonner';
 import type { CalendarEntryData } from '@/lib/database';
 
 function formatDate(dateStr: string): string {
@@ -20,9 +24,20 @@ function formatDate(dateStr: string): string {
 interface ReflectionDetailDialogProps {
   entry: CalendarEntryData;
   onClose: () => void;
+  onDelete: (id: string) => void;
 }
 
-function ReflectionDetailDialog({ entry, onClose }: ReflectionDetailDialogProps) {
+function ReflectionDetailDialog({ entry, onClose, onDelete }: ReflectionDetailDialogProps) {
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
+  const handleDeleteClick = () => {
+    setConfirmOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    await onDelete(entry.id);
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -55,8 +70,16 @@ function ReflectionDetailDialog({ entry, onClose }: ReflectionDetailDialogProps)
           <X className="w-5 h-5" />
         </button>
 
+        <button
+          onClick={handleDeleteClick}
+          className="absolute top-4 left-4 p-1.5 rounded-lg text-atm-muted hover:text-destructive hover:bg-atm-secondary transition-colors"
+          aria-label="Delete entry"
+        >
+          <Trash2 className="w-4 h-4" />
+        </button>
+
         {/* Header */}
-        <div className="mb-4 flex-shrink-0">
+        <div className="mb-4 flex-shrink-0 pl-8">
           <div className="flex items-center gap-3 mb-2">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
@@ -100,6 +123,17 @@ function ReflectionDetailDialog({ entry, onClose }: ReflectionDetailDialogProps)
         >
           Close
         </Button>
+        
+        {/* Confirmation Dialog */}
+        <ConfirmDialog
+          isOpen={confirmOpen}
+          onClose={() => setConfirmOpen(false)}
+          onConfirm={handleConfirmDelete}
+          title="Delete Entry"
+          description="Are you sure you want to delete this entry? This action cannot be undone."
+          confirmText="Delete"
+          cancelText="Cancel"
+        />
       </div>
     </div>
   );
@@ -108,8 +142,9 @@ function ReflectionDetailDialog({ entry, onClose }: ReflectionDetailDialogProps)
 export function History() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedEntry, setSelectedEntry] = useState<CalendarEntryData | null>(null);
-  const { entries, loading, error } = useHistory();
+  const { entries, loading, error, mutate: refreshHistory } = useHistory();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { user } = useAuth();
 
   const filteredEntries = entries.filter(
     (entry) =>
@@ -131,6 +166,27 @@ export function History() {
 
   const handleCloseDialog = () => {
     setSelectedEntry(null);
+  };
+
+  const handleDeleteEntry = async (entryId: string) => {
+    if (!user) {
+      toast.error('You must be logged in to delete entries');
+      return;
+    }
+    
+    try {
+      const success = await deleteEntry(entryId, user.id);
+      if (success) {
+        toast.success('Entry deleted successfully');
+        refreshHistory(); // Refresh the history list
+        setSelectedEntry(null); // Close the dialog
+      } else {
+        toast.error('Failed to delete entry');
+      }
+    } catch (error) {
+      console.error('Error deleting entry:', error);
+      toast.error('An error occurred while deleting the entry');
+    }
   };
 
   return (
@@ -170,15 +226,26 @@ export function History() {
             {filteredEntries.map((entry) => (
               <Card
                 key={entry.id}
-                className="p-4 hover:bg-muted/50 cursor-pointer transition-colors"
+                className="p-4 hover:bg-muted/50 cursor-pointer transition-colors relative"
                 onClick={() => setSelectedEntry(entry)}
               >
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent opening the detail dialog
+                    handleDeleteEntry(entry.id);
+                  }}
+                  className="absolute top-2 right-2 p-1 rounded-lg text-atm-muted hover:text-destructive hover:bg-atm-secondary transition-colors z-10"
+                  aria-label="Delete entry"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+                
                 <div className="flex items-start gap-3">
                   <div
                     className="w-3 h-3 rounded-full mt-1.5 flex-shrink-0"
                     style={{ backgroundColor: entry.emotionColor }}
                   />
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 pr-6"> {/* Add right padding to account for delete button */}
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-medium text-foreground">{entry.emotion}</span>
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -202,7 +269,11 @@ export function History() {
       )}
 
       {selectedEntry && (
-        <ReflectionDetailDialog entry={selectedEntry} onClose={handleCloseDialog} />
+        <ReflectionDetailDialog 
+          entry={selectedEntry} 
+          onClose={handleCloseDialog} 
+          onDelete={handleDeleteEntry}
+        />
       )}
     </div>
   );

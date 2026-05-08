@@ -43,14 +43,15 @@
 - [x] Baza danych PostgreSQL
 
 ### Kolejne Etapy
-- [ ] Pełny kalendarz nastrojów z historią
-- [ ] Eksport PDF dzienników
-- [ ] Powiadomienia push
-- [ ] Zaawansowana analiza wzorców emocjonalnych
-- [ ] Panel statystyk i raportów
-- [ ] Tryb offline / synchronizacja
-- [ ] Wiele języków
-- [ ] Społecznościowe funkcje (anonimowe wsparcie)
+- [x] Delete entries from calendar and entries list
+- [ ] Full mood calendar with history
+- [ ] PDF export of journals
+- [ ] Push notifications
+- [ ] Advanced emotional pattern analysis
+- [ ] Statistics and reports panel
+- [ ] Offline mode / synchronization
+- [ ] Multiple languages
+- [ ] Social features (anonymous support)
 
 ## Zgodność ze Spec Driven Development
 Każda funkcjonalność ma swój wpis w zaimplementowanych planach z wersją i datą.

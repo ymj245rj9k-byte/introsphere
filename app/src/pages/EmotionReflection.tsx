@@ -174,7 +174,7 @@ export function EmotionReflection() {
       await saveMoodEntry({
         userId: user.id,
         emotionId: emotion.id,
-        emotionName: emotion.name,
+        emotionName: emotion.nameEn,
         color: emotion.color,
         response,
       });
@@ -208,7 +208,7 @@ export function EmotionReflection() {
               className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
               style={{ backgroundColor: emotion.color }}
             >
-              <span className="text-2xl text-white">{emotion.nameEn[0]}</span>
+              <span className="text-2xl text-black">{emotion.nameEn[0]}</span>
             </div>
               <div>
                 <p className="font-semibold text-xl text-foreground">{emotion.nameEn}</p>

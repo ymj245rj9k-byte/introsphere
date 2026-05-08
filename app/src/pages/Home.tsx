@@ -4,6 +4,7 @@ import { Flame, BookOpen, CalendarDays, Sparkles, TrendingUp } from 'lucide-reac
 import { useAuth } from '@/hooks/useAuth';
 import { useHomeStats } from '@/hooks/useHomeStats';
 
+// Days from Monday to Sunday
 const DAYS_SHORT = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
 export function Home() {
@@ -117,7 +118,7 @@ export function Home() {
             {topEmotion ? (
               <>
                 <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-black font-bold text-sm"
                   style={{ backgroundColor: topEmotion.color }}
                 >
                   {topEmotion.name[0]}
@@ -149,7 +150,7 @@ export function Home() {
           <p className="text-xs font-medium text-atm-muted mb-3 uppercase tracking-widest">This week</p>
           <div className="flex items-end gap-2">
             {DAYS_SHORT.map((day, i) => {
-              // weekActivity: [6 days ago, 5, 4, 3, 2, 1, today]
+              // weekActivity: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
               const count = weekActivity[i] || 0;
               // Scale: max height at 3 entries
               const heightPercent = Math.min((count / 3) * 100, 100);

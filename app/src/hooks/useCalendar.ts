@@ -8,7 +8,8 @@ export function useCalendar(user: User | null | undefined, year: number, month: 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
+  // Function to fetch calendar data
+  const fetchCalendarData = async () => {
     if (!user) {
       setEntriesMap({});
       setLoading(false);
@@ -37,16 +38,18 @@ export function useCalendar(user: User | null | undefined, year: number, month: 
     const startDate = gridStart.toISOString().split('T')[0];
     const endDate = gridEnd.toISOString().split('T')[0];
 
-    getCalendarEntriesForDateRange(user.id, startDate, endDate)
-      .then((data) => {
-        setEntriesMap(data);
-      })
-      .catch((err) => {
-        setError(err instanceof Error ? err : new Error('Failed to fetch calendar entries'));
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      const data = await getCalendarEntriesForDateRange(user.id, startDate, endDate);
+      setEntriesMap(data);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to fetch calendar entries'));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCalendarData();
   }, [user, year, month]);
 
   // Helper to get day entry for calendar grid
@@ -77,5 +80,6 @@ export function useCalendar(user: User | null | undefined, year: number, month: 
     loading,
     error,
     getDayEntry,
+    mutate: fetchCalendarData, // Expose the refresh function
   };
 }

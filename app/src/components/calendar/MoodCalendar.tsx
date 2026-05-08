@@ -22,7 +22,7 @@ export function MoodCalendar() {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
 
-  const { entriesMap, getDayEntry } = useCalendar(user, year, month);
+  const { entriesMap, getDayEntry, mutate: refreshCalendar } = useCalendar(user, year, month);
 
   const prevMonth = () => {
     setCurrentDate(new Date(year, month - 1, 1));
@@ -127,6 +127,10 @@ export function MoodCalendar() {
            entries={selectedEntries}
            open={showDialog}
            onClose={() => setShowDialog(false)}
+           onEntriesUpdate={() => {
+             // Refresh the calendar data after deletion
+             refreshCalendar();
+           }}
          />
        )}
     </div>

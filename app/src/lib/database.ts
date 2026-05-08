@@ -424,15 +424,26 @@ export async function getUserStats(userId: string): Promise<UserStats> {
 
 /**
  * Fetches week activity data for the home page.
- * Returns an array of 7 days with activity level (count of entries).
+ * Returns an array of 7 days with activity level (count of entries) from Monday to Sunday.
  */
 export async function getWeekActivity(userId: string): Promise<number[]> {
   const today = new Date();
-  const weekAgo = new Date();
-  weekAgo.setDate(weekAgo.getDate() - 6);
+  
+  // Calculate the start of the current week (Monday)
+  const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+  const daysFromMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // How many days since Monday
+  
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - daysFromMonday);
+  startOfWeek.setHours(0, 0, 0, 0);
 
-  const startDate = weekAgo.toISOString().split('T')[0];
-  const endDate = today.toISOString().split('T')[0];
+  // Calculate end of week (Sunday)
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+  endOfWeek.setHours(23, 59, 59, 999);
+
+  const startDate = startOfWeek.toISOString().split('T')[0];
+  const endDate = endOfWeek.toISOString().split('T')[0];
 
   const { data, error } = await supabase
     .from('mood_calendar')
@@ -446,27 +457,18 @@ export async function getWeekActivity(userId: string): Promise<number[]> {
     return [0, 0, 0, 0, 0, 0, 0];
   }
 
-  // Map dates to indices (0 = today, 1 = yesterday, etc.)
-  const activityMap: Record<string, number> = {};
+  // Create an array for the week [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+  const activity: number[] = [0, 0, 0, 0, 0, 0, 0];
+  
   data?.forEach((entry) => {
     const entryDate = new Date(entry.entry_date);
-    const todayMidnight = new Date(today);
-    todayMidnight.setHours(0, 0, 0, 0);
-    const entryMidnight = new Date(entryDate);
-    entryMidnight.setHours(0, 0, 0, 0);
-    const diffDays = Math.floor((todayMidnight.getTime() - entryMidnight.getTime()) / (1000 * 60 * 60 * 24));
-    if (diffDays >= 0 && diffDays < 7) {
-      activityMap[diffDays.toString()] = (activityMap[diffDays.toString()] || 0) + 1;
-    }
+    const entryDayOfWeek = entryDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    // Convert day of week to index in our array (Monday = 0, Tuesday = 1, ..., Sunday = 6)
+    const index = entryDayOfWeek === 0 ? 6 : entryDayOfWeek - 1;
+    activity[index]++;
   });
 
-  // Convert to array [today, yesterday, ...]
-  const activity: number[] = [];
-  for (let i = 0; i < 7; i++) {
-    activity.push(activityMap[i.toString()] || 0);
-  }
-
-  return activity.reverse(); // Return as [6 days ago, 5, 4, 3, 2, 1, today]
+  return activity; // Return as [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
 }
 
 /**
@@ -595,6 +597,24 @@ export async function getAllEntries(
       journey_id: entry.journey_id,
     };
   });
+}
+
+/**
+ * Deletes a calendar entry by ID
+ */
+export async function deleteEntry(entryId: string, userId: string): Promise<boolean> {
+  const { error } = await supabase
+    .from('calendar_entries')
+    .delete()
+    .eq('id', entryId)
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('Error deleting entry:', error);
+    return false;
+  }
+
+  return true;
 }
 
 /**
