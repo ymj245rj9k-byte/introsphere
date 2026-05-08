@@ -29,6 +29,7 @@ export interface MoodCalendarDayEntry {
   response?: string;
   question?: string;
   allColors?: string[];
+  journey_id?: string | null;
 }
 
 export interface UserStats {
@@ -227,39 +228,39 @@ export async function getCalendarEntriesForDateRange(
     .eq('user_id', userId)
     .gte('entry_date', startDate)
     .lte('entry_date', endDate)
-    .order('entry_date', { ascending: true });
+     .order('entry_date', { ascending: true });
 
-  if (error) {
-    console.error('Error fetching calendar entries:', error);
-    return {};
-  }
+   if (error) {
+     console.error('Error fetching calendar entries:', error);
+     return {};
+   }
 
-  const entriesMap: Record<string, CalendarEntryData[]> = {};
+   const entriesMap: Record<string, CalendarEntryData[]> = {};
 
-  data?.forEach((day) => {
-    const dateKey = day.entry_date;
-    if (day.entries && Array.isArray(day.entries)) {
-      entriesMap[dateKey] = (day.entries as CalendarEntryRow[]).map((entry) => {
-        let emotion = entry.emotion_name;
-        if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
-          emotion = staticJourneyMap.get(entry.journey_id)!;
-        }
-        if (!emotion) emotion = 'Unknown';
-        return {
-          id: entry.id,
-          date: dateKey,
-          emotion,
-          emotionColor: entry.color || '#FFFFFF',
-          response: entry.content,
-          created_at: entry.created_at || undefined,
-          journey_id: entry.journey_id ?? null,
-          journey_day: entry.journey_day ?? null,
-        };
-      });
-    }
-  });
+   data?.forEach((day) => {
+     const dateKey = day.entry_date;
+     if (day.entries && Array.isArray(day.entries)) {
+       entriesMap[dateKey] = (day.entries as CalendarEntryRow[]).map((entry) => {
+         let emotion = entry.emotion_name;
+         if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
+           emotion = staticJourneyMap.get(entry.journey_id)!;
+         }
+         if (!emotion) emotion = 'Notes';
+         return {
+           id: entry.id,
+           date: dateKey,
+           emotion,
+           emotionColor: entry.color || '#FFFFFF',
+           response: entry.content,
+           created_at: entry.created_at || undefined,
+           journey_id: entry.journey_id ?? null,
+           journey_day: entry.journey_day ?? null,
+         };
+       });
+     }
+   });
 
-  return entriesMap;
+   return entriesMap;
 }
 
 /**
@@ -308,28 +309,28 @@ export async function getCalendarEntriesForMonth(
   // Transform into map: date -> entries
   const entriesMap: Record<string, CalendarEntryData[]> = {};
 
-  data?.forEach((day) => {
-    const dateKey = day.entry_date;
-    if (day.entries && Array.isArray(day.entries)) {
-      entriesMap[dateKey] = (day.entries as CalendarEntryRow[]).map((entry) => {
-        let emotion = entry.emotion_name;
-        if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
-          emotion = staticJourneyMap.get(entry.journey_id)!;
-        }
-        if (!emotion) emotion = 'Unknown';
-        return {
-          id: entry.id,
-          date: dateKey,
-          emotion,
-          emotionColor: entry.color || '#FFFFFF',
-          response: entry.content,
-          created_at: entry.created_at || undefined,
-          journey_id: entry.journey_id ?? null,
-          journey_day: entry.journey_day ?? null,
-        };
-      });
-    }
-  });
+       data?.forEach((day) => {
+         const dateKey = day.entry_date;
+         if (day.entries && Array.isArray(day.entries)) {
+           entriesMap[dateKey] = (day.entries as CalendarEntryRow[]).map((entry) => {
+             let emotion = entry.emotion_name;
+             if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
+               emotion = staticJourneyMap.get(entry.journey_id)!;
+             }
+             if (!emotion) emotion = 'Notes';
+             return {
+               id: entry.id,
+               date: dateKey,
+               emotion,
+               emotionColor: entry.color || '#FFFFFF',
+               response: entry.content,
+               created_at: entry.created_at || undefined,
+               journey_id: entry.journey_id ?? null,
+               journey_day: entry.journey_day ?? null,
+             };
+           });
+         }
+       });
 
   return entriesMap;
 }
@@ -581,12 +582,12 @@ export async function getAllEntries(
       date = entry.created_at.split('T')[0]; // YYYY-MM-DD from timestamp
     }
 
-    // Determine emotion display name
-    let emotion = entry.emotion_name;
-    if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
-      emotion = staticJourneyMap.get(entry.journey_id);
-    }
-    if (!emotion) emotion = 'Unknown';
+     // Determine emotion display name
+     let emotion = entry.emotion_name;
+     if (!emotion && entry.journey_id && staticJourneyMap.has(entry.journey_id)) {
+       emotion = staticJourneyMap.get(entry.journey_id);
+     }
+     if (!emotion) emotion = 'Notes';
 
     return {
       id: entry.id,

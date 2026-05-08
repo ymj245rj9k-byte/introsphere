@@ -6,6 +6,8 @@ interface CalendarDayData {
   emotionColor?: string;
   emotion?: string;
   allColors?: string[];
+  journey_id?: string | null;
+  isQuickEntry?: boolean; // For entries without emotion (quick entries)
 }
 
 interface CalendarDayProps {
@@ -15,6 +17,7 @@ interface CalendarDayProps {
 
 export function CalendarDay({ day, onClick }: CalendarDayProps) {
   const colors = day.allColors?.length ? day.allColors : (day.emotionColor ? [day.emotionColor] : []);
+  const isQuick = day.emotion === 'Notes' && !day.journey_id; // Identify quick entries
   
   return (
         <button
@@ -27,21 +30,31 @@ export function CalendarDay({ day, onClick }: CalendarDayProps) {
             text-center relative
           `}
           disabled={!day.hasEntry}
-          aria-label={day.hasEntry && day.emotion ? `${day.emotion} on ${day.date}` : undefined}
+          aria-label={day.hasEntry && !isQuick ? `${day.emotion} on ${day.date}` : day.hasEntry && isQuick ? `Quick entry on ${day.date}` : undefined}
         >
-        <span className="text-sm font-medium">{day.date}</span>
-        {day.hasEntry && colors.length > 0 && (
-          <div className="flex gap-0.5 mt-1">
-            {colors.slice(0, 3).map((color, i) => (
-              <div
-                key={i}
-                className="w-2 h-2 rounded-full border border-white/50 shadow-sm"
-                style={{ backgroundColor: color }}
-                aria-hidden="true"
-              />
-            ))}
-          </div>
-        )}
-      </button>
+          <span className="text-sm font-medium">{day.date}</span>
+          {day.hasEntry && (
+            <div className="flex gap-0.5 mt-1">
+              {/* Show emotion colors for regular entries, special indicator for quick entries */}
+              {!isQuick && colors.slice(0, 3).map((color, i) => (
+                <div
+                  key={i}
+                  className="w-2 h-2 rounded-full border border-white/50 shadow-sm"
+                  style={{ backgroundColor: color }}
+                  aria-hidden="true"
+                />
+              ))}
+              
+              {/* Show quick entry indicator */}
+              {isQuick && (
+                <div
+                  className="w-2 h-2 rounded-full border border-white/50 shadow-sm"
+                  style={{ backgroundColor: 'var(--atmosphere-accent, #8B5CF6)' }}
+                  aria-hidden="true"
+                />
+              )}
+            </div>
+          )}
+        </button>
   );
 }

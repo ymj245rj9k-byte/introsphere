@@ -31,6 +31,7 @@
 - [x] History
 - [x] Settings
 - [x] HowItWorks
+- [x] Quick Entry (New Entry - clear)
 
 ### Architektura
 - [x] React 18 + Vite

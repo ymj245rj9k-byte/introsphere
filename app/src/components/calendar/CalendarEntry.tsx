@@ -21,6 +21,11 @@ interface CalendarEntry {
   journey_day?: number | null;
 }
 
+// Add a helper to determine if this is a quick entry (no emotion)
+const isQuickEntry = (entry: CalendarEntry) => {
+  return !entry.emotion || entry.emotion === 'Unknown';
+};
+
 interface CalendarEntryDialogProps {
   entries: CalendarEntry[];
   open: boolean;
@@ -118,14 +123,25 @@ export function CalendarEntryDialog({ entries, open, onClose, onEntriesUpdate }:
               </button>
               
               <div className="flex items-center gap-3 mb-3">
-<div
-                   className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                   style={{ backgroundColor: entry.emotionColor }}
-                 >
-                   <span className="text-lg font-bold text-black">{entry.emotion[0]}</span>
-                 </div>
+                {/* Emotion indicator or quick entry indicator */}
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{ 
+                    backgroundColor: isQuickEntry(entry) 
+                      ? 'var(--atmosphere-accent, #8B5CF6)' 
+                      : entry.emotionColor 
+                  }}
+                >
+                  {isQuickEntry(entry) ? (
+                    <span className="text-lg font-bold text-white">Q</span>
+                  ) : (
+                    <span className="text-lg font-bold text-black">{entry.emotion[0]}</span>
+                  )}
+                </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-atm-heading">{entry.emotion}</h3>
+                  <h3 className="font-semibold text-atm-heading">
+                    {isQuickEntry(entry) ? 'Quick Entry' : entry.emotion}
+                  </h3>
                   <p className="text-sm text-atm-muted flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {entry.date}

@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 import { journeys } from '@/data/journeys';
 import { EmotionWheel } from '@/components/emotion-wheel';
 
 export function HowItWorks() {
-
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: 'var(--atmosphere-bg)' }}>
 
-      {/* HERO */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
+       {/* HERO */}
+       <section className="relative py-8 md:py-16 overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute top-12 left-1/4 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: 'var(--atmosphere-accent)', opacity: 0.1 }} />
           <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full blur-3xl" style={{ backgroundColor: 'var(--atmosphere-accent)', opacity: 0.08 }} />
@@ -26,17 +27,17 @@ export function HowItWorks() {
         </div>
       </section>
 
-      {/* STEP 1 */}
-      <section className="py-16 md:py-24">
+       {/* STEP 1 */}
+       <section className="pt-8 md:pt-16 pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-5">
               <h2 className="text-3xl md:text-4xl leading-[1.3] font-medium text-atm">
                 Pick an emotion
               </h2>
-              <p className="text-base leading-relaxed text-atm">
-                Start at the Emotion Wheel. 8 primary emotions arranged in a circle, each with 3 intensity levels.
-              </p>
+               <p className="text-base leading-relaxed text-atm">
+                 Start at the Emotion Wheel (<Link to={ROUTES.SESSION} className="underline">Session</Link>). 8 primary emotions arranged in a circle, each with 3 intensity levels.
+               </p>
             </div>
             <div className="flex justify-center pointer-events-none">
               <EmotionWheel size={320} />

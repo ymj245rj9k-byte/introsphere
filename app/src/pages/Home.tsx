@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants';
-import { Flame, BookOpen, CalendarDays, Sparkles, TrendingUp } from 'lucide-react';
+import { Flame, BookOpen, CalendarDays, Sparkles, TrendingUp, FileText } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useHomeStats } from '@/hooks/useHomeStats';
 
@@ -20,10 +20,10 @@ export function Home() {
         </div>
 
         {/* Quick actions */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           <Link
             to={ROUTES.SESSION}
-            className="group flex flex-col gap-2 p-4 rounded-xl border transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="group flex flex-col gap-2 p-4 rounded-xl border transition-all hover:scale-[1.02] active:scale-[0.98] col-span-2"
             style={{
               backgroundColor: 'var(--atmosphere-bg-secondary)',
               borderColor: 'var(--atmosphere-border)',
@@ -71,6 +71,20 @@ export function Home() {
             <TrendingUp className="w-5 h-5 text-atm-accent" />
             <span className="font-medium text-atm text-sm leading-snug">Reflections</span>
             <span className="text-xs text-atm-muted">My entries</span>
+          </Link>
+
+          {/* Quick Entry */}
+          <Link
+            to="/quick-entry"
+            className="group flex flex-col gap-2 p-4 rounded-xl border transition-all hover:scale-[1.02] active:scale-[0.98]"
+            style={{
+              backgroundColor: 'var(--atmosphere-bg-secondary)',
+              borderColor: 'var(--atmosphere-border)',
+            }}
+          >
+            <FileText className="w-5 h-5 text-atm-accent" />
+            <span className="font-medium text-atm text-sm leading-snug">Quick Entry</span>
+            <span className="text-xs text-atm-muted">Fast notes</span>
           </Link>
         </div>
 

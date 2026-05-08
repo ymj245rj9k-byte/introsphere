@@ -52,28 +52,29 @@ export function useCalendar(user: User | null | undefined, year: number, month: 
     fetchCalendarData();
   }, [user, year, month]);
 
-  // Helper to get day entry for calendar grid
-  const getDayEntry = (day: number, isCurrentMonth: boolean, useYear?: number, useMonth?: number): MoodCalendarDayEntry => {
-    const displayYear = useYear ?? year;
-    const displayMonth = useMonth ?? month;
-    const dateKey = `${displayYear}-${String(displayMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    const dayEntries = entriesMap[dateKey] || [];
-    
-    // Take first entry for display (color, emotion)
-    const firstEntry = dayEntries[0];
-    
-    return {
-      date: day,
-      dateKey,
-      hasEntry: dayEntries.length > 0,
-      isCurrentMonth,
-      emotionColor: firstEntry?.emotionColor,
-      emotion: firstEntry?.emotion,
-      response: firstEntry?.response,
-      question: firstEntry?.question,
-      allColors: dayEntries.map(e => e.emotionColor).filter(Boolean) as string[],
-    };
-  };
+   // Helper to get day entry for calendar grid
+   const getDayEntry = (day: number, isCurrentMonth: boolean, useYear?: number, useMonth?: number): MoodCalendarDayEntry => {
+     const displayYear = useYear ?? year;
+     const displayMonth = useMonth ?? month;
+     const dateKey = `${displayYear}-${String(displayMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+     const dayEntries = entriesMap[dateKey] || [];
+     
+     // Take first entry for display (color, emotion)
+     const firstEntry = dayEntries[0];
+     
+     return {
+       date: day,
+       dateKey,
+       hasEntry: dayEntries.length > 0,
+       isCurrentMonth,
+       emotionColor: firstEntry?.emotionColor,
+       emotion: firstEntry?.emotion,
+       response: firstEntry?.response,
+       question: firstEntry?.question,
+       allColors: dayEntries.map(e => e.emotionColor).filter(Boolean) as string[],
+       journey_id: firstEntry?.journey_id ?? null,
+     };
+   };
 
   return {
     entriesMap,
