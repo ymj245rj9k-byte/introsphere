@@ -49,6 +49,25 @@ VALUES
 ('anticipation', 'Antcypacja', 'Anticipation', 'positive', NULL, NULL, TRUE);
 
 
+INSERT INTO emotions (id, name, name_en, description, spectrum, parent_id, wheel_position, is_active) VALUES
+  ('joy',          'Joy',          'Joy',          'Simple pleasure and delight',      'positive', NULL, 0,   true),
+  ('trust',        'Trust',        'Trust',        'Confident reliance on someone',    'positive', NULL, 45,  true),
+  ('fear',         'Fear',         'Fear',         'Unpleasant feeling about danger',  'negative', NULL, 90,  true),
+  ('surprise',     'Surprise',     'Surprise',     'Unexpected discovery or event',    'neutral',  NULL, 135, true),
+  ('sadness',      'Sadness',      'Sadness',      'Feeling of unhappiness and grief', 'negative', NULL, 180, true),
+  ('disgust',      'Disgust',      'Disgust',      'Strong dislike and revulsion',     'negative', NULL, 225, true),
+  ('anger',        'Anger',        'Anger',        'Strong displeasure and hostility', 'negative', NULL, 270, true),
+  ('anticipation', 'Anticipation', 'Anticipation', 'Expectation and excitement',       'neutral',  NULL, 315, true)
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  name_en = EXCLUDED.name_en,
+  description = EXCLUDED.description,
+  spectrum = EXCLUDED.spectrum,
+  parent_id = EXCLUDED.parent_id,
+  wheel_position = EXCLUDED.wheel_position,
+  is_active = EXCLUDED.is_active;
+
+  
 ALTER TABLE user_settings ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Own settings select"
