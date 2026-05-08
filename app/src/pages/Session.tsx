@@ -39,6 +39,7 @@ export function Session() {
         <div className="flex flex-col items-center">
           <EmotionWheel
             onSelect={handleEmotionSelect}
+            size={480}
           />
         </div>
 

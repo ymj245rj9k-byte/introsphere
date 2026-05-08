@@ -149,19 +149,19 @@ export function EmotionWheel({ onSelect, selectedId, size = 600 }: EmotionWheelP
                 }}
               />
               {/* Emotion label */}
-              <text
-                x={center + (radius * 0.78) * Math.cos(((angle - 90) * Math.PI) / 180)}
-                y={center + (radius * 0.78) * Math.sin(((angle - 90) * Math.PI) / 180)}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className="fill-foreground font-medium pointer-events-none select-none emotion-label"
-                style={{ 
-                  fontSize: size < 250 ? '8px' : size < 500 ? '10px' : '14px',
-                  fontFamily: 'var(--atmosphere-font-body, sans-serif)'
-                }}
-              >
-                {emotion.nameEn}
-              </text>
+               <text
+                 x={center + (radius * 0.78) * Math.cos(((angle - 90) * Math.PI) / 180)}
+                 y={center + (radius * 0.78) * Math.sin(((angle - 90) * Math.PI) / 180)}
+                 textAnchor="middle"
+                 dominantBaseline="middle"
+                 className="fill-foreground font-medium pointer-events-none select-none emotion-label"
+                 style={{
+                   fontSize: size < 300 ? '12px' : size < 500 ? '16px' : '20px',
+                   fontFamily: 'var(--atmosphere-font-body, sans-serif)'
+                 }}
+               >
+                 {emotion.nameEn}
+               </text>
             </g>
           );
         })}
