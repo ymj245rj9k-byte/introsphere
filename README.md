@@ -53,8 +53,8 @@ Introsphere to guided journaling app, która prowadzi cię przez pytania dopasow
 
 | Plan | Co w cenie | Cena |
 |------|------------|------|
-| **Free** | 3 sesje/miesiąc, kalendarz nastrojów (tylko bieżący miesiąc), 8 atmosfer | 0 PLN |
-| **Premium** | Nieograniczone sesje, pełny kalendarz (wszystkie miesiące), eksport PDF, więcej statystyk | 9.99 PLN/mc |
+| **Free** | kalendarz nastrojów (tylko bieżący miesiąc), 8 atmosfer | 0 PLN |
+| **Premium** |  pełny kalendarz (wszystkie miesiące), eksport PDF, więcej statystyk | 9.99 PLN/mc |
 | **Lifetime** | Wszystko Premium, jeden raz | 99 PLN |
 
 ---
