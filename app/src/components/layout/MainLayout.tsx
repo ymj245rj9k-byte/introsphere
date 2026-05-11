@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { BookOpen, Home, Calendar, PlusCircle, Settings, Sun, Moon, LogOut, List, MoreHorizontal } from 'lucide-react';
+import { BookOpen, Home, Calendar, PlusCircle, Settings, Sun, Moon, List, MoreHorizontal } from 'lucide-react';
 import { ROUTES } from '@/constants';
 import { AtmospherePicker } from '@/components/ui/AtmospherePicker';
 import { useThemeStore } from '@/stores/themeStore';
