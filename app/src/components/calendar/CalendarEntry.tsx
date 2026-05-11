@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, X, ArrowRight, MapPin, Trash2 } from 'lucide-react';
+import { Calendar, X, ArrowRight, MapPin, Trash2, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { journeys as staticJourneys } from '@/data/journeys';
@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { deleteEntry } from '@/lib/database';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { toast } from 'sonner';
+import { useSessionStore } from '@/stores/sessionStore';
 
 const journeyTitleMap = new Map(staticJourneys.map((j) => [j.id, j.title]));
 
@@ -40,6 +41,7 @@ export function CalendarEntryDialog({ entries, open, onClose, onEntriesUpdate }:
   const { user } = useAuth();
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState<CalendarEntry | null>(null);
+  const incrementEntryDeletedCount = useSessionStore((s) => s.incrementEntryDeletedCount);
 
   if (!open || !entries || entries.length === 0) return null;
 
@@ -55,11 +57,12 @@ export function CalendarEntryDialog({ entries, open, onClose, onEntriesUpdate }:
 
   const handleConfirmDelete = async () => {
     if (!entryToDelete || !user) return;
-    
+
     try {
       const success = await deleteEntry(entryToDelete.id, user.id);
       if (success) {
         toast.success('Entry deleted successfully');
+        incrementEntryDeletedCount();
         if (onEntriesUpdate) {
           onEntriesUpdate(); // Refresh the calendar view
         }
@@ -191,7 +194,17 @@ export function CalendarEntryDialog({ entries, open, onClose, onEntriesUpdate }:
           onClose={() => setConfirmOpen(false)}
           onConfirm={handleConfirmDelete}
           title="Delete Entry"
-          description="Are you sure you want to delete this entry? This action cannot be undone."
+          description={
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <AlertTriangle className="w-4 h-4 text-yellow-500 flex-shrink-0" />
+                <span>Are you sure you want to delete this entry?</span>
+              </div>
+              {entries.length === 1 && (
+                <span className="text-sm text-yellow-600">This is the only entry for this day — deleting it will reset your streak.</span>
+              )}
+            </div>
+          }
           confirmText="Delete"
           cancelText="Cancel"
         />

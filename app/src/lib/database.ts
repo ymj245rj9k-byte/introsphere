@@ -430,11 +430,11 @@ export async function getUserStats(userId: string): Promise<UserStats> {
  */
 export async function getWeekActivity(userId: string): Promise<number[]> {
   const today = new Date();
-  
+
   // Calculate the start of the current week (Monday)
   const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
   const daysFromMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // How many days since Monday
-  
+
   const startOfWeek = new Date(today);
   startOfWeek.setDate(today.getDate() - daysFromMonday);
   startOfWeek.setHours(0, 0, 0, 0);
@@ -444,8 +444,16 @@ export async function getWeekActivity(userId: string): Promise<number[]> {
   endOfWeek.setDate(startOfWeek.getDate() + 6);
   endOfWeek.setHours(23, 59, 59, 999);
 
-  const startDate = startOfWeek.toISOString().split('T')[0];
-  const endDate = endOfWeek.toISOString().split('T')[0];
+  // Format dates as local YYYY-MM-DD to avoid timezone issues
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const startDate = formatDate(startOfWeek);
+  const endDate = formatDate(endOfWeek);
 
   const { data, error } = await supabase
     .from('mood_calendar')
@@ -461,12 +469,17 @@ export async function getWeekActivity(userId: string): Promise<number[]> {
 
   // Create an array for the week [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
   const activity: number[] = [0, 0, 0, 0, 0, 0, 0];
-  
+
+  // Helper to get local date key from entry date string
+  const getLocalWeekdayIndex = (dateStr: string): number => {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    const entryDayOfWeek = date.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    return entryDayOfWeek === 0 ? 6 : entryDayOfWeek - 1;
+  };
+
   data?.forEach((entry) => {
-    const entryDate = new Date(entry.entry_date);
-    const entryDayOfWeek = entryDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-    // Convert day of week to index in our array (Monday = 0, Tuesday = 1, ..., Sunday = 6)
-    const index = entryDayOfWeek === 0 ? 6 : entryDayOfWeek - 1;
+    const index = getLocalWeekdayIndex(entry.entry_date);
     activity[index]++;
   });
 
@@ -603,9 +616,24 @@ export async function getAllEntries(
 }
 
 /**
- * Deletes a calendar entry by ID
+ * Deletes a calendar entry by ID.
+ * Also cleans up the mood_calendar entry if this was the last entry for that day.
  */
 export async function deleteEntry(entryId: string, userId: string): Promise<boolean> {
+  // First, get the calendar_id of the entry being deleted so we can check if cleanup is needed
+  const { data: entry, error: fetchError } = await supabase
+    .from('calendar_entries')
+    .select('calendar_id')
+    .eq('id', entryId)
+    .eq('user_id', userId)
+    .single();
+
+  if (fetchError) {
+    console.error('Error fetching entry for deletion:', fetchError);
+    return false;
+  }
+
+  // Delete the calendar entry
   const { error } = await supabase
     .from('calendar_entries')
     .delete()
@@ -615,6 +643,24 @@ export async function deleteEntry(entryId: string, userId: string): Promise<bool
   if (error) {
     console.error('Error deleting entry:', error);
     return false;
+  }
+
+  // If this entry had a calendar_id, check if there are remaining entries for that day.
+  // If not, delete the mood_calendar entry so the streak is recalculated correctly.
+  if (entry?.calendar_id) {
+    const { count, error: countError } = await supabase
+      .from('calendar_entries')
+      .select('*', { count: 'exact', head: true })
+      .eq('calendar_id', entry.calendar_id);
+
+    if (!countError && count !== null && count === 0) {
+      // No more entries reference this mood_calendar row — delete it
+      await supabase
+        .from('mood_calendar')
+        .delete()
+        .eq('id', entry.calendar_id)
+        .eq('user_id', userId);
+    }
   }
 
   return true;

@@ -7,7 +7,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useCalendar } from '@/hooks/useCalendar';
 import type { MoodCalendarDayEntry, CalendarEntryData } from '@/lib/database';
 
-const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
@@ -44,7 +44,7 @@ export function MoodCalendar() {
 
   // Generate 6-week grid (42 days)
   const firstDay = new Date(year, month, 1);
-  const startingDayOfWeek = firstDay.getDay();
+  const startingDayOfWeek = (firstDay.getDay() + 6) % 7;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   const days: MoodCalendarDayEntry[] = [];

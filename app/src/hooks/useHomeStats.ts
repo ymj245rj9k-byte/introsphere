@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
-import type { User } from '@supabase/supabase-js';
-import { getUserStats, getWeekActivity } from '@/lib/database';
+import { useState, useEffect, useCallback, useRef } from "react";
+import type { User } from "@supabase/supabase-js";
+import { getUserStats, getWeekActivity } from "@/lib/database";
+import { useSessionStore } from "@/stores/sessionStore";
 
 export function useHomeStats(user: User | null | undefined) {
   const [stats, setStats] = useState<{
@@ -11,8 +12,10 @@ export function useHomeStats(user: User | null | undefined) {
   const [weekActivity, setWeekActivity] = useState<number[]>([0, 0, 0, 0, 0, 0, 0]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const deletedCount = useSessionStore((s) => s.entryDeletedCount);
+  const deletedCountRef = useRef(deletedCount);
 
-  useEffect(() => {
+  const fetchStats = useCallback(() => {
     if (!user) {
       setStats(null);
       setWeekActivity([0, 0, 0, 0, 0, 0, 0]);
@@ -32,12 +35,24 @@ export function useHomeStats(user: User | null | undefined) {
         setWeekActivity(activity);
       })
       .catch((err) => {
-        setError(err instanceof Error ? err : new Error('Failed to fetch stats'));
+        setError(err instanceof Error ? err : new Error("Failed to fetch stats"));
       })
       .finally(() => {
         setLoading(false);
       });
   }, [user]);
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
+
+  // Re-fetch when an entry is deleted (detected via deletedCount change)
+  useEffect(() => {
+    if (deletedCountRef.current !== deletedCount && deletedCount > 0) {
+      deletedCountRef.current = deletedCount;
+      fetchStats();
+    }
+  }, [deletedCount, fetchStats]);
 
   return {
     streakDays: stats?.streakDays ?? 0,
@@ -46,5 +61,6 @@ export function useHomeStats(user: User | null | undefined) {
     weekActivity,
     loading,
     error,
+    mutate: fetchStats,
   };
 }

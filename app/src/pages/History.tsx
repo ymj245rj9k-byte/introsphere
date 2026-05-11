@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Calendar, Search, Filter, X, Trash2, ChevronDown } from 'lucide-react';
+import { Calendar, Search, Filter, X, Trash2, ChevronDown, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { deleteEntry } from '@/lib/database';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { toast } from 'sonner';
+import { useSessionStore } from '@/stores/sessionStore';
 import type { CalendarEntryData } from '@/lib/database';
 import { level3Emotions, subSpectrumEmotions } from '@/data/emotions';
 import { journeys } from '@/data/journeys';
@@ -30,9 +31,10 @@ interface ReflectionDetailDialogProps {
   entry: CalendarEntryData;
   onClose: () => void;
   onDelete: (id: string) => void;
+  entries: CalendarEntryData[];
 }
 
-function ReflectionDetailDialog({ entry, onClose, onDelete }: ReflectionDetailDialogProps) {
+function ReflectionDetailDialog({ entry, onClose, onDelete, entries }: ReflectionDetailDialogProps) {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const handleDeleteClick = () => {
@@ -135,7 +137,17 @@ function ReflectionDetailDialog({ entry, onClose, onDelete }: ReflectionDetailDi
           onClose={() => setConfirmOpen(false)}
           onConfirm={handleConfirmDelete}
           title="Delete Entry"
-          description="Are you sure you want to delete this entry? This action cannot be undone."
+          description={
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <AlertTriangle className="w-4 h-4 text-yellow-500 flex-shrink-0" />
+                <span>Are you sure you want to delete this entry?</span>
+              </div>
+              {entries.filter(e => e.date === entry.date).length === 1 && (
+                <span className="text-sm text-yellow-600">This is the only entry for today — deleting it will reset your streak.</span>
+              )}
+            </div>
+          }
           confirmText="Delete"
           cancelText="Cancel"
         />
@@ -150,10 +162,13 @@ export function History() {
   const [filterType, setFilterType] = useState<'emotion' | 'journey' | null>(null);
   const [filterValue, setFilterValue] = useState<string | null>(null);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [entryToDelete, setEntryToDelete] = useState<CalendarEntryData | null>(null);
   const filterRef = useRef<HTMLDivElement>(null);
   const { entries, loading, error, mutate: refreshHistory } = useHistory();
   const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useAuth();
+  const incrementEntryDeletedCount = useSessionStore((s) => s.incrementEntryDeletedCount);
 
   const filteredEntries = entries.filter((entry) => {
     // First apply text search filter
@@ -213,18 +228,44 @@ export function History() {
     setSelectedEntry(null);
   };
 
+  const handleDeleteClick = (entry: CalendarEntryData) => {
+    setEntryToDelete(entry);
+    setDeleteConfirmOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!entryToDelete || !user) return;
+
+    try {
+      const success = await deleteEntry(entryToDelete.id, user.id);
+      if (success) {
+        toast.success('Entry deleted successfully');
+        incrementEntryDeletedCount();
+        refreshHistory();
+        setDeleteConfirmOpen(false);
+        setEntryToDelete(null);
+      } else {
+        toast.error('Failed to delete entry');
+      }
+    } catch (error) {
+      console.error('Error deleting entry:', error);
+      toast.error('An error occurred while deleting the entry');
+    }
+  };
+
   const handleDeleteEntry = async (entryId: string) => {
     if (!user) {
       toast.error('You must be logged in to delete entries');
       return;
     }
-    
+
     try {
       const success = await deleteEntry(entryId, user.id);
       if (success) {
         toast.success('Entry deleted successfully');
+        incrementEntryDeletedCount();
         refreshHistory(); // Refresh the history list
-        setSelectedEntry(null); // Close the dialog
+        setSelectedEntry(null); // Close the dialog if open
       } else {
         toast.error('Failed to delete entry');
       }
@@ -372,9 +413,9 @@ export function History() {
                 <button
                   onClick={(e) => {
                     e.stopPropagation(); // Prevent opening the detail dialog
-                    handleDeleteEntry(entry.id);
+                    handleDeleteClick(entry);
                   }}
-                  className="absolute top-2 right-2 p-1 rounded-lg text-atm-muted hover:text-destructive hover:bg-atm-secondary transition-colors z-10"
+                  className="absolute top-2 right-2 p-1.5 rounded-lg text-atm-muted hover:text-destructive hover:bg-atm-secondary transition-colors z-10"
                   aria-label="Delete entry"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -409,12 +450,34 @@ export function History() {
       )}
 
       {selectedEntry && (
-        <ReflectionDetailDialog 
-          entry={selectedEntry} 
-          onClose={handleCloseDialog} 
+        <ReflectionDetailDialog
+          entry={selectedEntry}
+          onClose={handleCloseDialog}
           onDelete={handleDeleteEntry}
+          entries={entries}
         />
       )}
+
+      {/* Confirmation Dialog for list view deletion */}
+      <ConfirmDialog
+        isOpen={deleteConfirmOpen}
+        onClose={() => setDeleteConfirmOpen(false)}
+        onConfirm={handleConfirmDelete}
+        title="Delete Entry"
+        description={
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <AlertTriangle className="w-4 h-4 text-yellow-500 flex-shrink-0" />
+              <span>Are you sure you want to delete this entry?</span>
+            </div>
+            {entryToDelete && entries.filter(e => e.date === entryToDelete.date).length === 1 && (
+              <span className="text-sm text-yellow-600">This is the only entry for this day — deleting it will reset your streak.</span>
+            )}
+          </div>
+        }
+        confirmText="Delete"
+        cancelText="Cancel"
+      />
     </div>
   );
 }
