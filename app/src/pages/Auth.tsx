@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, LogIn } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, LogIn, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { AuthLayout } from '@/components/layout/AuthLayout';
@@ -16,6 +16,7 @@ export function Auth() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [emailConfirmationSent, setEmailConfirmationSent] = useState(false);
 
   const from = location.state?.from?.pathname || '/home';
 
@@ -33,6 +34,11 @@ export function Auth() {
         throw error;
       }
 
+      if (!isLogin) {
+        setEmailConfirmationSent(true);
+        return;
+      }
+
       // Navigate to intended destination or home
       navigate(from, { replace: true });
     } catch (err: any) {
@@ -41,6 +47,47 @@ export function Auth() {
       setLoading(false);
     }
   };
+
+  if (emailConfirmationSent) {
+    return (
+      <AuthLayout
+        title="Check your inbox"
+        subtitle="We've sent you a confirmation email"
+      >
+        <div className="space-y-6 text-center">
+          <div className="flex justify-center">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+              <CheckCircle className="w-8 h-8 text-primary" />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <p className="text-sm text-muted-foreground">
+              A confirmation link has been sent to
+            </p>
+            <p className="font-medium text-foreground break-all">{email}</p>
+            <p className="text-sm text-muted-foreground">
+              Please check your inbox and click the link to activate your account.
+            </p>
+          </div>
+
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={() => {
+                setEmailConfirmationSent(false);
+                setIsLogin(true);
+                setPassword('');
+              }}
+              className="text-sm text-primary hover:underline font-medium"
+            >
+              Back to sign in
+            </button>
+          </div>
+        </div>
+      </AuthLayout>
+    );
+  }
 
   return (
     <AuthLayout
