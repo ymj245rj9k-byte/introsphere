@@ -120,9 +120,14 @@ I... nic. Pusta strona. Migający kursor.
 ## Pricing Sensitivity
 
 - **Free to try** – krytyczne! Gen Z nie kupi bez wypróbowania
-- **Płaci ~9.99-15 PLN/mc** za premium (cena ~2 kawy)
+- **Płaci ~9.99 PLN/mc** za premium (cena ~2 kawy)
 - **Alternatywa:** jednorazowy Lifetime za 99 PLN (dla tych co "nie chcą subskrypcji")
 - **Student discount:** 50% off = 4.99 PLN/mc
+
+**Co dzieli free od premium:**
+- Free: 3 sesje/miesiąc, kalendarz tylko bież. miesiąc, 8 atmosfer
+- Premium: nieograniczone sesje, pełny kalendarz (wszystkie miesiące), eksport PDF, zaawansowane statystyki
+- Wszystkie wpisy są zapisywane zawsze — premium daje dostęp do starszych wpisów w kalendarzu
 
 ---
 

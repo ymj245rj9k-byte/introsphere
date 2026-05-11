@@ -11,13 +11,13 @@
 ### Content (Nasz MOAT):
 - ✅ 6 Guided Journeys x 7 dni = **42 pytania**
 - ✅ 24+ pytań do **Koła Emocji** (8 podstawowych → 24 podspektra)
-- ✅ 5 konkretnych atmosfer (Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech)
+- ✅ 8 konkretnych atmosfer (Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech, Solar Flare, Desert Rose, Ocean Deep)
 - ✅ Profound, poetyckie pytania (nie byle jakie)
 
 ### Model Biznesowy:
-- ✅ Free: wszystkie moody + 5 atmosfer + pełny kalendarz
-- ✅ Rewards: po 10 sesjach odblokuj nowe UI
-- ✅ Premium: 9.99 zł/mc + eksport PDF
+- ✅ Free: wszystkie moody + 8 atmosfer + kalendarz tylko bieżący miesiąc
+- ✅ Premium: 9.99 zł/mc — pełny kalendarz, eksport PDF, więcej statystyk
+- ✅ Lifetime: 99 zł — wszystko Premium jednorazowo
 
 ---
 
@@ -40,8 +40,7 @@
 1. **Content = Moat** - 42 pytania journeys + 24 pytania emotions = 66+ unikalnych pytań
 2. **Nikt tego nie skopiuje w weekend** - to jest PRACA
 3. **Jako artystka możesz tworzyć więcej** - nowe journeys, nowe pytania
-4. **Rewards system** = retention bez presji
-5. **Free ma wszystko** = low barrier to entry
+4. **Free ma wszystko** = low barrier to entry
 
 ---
 
@@ -55,9 +54,9 @@
 - Product Hunt
 
 **Model cenowy:**
-- Free: 3 sesje/miesiąc
-- Premium: 9.99 PLN/mc (~2.50 USD)
-- Lifetime: 99 PLN (~25 USD)
+- Free: 3 sesje/miesiąc, kalendarz tylko bieżący miesiąc, 8 atmosfer
+- Premium: 9.99 PLN/mc (~2.50 USD) — pełny kalendarz, eksport PDF, więcej statystyk
+- Lifetime: 99 PLN (~25 USD) — wszystko Premium jednorazowo
 
 **Szacunkowa ekonomia:**
 - Przy cenie 9.99 PLN/mc i 50 użytkownikach premium = ~500 PLN/miesiąc przychodu

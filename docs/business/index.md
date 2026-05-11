@@ -19,8 +19,8 @@ Katalog `business/` zawiera dokumentację związaną z modelem biznesowym, anali
 
 | Plan | Co w cenie | Cena |
 |------|------------|------|
-| **Free** | 3 sesje/miesiąc, podstawowy kalendarz, 5 atmosfer | 0 PLN |
-| **Premium** | Nieograniczone sesje, rozszerzony kalendarz, eksport PDF | 9.99 PLN/mc |
+| **Free** | 3 sesje/miesiąc, kalendarz nastrojów (tylko bieżący miesiąc), 8 atmosfer | 0 PLN |
+| **Premium** | Nieograniczone sesje, pełny kalendarz (wszystkie miesiące), eksport PDF, więcej statystyk | 9.99 PLN/mc |
 | **Lifetime** | Wszystko Premium, jeden raz | 99 PLN |
 
 ### GTM Strategy

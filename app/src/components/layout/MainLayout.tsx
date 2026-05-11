@@ -70,46 +70,36 @@ export function MainLayout() {
               </Link>
             );
           })}
-          <Dialog open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <DialogTrigger asChild>
-              <button className="flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors text-atm-muted hover:text-atm">
-                <MoreHorizontal className="w-5 h-5" />
-                <span className="text-xs">More</span>
-              </button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-sm">
-              <DialogHeader>
-                <DialogTitle>Menu</DialogTitle>
-              </DialogHeader>
-              <div className="flex flex-col gap-2 pt-2">
-                {moreMenuItems.map(({ path, label, icon: Icon }) => (
-                  <Link
-                    key={path}
-                    to={path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-                      location.pathname === path ? 'text-atm-accent bg-atm-secondary' : 'text-atm-muted hover:text-atm hover:bg-atm-secondary'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span>{label}</span>
-                  </Link>
-                ))}
-                {user && (
-                  <button
-                    onClick={async () => {
-                      setMobileMenuOpen(false);
-                      await supabase.auth.signOut();
-                    }}
-                    className="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-atm-muted hover:text-atm hover:bg-atm-secondary"
-                  >
-                    <LogOut className="w-5 h-5" />
-                    <span>Sign Out</span>
-                  </button>
-                )}
-              </div>
-            </DialogContent>
-          </Dialog>
+          {!user && (
+            <Dialog open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <DialogTrigger asChild>
+                <button className="flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors text-atm-muted hover:text-atm">
+                  <MoreHorizontal className="w-5 h-5" />
+                  <span className="text-xs">More</span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-sm">
+                <DialogHeader>
+                  <DialogTitle>Menu</DialogTitle>
+                </DialogHeader>
+                <div className="flex flex-col gap-2 pt-2">
+                  {moreMenuItems.map(({ path, label, icon: Icon }) => (
+                    <Link
+                      key={path}
+                      to={path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+                        location.pathname === path ? 'text-atm-accent bg-atm-secondary' : 'text-atm-muted hover:text-atm hover:bg-atm-secondary'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span>{label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </DialogContent>
+            </Dialog>
+          )}
         </div>
       </nav>
 

@@ -74,9 +74,9 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 - **To jest Twój wgląd** – co się zmienia? Kiedy jest ciężej?
 
 #### 4. Wybór Atmosfery (opcjonalny dodatek)
-- 5 atmosfer: Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech
+- 8 atmosfer: Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech, Solar Flare, Desert Rose, Ocean Deep
 - **Drugoplanowe** – opcjonalne, nie wymagane do działania
-- Dla tych, którzy lubią "ładne rzeczy"
+- Dostępne dla wszystkich użytkowników (free i premium)
 
 ---
 
@@ -111,13 +111,23 @@ Gotowe. 2 minuty. Nie musisz myśleć "od czego zacząć".
 
 | Plan | Co w cenie | Cena |
 |------|------------|------|
-| **Free** | 3 sesje/miesiąc, podstawowy kalendarz, 5 atmosfer | 0 PLN |
-| **Premium** | Nieograniczone sesje, rozszerzony kalendarz, eksport PDF | 9.99 PLN/mc |
+| **Free** | 3 sesje/miesiąc, kalendarz nastrojów (tylko bieżący miesiąc), 8 atmosfer | 0 PLN |
+| **Premium** | Nieograniczone sesje, pełny kalendarz (wszystkie miesiące), eksport PDF, zaawansowane statystyki | 9.99 PLN/mc |
 | **Lifetime** | Wszystko Premium, jeden raz | 99 PLN |
 
 **Pricing Sensitivity:**
 - Gen Z = wrażliwi na cenę → free musi dawać wartość
 - Alternatywa: Lifetime = szybki cash flow, mniej presji na recurring
+
+**Co jest premium:**
+- Eksport historii do PDF
+- Pełny kalendarz nastrojów z dostępem do wszystkich miesięcy (free tylko bieżący miesiąc)
+- Więcej statystyk i analiz
+
+**Co jest dostępne dla każdego (free i premium):**
+- Wszystkie 8 atmosfer
+- Wszystkie 6 journeys
+- Wszystkie wpisy (entries) są zapisywane dla każdego użytkowna — premium daje jedynie dostęp do przeglądania starszych wpisów w kalendarzu
 
 ---
 

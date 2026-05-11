@@ -1,46 +1,147 @@
-# Agent Profile: UX/UI Designer
+# UX/UI Designer – Introsphere
 
-## Role: UX/UI Designer Agent
+## Zasady UX
 
-## Goal
-Create intuitive user experiences, visual designs, and interaction flows that guide users through the application seamlessly and emotionally engaging way.
+1. **Speed to value** – od otwarcia do pierwszego wpisu < 2 minuty
+2. **Prowadzenie za rękę** – żadnego "napisz cokolwiek", zawsze konkretne pytanie
+3. **Progressive disclosure** – proste opcje najpierw, głębokość na żądanie
+4. **Emotional resonance** – estetyka "aesthetic", nie korporacyjna
+5. **Minimalizm** – max 2–3 kliknięcia do akcji
 
-## System Prompt
-You are the UX/UI Designer responsible for crafting the user experience and visual layer of the application. Your focus is on creating designs that are not only visually appealing but also deeply intuitive and emotionally resonant.
+---
 
-**Core Responsibilities:**
-- Design user journeys and interaction flows that minimize friction
-- Create wireframes, mockups, and high-fidelity prototypes
-- Define information architecture and navigation patterns
-- Ensure accessibility compliance (WCAG 2.1 AA standards)
-- Conduct usability testing and iterate based on feedback
-- Maintain design system consistency across all screens
+## Przepływy Użytkownika
 
-**Behavior Guidelines:**
-- Prioritize user tasks and flows over decorative elements
-- Design for progressive disclosure - show complexity gradually
-- Ensure every interaction has clear visual feedback
-- Create emotional resonance through thoughtful micro-interactions
-- Balance aesthetics with usability and performance
+### Główny flow: Sesja emocjonalna
+```
+Strona główna
+  → /session (koło emocji)
+    → klik sektora → EmotionDetails modal
+      → wybór podspektrum (opcjonalne)
+        → Continue → /emotion-reflection
+          → pytanie + textarea
+            → Zapisz → /home
+```
 
-## Input/Output
+### Flow: Guided Journey
+```
+/home → /journeys → /journey/:id
+  → JourneyProgress (7 kroków)
+    → Continue day N → /journey/:id/day/:N
+      → pytanie + textarea → Zapisz
+        → /journey/:id (postęp zaktualizowany)
+```
 
-### Input (Receives from)
-- Product Owner: User stories and acceptance criteria
-- IT Architect: Technical constraints and capabilities
-- User research data and personas
+### Flow: Quick Entry
+```
+/home → Quick Entry button
+  → /quick-entry (textarea + Zapisz)
+    → Zapisz → /home
+```
 
-### Output (Passes to)
-- Wireframes and flow diagrams
-- High-fidelity mockups and prototypes
-- Design system specifications
-- Component specifications for developers
-- Usability test results and iterations
+### Flow: Rejestracja/Logowanie
+```
+/ (Landing) → /auth
+  → Rejestracja lub Logowanie
+    → /onboarding (3 kroki)
+      → /home
+```
 
+### Flow: Przeglądanie historii
+```
+/home → /calendar (kolorowy kalendarz)
+  → klik dnia → CalendarEntry dialog (szczegóły wpisu)
+    → opcjonalnie: Usuń wpis → potwierdzenie
 
+/home → /history (lista wpisów)
+  → Filter button → wybór emocji lub journey
+    → przefiltrowana lista
+```
 
-## Additional Requirements
-- Experience with design systems at scale
-- Knowledge of cognitive psychology and behavioral design
-- Familiarity with product interfaces
-- Understanding of mobile-first and responsive design patterns
+---
+
+## Architektura Informacji
+
+```
+Nawigacja główna (MainLayout):
+├── Home (hub)
+├── Session (koło emocji)
+├── Journeys (lista programów)
+├── Calendar (kalendarz nastrojów)
+├── History (lista wpisów)
+└── Settings (konto + atmosfera)
+
+Strony publiczne:
+├── Landing (/)
+├── How It Works (/how-it-works)
+├── Intro (/intro)
+└── Auth (/auth)
+```
+
+---
+
+## Design System
+
+### Motywy Atmosfery (8 tematów)
+
+| ID | Nazwa | Charakter |
+|----|-------|-----------|
+| cream-calm | Cream Calm | Ciepły, pastelowy, spokojny |
+| green-forest | Green Forest | Naturalny, zielony, ziemski |
+| dark-ink | Dark Ink | Ciemny, elegancki, skupiony |
+| soft-pink | Soft Pink | Różowy, miękki, delikatny |
+| silver-tech | Silver Tech | Chłodny, minimalistyczny |
+| solar-flare | Solar Flare | Ciepły, pomarańczowy, energetyczny |
+| desert-rose | Desert Rose | Ziemisty, różowy, suchy |
+| ocean-deep | Ocean Deep | Niebieski, głęboki, spokojny |
+
+Motywy zaimplementowane jako CSS variables (`--color-background`, `--color-surface`, `--color-primary`, `--color-text`) w `src/index.css`. Zmiana przez `themeStore.atmosphere`.
+
+### Kolory Emocji (8 L3)
+Każda z 8 emocji L3 ma przypisany kolor SVG widoczny na kole emocji i w kalendarzu nastrojów. Kolory odzwierciedlają psychologiczne konotacje (np. radość = żółty, złość = czerwony).
+
+### Komponenty UI (Shadcn base)
+- `button.tsx` – primary, secondary, ghost, destructive
+- `card.tsx` – kontener z zaokrąglonymi rogami i cieniem
+- `dialog.tsx` – modal z overlay (używany przez CalendarEntry, EmotionDetails, ConfirmDialog)
+- `input.tsx`, `textarea.tsx` – pola formularzy
+- `icon-button.tsx` – przycisk tylko z ikoną + aria-label
+
+---
+
+## Zasady Dostępności
+
+- Wszystkie buttony z ikonami mają `aria-label`
+- Focus states widoczne dla wszystkich elementów interaktywnych
+- Kontrast kolorów zgodny z WCAG 2.1 AA
+- Nawigacja klawiaturą przez koło emocji (tab + enter)
+- Dialog z focus trap (Shadcn dialog)
+
+---
+
+## Responsywność
+
+- Mobile-first design
+- Breakpoints: `sm: 640px`, `md: 768px`, `lg: 1024px`
+- Koło emocji: prop `size` – responsywny (mniejsze na mobile)
+- Nawigacja: hamburger menu na mobile (MainLayout)
+
+---
+
+## Onboarding (3 kroki)
+
+| Krok | Treść |
+|------|-------|
+| 1 | Powitanie + wyjaśnienie czym jest Introsphere |
+| 2 | Jak działa koło emocji (preview) |
+| 3 | Wybór pierwszego journey lub start sesji |
+
+Implementacja: `OnboardingLayout` z paskiem postępu + `Onboarding.tsx`.
+
+---
+
+## Znane Problemy UX (do rozwiązania)
+
+- Quick entries nie są widoczne w kalendarzu i historii (feature w toku)
+- Brak pustego stanu na stronie Journey gdy brak ukończonych dni
+- Brak potwierdzenia wizualnego po zapisaniu wpisu (toast/snackbar)

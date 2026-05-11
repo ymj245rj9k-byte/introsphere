@@ -45,7 +45,7 @@ Introsphere to guided journaling app, która prowadzi cię przez pytania dopasow
 | **Koło Emocji** | 8 podstawowych → 24 warianty. Nie musisz umieć nazywać – wystarczy dotknąć. |
 | **Guided Journeys** | 7-dniowe programy: Wewnętrzne Dziecko, Granice, Energia, Wdzięczność, Decyzje, Relacje |
 | **Kalendarz Nastrojów** | Widzisz wzorce: co się zmienia? Kiedy jest ciężej? |
-| **Atmosfery** | Opcjonalne: Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech |
+| **Atmosfery** | Opcjonalne: 8 atmosfer dostępnych dla wszystkich (Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech, Solar Flare, Desert Rose, Ocean Deep) |
 
 ---
 
@@ -53,18 +53,19 @@ Introsphere to guided journaling app, która prowadzi cię przez pytania dopasow
 
 | Plan | Co w cenie | Cena |
 |------|------------|------|
-| **Free** | 3 sesje/miesiąc, podstawowy kalendarz, 5 atmosfer | 0 PLN |
-| **Premium** | Nieograniczone sesje, rozszerzony kalendarz, eksport PDF | 9.99 PLN/mc |
+| **Free** | 3 sesje/miesiąc, kalendarz nastrojów (tylko bieżący miesiąc), 8 atmosfer | 0 PLN |
+| **Premium** | Nieograniczone sesje, pełny kalendarz (wszystkie miesiące), eksport PDF, więcej statystyk | 9.99 PLN/mc |
 | **Lifetime** | Wszystko Premium, jeden raz | 99 PLN |
 
 ---
 
 ## Tech Stack
 
-- React + Tailwind CSS + Shadcn UI
-- Firebase (Auth + Firestore)
+- React 18 + TypeScript + Vite
+- Tailwind CSS + Shadcn UI
+- Zustand (state management)
+- Supabase (PostgreSQL + Auth)
 - Vercel (hosting)
-- **Limit: 15 godzin pracy**
 
 ---
 
@@ -80,16 +81,27 @@ Introsphere to guided journaling app, która prowadzi cię przez pytania dopasow
 
 ## Dokumentacja
 
-- [Project Description](./docs/project-description.md) – pełny opis projektu
-- [ICP Persona](./docs/icp-persona.md) – profil idealnego użytkownika
-- [MVP Scoping](./docs/mvp-scoping.md) – zakres MVP
-- [Journeys](./docs/journeys.md) – 6 gotowych programów
-- [Questions](./docs/questions.md) – baza pytań do emocji
-- [Job To Be Done](./docs/job-to-be-done.md) – definicja problemów użytkownika
-- [Resource Analysis](./docs/resource-analysis.md) – czas, budżet, zasoby
-- [Monetization & GTM](./docs/monetization-and-gtm.md) – strategia przychodów i dotarcia
-- [Competitor Audit](./docs/competitor-audit.md) – analiza konkurencji
-- [Statistics](./docs/statistics.md) – statystyki emocji i wzorce
+### Biznesowa
+- [Project Description](./docs/business/project-description.md) – pełny opis projektu
+- [ICP Persona](./docs/business/icp-persona.md) – profil idealnego użytkownika
+- [Job To Be Done](./docs/business/job-to-be-done.md) – definicja problemów użytkownika
+- [User Stories](./docs/business/user-stories.md) – wymagania w formie user stories
+- [Monetization & GTM](./docs/business/monetization-and-gtm.md) – strategia przychodów i dotarcia
+- [Competitor Audit](./docs/business/competitor-audit.md) – analiza konkurencji
+
+### Architektura
+- [System Overview](./docs/architecture/system_overview.md) – architektura systemu
+- [Technical Stack](./docs/architecture/technical.md) – stack technologiczny
+- [ADR 001](./docs/architecture/adr_001.md) – decyzje architektoniczne
+- [ADR 002](./docs/architecture/adr_002.md) – decyzje architektoniczne
+
+### UX/UI
+- [UX/UI Design](./docs/ux_ui.md) – makiety, przepływy, zasady
+
+### Implementacja
+- [Implemented Features](./docs/implemented_features.md) – zaimplementowane funkcjonalności
+- [Implemented Plans](./docs/implemented_plans.md) – rejestr planów
+- [Plans](./docs/plans/) – plany SDD dla każdej funkcjonalności
 
 ---
 

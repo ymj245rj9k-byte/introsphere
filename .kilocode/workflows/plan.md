@@ -77,10 +77,10 @@ After completing all sections, perform these final checks:
 Save the implemented plan to:
 
 ```
-@/docs/zaimplementowane-plany.md/[feature-name]-[date].md
+@/docs/plans/PLAN_[feature-name]-[date].md
 ```
 
-For example: `add-emotion-wheel-to-home-2026-04-13.md`
+For example: `PLAN_add-emotion-wheel-to-home-2026-04-13.md`
 
 Use the following template for the saved plan:
 

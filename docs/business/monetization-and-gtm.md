@@ -8,9 +8,8 @@
 
 | Poziom | Funkcje | Cena |
 |--------|---------|------|
-| **Free** | 3 sesje/miesiąc, podstawowy kalendarz nastrojów, 5 atmosfer | 0 PLN |
-| **Rewards** | Po 10 sesjach: odblokuj nowe atmosfery (retro, vintage, pastel) | 0 PLN |
-| **Premium** | Nieograniczone sesje, rozszerzony kalendarz, eksport PDF | 9.99 PLN/mc |
+| **Free** | 3 sesje/miesiąc, kalendarz nastrojów (tylko bieżący miesiąc), 8 atmosfer | 0 PLN |
+| **Premium** | Nieograniczone sesje, pełny kalendarz wszystkich miesięcy, eksport PDF, więcej statystyk | 9.99 PLN/mc |
 | **Lifetime** | Wszystko Premium, jeden raz | 99 PLN |
 
 ---
@@ -20,7 +19,7 @@
 1. **Free musi dawać wartość** – Gen Z nie kupi bez wypróbowania
 2. **9.99 PLN = cena kawy** – low barrier to entry
 3. **Lifetime = szybki cash flow** – dla tych co "nie chcą subskrypcji"
-4. **Rewards = retention** – użytkownik wraca, żeby odblokować nowe atmosfery
+4. **Wszystkie 8 atmosfer dostępne dla każdego** – atmosfery nie są paywallem
 
 ---
 

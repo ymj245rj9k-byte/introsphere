@@ -33,14 +33,21 @@
 └─────────────────────┘
 ```
 
-## 3. Core Capabilities
+## 3. Core Capabilities (RZECZIWISTE)
 
-- **Emotion tracking**: Codzienne wpisy o nastroju (wybór emocji z koła 8×24 warianty)
-- **Journeys**: 6 programów 7-dniowych (42 pytania w sumie) z progresją
-- **Mood Calendar**: Kalendarz nastrojów z wizualizacją historyczną
-- **Atmosphere system**: 5 motywów wizualnych (cream-calm, green-forest, dark-ink, soft-pink, silver-tech)
-- **PDF Export**: Eksport sesji i podsumowań (Premium)
-- **Auth & Profiles**: Logowanie i proste profile użytkownika
+- **Emotion tracking**: Codzienne wpisy o nastroju (wybór z 24 emocji L2/L1 przez koło 8 sektorów)
+- **Journeys**: 6 programów 7-dniowych (42 pytania) z progresją śledzoną przez `calendar_entries`
+- **Mood Calendar**: Kalendarz nastrojów z wizualizacją historyczną (kropki w kolorze emocji)
+- **Atmosphere system**: 8 motywów wizualnych (cream-calm, green-forest, dark-ink, soft-pink, silver-tech, solar-flare, desert-rose, ocean-deep)
+- **Auth & Profiles**: Logowanie przez Supabase Auth (email/hasło), proste profile
+- **Quick Entry**: Szybki zapis nastroju bez journey context
+- **History**: Lista wszystkich wpisów (calendar_entries) z filtrowaniem i podglądem
+
+### Capabilities NIEZIMPLEMENTOWANE (z oryginalnego planu):
+- ❌ PDF Export (Premium) – nie zaimplementowane
+- ❌ Advanced statistics – podstawowe stats są (getUserStats), ale brak zaawansowanych analiz
+- ❌ AI insights – nie zaimplementowane
+- ❌ Offline-first (PWA cache tylko dla assets, nie data sync)
 
 ## 4. Non-Functional Requirements
 
@@ -54,7 +61,7 @@
 
 - **JAMstack + BaaS** – szybszy time-to-market, brak utrzymywania serwerów
 - **TypeScript strict** – bezpieczeństwo typów w całej aplikacji
-- **Zustand + Context** – lekkie state management bez boilerplate
+- **Zustand** – lekkie state management bez boilerplate, persist do localStorage
 - **Shadcn UI** – spójny, dostosowywalny system komponentów
 - **Supabase RLS** – bezpieczeństwo danych na poziomie bazy
 

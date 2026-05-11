@@ -10,7 +10,7 @@ Katalog `tech/` zawiera specyfikacje technologiczne i stack używany w projekcie
 |---------|-------------|--------------|
 | **Frontend** | React 18 + Vite | Szybki start, Hot Module Replacement |
 | **Styling** | Tailwind CSS + Shadcn UI | Gotowe komponenty, dark aesthetic |
-| **State** | Zustand + React Context | Prosty, lekki, bez boilerplate |
+| **State** | Zustand | Prosty, lekki, persist do localStorage |
 | **Backend** | Supabase | PostgreSQL + Auth + API |
 | **Hosting** | Vercel | Darmowy tier, CDN globalny |
 | **Routing** | React Router v6 | Standard SPA routing |
@@ -19,9 +19,9 @@ Katalog `tech/` zawiera specyfikacje technologiczne i stack używany w projekcie
 
 - **TypeScript strict** – Typowanie na każdym poziomie
 - **Component-based** – Reużywalne komponenty UI
-- **Hook-driven** – Logika w custom hooks
-- **Store-first** – Zustand dla globalnego stanu
-- **Type-safe DB** – Supabase z typowanymi query
+- **Store-first** – Zustand dla globalnego stanu (authStore, themeStore, journeyStore, sessionStore)
+- **Type-safe DB** – Supabase z ręcznie pisanymi typami (`types/database.ts`)
+- **Static data** – Journeys i emocje jako dane statyczne w `data/` (nie w DB)
 
 ### Frameworks i Biblioteki
 
@@ -36,8 +36,8 @@ Katalog `tech/` zawiera specyfikacje technologiczne i stack używany w projekcie
 
 ### Patterns
 
-- Custom hooks dla logiki biznesowej
-- Context dla globalnych providerów
-- Zustand stores dla stanu aplikacji
-- Atomic design w komponencie
+- Zustand stores dla globalnego stanu aplikacji (persist middleware)
+- Custom hooks jako cienka warstwa na stores (`useAuth`, `useCalendar`, `useHomeStats`, `useHistory`)
+- Logika sesji i journey w komponentach page'ów i journeyStore
 - Feature-based folder structure
+- Static data files (`data/`) dla treści (journeys, emotions, themes)

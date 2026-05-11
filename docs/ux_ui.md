@@ -53,97 +53,51 @@ Scale:
 
 ### 2.1 Ogólna Struktura (Desktop)
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  ┌──────────┐                           ┌─────┐ ┌─────────┐ │
-│  │          │                           │ ☀️  │ │ 👤     │ │
-│  │ JOURNEYS │      EMOTION WHEEL       │ 🌙  │ │ Login  │ │
-│  │  icon    │         (CENTER)          │     │ │ /User  │ │
-│  │          │                           │     │ │        │ │
-│  │ 📅 icon  │                           │     │ │ 🎨    │ │
-│  │          │                           │     │ │Atmosph.│ │
-│  └──────────┘                           └─────┘ └─────────┘ │
-└─────────────────────────────────────────────────────────────┘
-```
+Aktualna implementacja **nie ma oddzielnych Sidebar/Header komponentów**. Nawigacja jest wbudowana w strony:
 
-### 2.2 Regiony Layoutu
+- **MainLayout** (components/layout/MainLayout.tsx) — zawiera top navigation bar (logo + linki do Home, Calendar, History, Settings) oraz outlet dla page content.
+- **Bottom navigation** — nie zaimplementowane (mobile nav brak).
+- **Sidebar (Left)** — nie zaimplementowany jako osobny komponent.
+- **Header (Top-Right)** — nie zaimplementowany jako osobny komponent; theme toggle znajduje się w Settings page.
 
-| Region | Pozycja | Zawartość | Zachowanie |
-|--------|---------|-----------|------------|
-| **Sidebar (Left)** | Lewa krawędź, pełna wysokość | Przycisk Journeys, Ikona Kalendarza | Zawsze widoczny, zwija się na mobile |
-| **Main Area** | Centrum | Koło emocji / Arkusz / Kalendarz | Główna przestrzeń robocza |
-| **Header (Top-Right)** | Prawa góra | Theme toggle, Login/User, Atmosphere | Zawsze dostępny |
+### 2.2 Komponenty Layoutu Istniejące
 
-### 2.3 Responsive Breakpoints
-
-```css
-/* Mobile First */
---mobile: 0 - 639px
---tablet: 640px - 1023px
---desktop: 1024px+
-
-/* Na mobile: sidebar staje się bottom nav */
-@media (max-width: 639px) {
-  .sidebar → bottom navigation bar
-  .emotion-wheel → pełny ekran z gesture
-}
-```
-
-### 2.4 Nawigacja
-
-**Sidebar (Desktop)**
-
-| Ikona | Funkcja | Label |
-|-------|---------|-------|
-| 🌸 / 💭 | Journeys | "Start Journey" |
-| 📅 | Calendar | "Mood Calendar" |
-| 📖 | History | "My Reflections" |
-| ⚙️ | Settings | "Settings" |
-
-**Bottom Navigation (Mobile)**
-
-| Ikona | Funkcja |
-|-------|---------|
-| 🏠 | Home (Emotion Wheel) |
-| 📅 | Calendar |
-| 📖 | History |
-| ⚙️ | Settings |
-
-**Header (Desktop)**
-
-| Ikona | Funkcja |
-|-------|---------|
-| ☀️ / 🌙 | Theme toggle |
-| 👤 | Login / User profile |
-| 🎨 | Atmosphere picker |
+| Komponent | Opis |
+|-----------|------|
+| `MainLayout.tsx` | Layout wrapper z nawigacją górną |
+| `AuthLayout.tsx` | Layout dla strony logowania/rejestracji |
+| `OnboardingLayout.tsx` | Layout dla procesu onboardingu |
+| `ProtectedRoute.tsx` | Wrapper ochrony tras dla zalogowanych |
 
 ---
 
 ## 3. Koło Emocji - Główny Interfejs
 
+### 3.1 Budowa Koła — aktualna implementacja
 
-### 3.1 Budowa Koła
+Struktura (EmotionWheel.tsx + EmotionDetails.tsx):
+- 8 Primary (L3) emocji jako sektory SVG (45° każdy) – renderowane w EmotionWheel.tsx
+- Kliknięcie w sektor → otwiera **modal (overlay)** EmotionDetails z opcjami:
+  • Checkbox "Zostań na poziomie [L3]" – wybiera główną emocję
+  • Radio buttons dla podspektrów (L2/L1) – wybór konkretnego wariantu
+- Po wyborze → przekierowanie do /emotion-reflection z emotion w location.state
 
-```
-Struktura:
-- 8 głównych sektorów (primary emotions)
-- Każdy sektor ma 3 podspektra (intensity levels)
-- Łącznie 24 segmenty + center
+**Różnice vs. oryginalny plan UX:**
+- Brak EmotionNode.tsx (wszystko w EmotionWheel.tsx)
+- Brak EmotionDropdown.tsx – zastąpione przez modal EmotionDetails
+- Nie ma "listy rozwijanej z checkboxami/radio" – użyto modal z radio/checkbox
 
-Segment = {
-  emotion: string,
-  intensity: 1 | 2 | 3,
-  color: string (from emotion-structure),
-  angle: number (start, end)
-}
-```
+**Struktura segmentów:**
+- 8 głównych sektorów (L3)
+- Każdy sektor ma 2–3 podspektra (L2/L1) – razem 24 warianty
+- Segment: { emotion, intensity, color, angle }
 
 ### 3.3 Interakcje
 
 | Akcja | Zachowanie |
 |-------|------------|
 | **Najazd (hover)** | Segment lekko się powiększa (scale 1.05), tooltip z nazwą emocji |
-| **Kliknięcie w sektor** | Lista rozwijana emocji (podspektra) + opcja "Zostań na tym poziomie" |
+| **Kliknięcie w sektor** | Modal z wyborem emocji (podspektra + opcja "Zostań na tym poziomie") |
 | **Kliknięcie w podspektrum** | Otwiera się Arkusz Refleksji z pytaniami do wybranego podspektra |
 | **Kliknięcie "Zostań na tym poziomie"** | Otwiera się Arkusz Refleksji z pytaniami do głównej emocji |
 | **Center click** | Show "How are you?" prompt |
@@ -160,150 +114,96 @@ Po wyborze sektora (np. JOY), użytkownik widzi listę:
 - JOY → Ecstasy → Pytania z podspektum Ecstasy
 - ANGER → "Zostań na poziomie Złości" → Główne pytania ANGER
 
-### 3.5 Lista Rozwijana Emocji (Dropdown)
+### 3.5 Okno Wyboru Emocji (Modal)
+
+Po kliknięciu sektora pojawia się modalne okno (EmotionDetails) z listą opcji:
 
 ```
-Po kliknięciu sektora → rozwija się panel:
-
 ┌────────────────────────────────────────┐
 │  😊 JOY / Radość                       │
 ├────────────────────────────────────────┤
 │  ☐ Zostań na poziomie Radości         │
-│  ─────────────────────────────────     │
-│  ○ Serenity (Spokój)     - łagodna   │
-│  ○ Joy (Radość)           - standardowa│
-│  ○ Ecstasy (Ekstaza)     - intensywna │
-│  ○ Love (Miłość)         - bliskość   │
+│  ─────────────────────────────────────│
+│  ○ Serenity (Spokój)     [●] Selected │
+│  ○ Joy (Radość)           [ ]          │
+│  ○ Ecstasy (Ekstaza)     [ ]          │
+│  ○ Love (Miłość)         [ ]          │
+│                                        │
+│           [ Continue ]                 │
 └────────────────────────────────────────┘
-
-Elementy:
-- **Checkbox "Zostań na poziomie [emocji]"** - wybór głównej kategorii
-- **Radio buttons dla podspektów** - wybór konkretnego podspektra
-- Kolorowy kwadrat/koło (8px)
-- Nazwa emocji
-- Subtelny opis (opcjonalnie)
-- Hover: podświetlenie
-
-**Logika:**
-- Zaznaczenie "Zostań na poziomie" → pytania z głównej kategorii
-- Wybór podspektra → pytania z tego podspektra
 ```
+
+- **Checkbox** "Zostań na poziomie [L3]" – wybiera główną emocję.
+- **Radio buttons** dla podspektrów – wybór L2/L1.
+- Kolorowe kropki/ikony przy opcjach.
+- Przycisk "Continue" potwierdza i przechodzi do strony refleksji.
 
 
 ---
 
-## 4. Arkusz Refleksji (Worksheet)
+## 4. Arkusz Refleksji (EmotionReflection)
 
-### 4.1 Struktura
-
-```
-┌─────────────────────────────────────────────────────────┐
-│  ← Back                                    💾 Auto-save│
-├─────────────────────────────────────────────────────────┤
-│                                                         │
-│     ┌─────────────────────────────────────────────┐    │
-│     │         "PYTANIE..."                         │    │
-│     │                                             │    │
-│     │    ← poprzednie  [1/12]  następne →        │    │
-│     └─────────────────────────────────────────────┘    │
-│                                                         │
-│     Emocja: 😊 Joy / Radość                            │
-│                                                         │
-│     ┌─────────────────────────────────────────────┐    │
-│     │                                             │    │
-│     │   [TEXTAREA - wpisz odpowiedź]             │    │
-│     │                                             │    │
-│     │   Min height: 200px                         │    │
-│     │   Auto-expand                               │    │
-│     │                                             │    │
-│     └─────────────────────────────────────────────┘    │
-│                                                         │
-│              [💾 Zapisz]  lub  Auto-save indicator      │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
-```
-
-### 4.2 Nagłówek z Pytaniem
+### 4.1 Struktura — aktualna implementacja
 
 ```
-Komponent: QuestionCard
+Strona: /emotion-reflection (EmotionReflection.tsx)
 
-Elementy:
-1. Pytanie (duży tekst, centered)
-2. Nawigacja: [<] [numer/np. 3/12] [>]
-3. Kategoria emocji (mały badge)
-4. 🎲 Przycisk losowania nowego pytania
+Przepływ:
+1. Użytkownik wybiera emocję z koła (/session) → przekierowanie do /emotion-reflection z emotionId w location.state
+2. Na /emotion-reflection:
+   - emotionId pobierany z location.state
+   - Pytania są hardcoded w pliku (3 na emocję, 48 total dla 16 emocji L2/L1)
+   - Brak użycia data/questions.ts (że są tylko 10 ogólnych pytań)
+   - UI: pytanie + textarea + przycisk "Dalej" → zapisuje do calendar_entries
 
-Funkcjonalność:
-- Strzałki = następne/poprzednie pytanie z bazy pytań tej KONKRETNEJ emocji
-- Losowanie: 🎲 przycisk = losuj nowe pytanie z tej samej kategorii emocji
-- Indeks pokazuje pozycję w liście pytań wybranej emocji/podspektra
-- Transition: slide in/out
-- **Krytyczne:** Pytania pochodzą z bazy dopasowanej do wyboru użytkownika:
-  - Jeśli wybrał "Zostań na poziomie" → główna kategoria (np. JOY)
-  - Jeśli wybrał podspektrum → to podspektrum (np. SERENITY)
+Komponenty:
+- EmotionReflection.tsx (page) — zawiera całą logikę refleksji
+- Brak osobnych: Worksheet.tsx, QuestionCard.tsx, AnswerInput.tsx
 ```
 
-### 4.3 Obszar Tekstu
-
-```
-TextArea Component:
-
-- Placeholder: "Your thoughts here..." (lokalizowane)
-- Auto-resize (min 200px, max 60vh)
-- Character count (opcjonalnie, pod spodem)
-- Auto-save indicator: "✓ Zapisano" (po 2s bez pisania)
-- Keyboard: Ctrl/Cmd + Enter = manual save
-
-Styling:
-- Border: none (clean look)
-- Background: --bg-secondary
-- Padding: 1.5rem
-- Font: --font-body
-- Line-height: 1.7
-```
-
-### 4.4 Zapisywanie
-
-```
-Mechanizm:
-
-1. AUTO-SAVE:
-   - Trigger: 2 sekundy po ostatnim keypress
-   - API: POST /api/reflections
-   - Feedback: "✓ Zapisano" (fade in/out, 2s)
-
-2. MANUAL SAVE:
-   - Button: "Zapisz" / "Save"
-   - API: POST /api/reflections
-   - Feedback: Button changes to "✓!" (green), then back
-
-3. DANE ZAPISYWANE:
-   {
-     emotionId: string,
-     questionId: string,
-     answer: string,
-     timestamp: ISO8601,
-     atmosphere: string,
-     theme: 'light' | 'dark'
-   }
-```
+**Różnice vs. oryginalny plan UX:**
+- Nie ma osobnego komponentu `Worksheet`
+- Pytania nie pochodzą z `data/questions.ts` — są hardcoded w `EmotionReflection.tsx`
+- Brak auto-save (tylko manual save)
+- Brak losowania pytań (sequential)
+- Brak nawigacji między pytaniami (tylko jedno pytanie na sesję)
 
 ---
 
 ## 5. Kalendarz i Historia
 
-### 5.1 Kalendarz Nastrojów
+### 5.1 Kalendarz Nastrojów — aktualna implementacja
 
 **Dostęp**
 ```
 Ikona: 📅 (calendar)
-Lokalizacja: Lewy sidebar, pod Journeys
+Lokalizacja: Górna nawigacja w MainLayout (po prostu link "/calendar")
+Zachowanie: Click = przejście na pełną stronę Calendar (nie overlay/drawer)
+```
 
+**Widok Kalendarza** — implementacja w MoodCalendar.tsx:
+- Grid 7 kolumn (Pon–Niedz)
+- Dni z wpisami mają kropkę w kolorze emocji
+- Kliknięcie w dzień → przejście na `/calendar?date=YYYY-MM-DD` ( filtr w Calendar page, nie drawer)
+- **Drawer/Day Detail nie istnieje** — zamiast tego pełna strona `/journey/:id/day/:dayNumber` dla journey days
+
+**Widok Dnia (Journey Day)**
+```
+Route: /journey/:id/day/:dayNumber (DayView.tsx — pełna strona)
+Nie jest to drawer nałożony na kalendarz.
+```
+
+**Różnice vs. planie UX:**
+- Brak overlay/drawer dla kalendarza — to osobna strona
+- Brak "Day Detail drawer" z wpisami — zamiast tego:
+  - Journey days: pełna strona DayView.tsx
+  - Mood entries: pokazywane w Calendar page po kliknięciu daty (expandowanie)
+Ikona: 📅 (calendar)
+Lokalizacja: Górna nawigacja w MainLayout (link "/calendar")
 Zachowanie:
-- Click = otwiera overlay / drawer z kalendarzem
-- Overlay animuje się: slide in from left (300ms)
-- Click outside / ESC = zamyka
+- Click = przejście na pełną stronę Calendar (nie overlay/drawer)
+- Kalendarz wyświetla siatkę 7 kolumn × 6 wierszy, kropki w kolorze emocji
+- Kliknięcie w dzień = przejście na `/calendar?date=...` z wpisami dnia
 ```
 
 **Widok Kalendarza**
@@ -351,7 +251,7 @@ Po kliknięciu w datę:
 | Akcja | Zachowanie |
 |-------|------------|
 | **Hover na dzień** | Tooltip z liczbą wpisów |
-| **Kliknięcie w dzień** | Otwiera Day Detail drawer |
+| **Kliknięcie w dzień** | Przechodzi na stronę `/calendar?date=YYYY-MM-DD` z rozszerzoną listą wpisów dla tego dnia |
 | **Nawigacja miesiąc** | Strzałki ← → zmieniają miesiąc |
 | **Swipe (mobile)** | Przesuwanie między miesiącami |
 
@@ -374,12 +274,11 @@ Jeśli brak wpisów w danym miesiącu:
 **Dostęp**
 ```
 Ikona: 📖 (history)
-Lokalizacja: Lewy sidebar, pod Calendar
-
+Lokalizacja: Górna nawigacja w MainLayout (link "/history")
 Zachowanie:
-- Click = otwiera listę wszystkich sesji
-- Sesje posortowane od najnowszych
-- Grupowanie po dacie
+- Click = przejście na pełną stronę History z listą wszystkich wpisów
+- Wpisy pogrupowane według daty (Today, Yesterday, This week, Older)
+- Każdy wpis pokazuje emocję, podgląd tekstu, timestamp, ewentualnie journey info
 ```
 
 **Widok Listy Sesji**
@@ -508,20 +407,38 @@ Ekran po wybraniu journey:
 
 ## 6. System Motywów i Atmosfery
 
-### 6.1 System Motywów (Theme)
+### 6.1 System Motywów (Theme) — aktualna implementacja
 
-Motywy (jasny/ciemny) są zdefiniowane w `index.css` jako CSS custom properties w sekcji `:root` i `.dark`.
+**Theme** = tryb jasny/ciemny.
 
 **Theme Toggle**
 ```
-Pozycja: Prawa górna, w pasku header
-Ikona: Słońce (☀️) / Księżyc (🌙)
-
+Pozycja: Settings page (nie w Header)
 Zachowanie:
+- Toggle switch: Light / Dark
 - Smooth transition: 0.3s ease-in-out
-- Ikona rotate 180° przy przejściu
-- Preferencja zapisana w localStorage
-- Opcja "System" = follow system preference
+- Zapis w localStorage (themeStore.isDark)
+- Default: light mode (isDark: false)
+```
+
+**Implementacja:**
+
+```typescript
+// stores/themeStore.ts
+interface ThemeStore {
+  atmosphere: AtmosphereType;   // np. 'cream-calm'
+  isDark: boolean;              // false = light, true = dark
+  setAtmosphere: (atmosphere) => void;
+  setIsDark: (isDark) => void;
+}
+```
+
+**Różnice vs. planie UX:**
+- Brak osobnego `ThemeToggle.tsx` komponentu
+- Brak theme toggle w Header (Header nie istnieje)
+- Nie ma opcji "System" (follow system preference) — tylko binary Light/Dark
+- W technical.md błędnie podano `theme: 'light' | 'dark'` — właściwie `isDark: boolean`
+
 ```
 
 ### 6.2 System Atmosfery (Skin)
@@ -533,18 +450,31 @@ Zachowanie:
 - Zaokrąglenia (border radius)
 - Intensywność cieni
 
-**Domyślne Atmosfery**
+### 6.2 System Atmosfery (Skin) — aktualnie zaimplementowane
 
-| **Nazwa** | **Paleta** | **Typografia** | **Styl wizualny** |
-|---|---|---|---|
-| **Cream Calm** | Kremowy (#faf7f2), ciepły beż (#e8ddd0), złamana biel, akcenty nude | Plus Jakarta Sans — lekki, geometryczny | Brak cieni i dekoracji. Karty z 0.5px ramką. Duże odstępy między sekcjami. Śledzenie nastroju jako rząd geometrycznych kółek. |
-| **Green Forest** | Mech (#4a6741), szałwia (#8aab7e), ciepły brąz (#6b4c2a), kremowy papier (#f5f0e8) | Caveat (nagłówki), Lora (body) | Tekstura tła imitująca papier akwarelowy. Ikonografia botaniczna — cienkie ilustracje liści. Śledzenie nastroju jako rosnąca roślina. |
-| **Dark Ink** | Granat (#1a1f3a), pergamin (#f5eed6), antyczne złoto (#c9a063) | Playfair Display Italic (nagłówki), EB Garamond (body) | Tekstura pergaminu w tle. Nawigacja stylizowana na zakładki księgi. Złote linie jako separatory. Nastroje jako symbole alchemiczne. |
-| **Soft Pink** | Pudrowy róż (#f2dde4), mglisty błękit (#dde8f2), lawenda (#e8ddf2), ciepła biel | Instrument Serif Italic (nagłówki), DM Sans (body) | Dekoracje wektorowe — kokardki i kwiaty jako separatory. Nastroje jako pastelowe bąble z opisami. Zaokrąglone karty z dużym paddingiem. |
-| **Silver Tech** | Grafit (#0f0f13), srebro (#c0c0c8), turkus (#00d4aa) jako akcent | JetBrains Mono (body, tagi), Geist (nagłówki) | Ostre krawędzie, zero border-radius. Nastrój jako badge (`mood: anxious`). Streak jako siatka w stylu GitHub contribution graph. |
-| **Vintage Noir** | Czerń (#0c0c0c), złoto (#c9a84c), ecru (#f5f0e0), bordeaux (#6b1f2a) | Cormorant Garamond (nagłówki), Libre Baskerville (body) | Cienkie złote linie i symetryczne ornamenty art deco. Wysoki kontrast tekstu. Duże, dramatyczne nagłówki z dużym letter-spacing. |
-| **Desert Rose** | Terakota (#c4714a), piasek (#d4b896), brudny róż (#c4907a), kakao (#6b3d2a) | Abril Fatface (nagłówki), Lora (body) | Tekstura tła imitująca glinę. Śledzenie nastroju jako koła w gradiencie terakoty — intensywność przez nasycenie koloru. |
-| **Ocean Deep** | Granat (#0d2137), morska zieleń (#1a4a4a), stalowy błękit (#2a4a6b), turkus (#00b4d8) | Newsreader Italic (nagłówki), Inter (body) | Gradient tła pogłębiający się ku dołowi. Śledzenie nastroju jako skala głębokości. Miękkie, duże border-radius na kartach. |
+**Definicja**
+Atmosphere = personalizacja wyglądu aplikacji (kolorystyka, fonty, border-radius, cienie).
+
+**Dostępne Atmosfery** (8 total, z `data/themes.ts`):
+
+| ID | Nazwa | Paleta | Status |
+|----|-------|--------|--------|
+| `cream-calm` | Cream Calm | Kremowy, beż, biel | ✓ MVP |
+| `green-forest` | Green Forest | Mech, szałwia, brąz | ✓ MVP |
+| `dark-ink` | Dark Ink | Granat, pergamin, złoto | ✓ MVP |
+| `soft-pink` | Soft Pink | Pudrowy róż, mglisty błękit, lawenda | ✓ MVP |
+| `silver-tech` | Silver Tech | Grafit, srebro, turkus | ✓ MVP |
+| `solar-flare` | Solar Flare | Pomarańcz, żółty, czerwień (intensywny) | ⚡ Stretch |
+| `desert-rose` | Desert Rose | Terakota, piasek, brudny róż, kakao | ⚡ Stretch |
+| `ocean-deep` | Ocean Deep | Granat, morska zieleń, stalowy błękit, turkus | ⚡ Stretch |
+
+**Nieimplementowane (z dokumentacji UX):**
+- `vintage-noir` — nie ma w kodzie
+
+**Implementacja:**
+- CSS custom properties w `index.css` z klasami `.atmosphere-{id}`
+- Wybór w Settings page (nie osobny picker w header)
+- Brak `AtmospherePicker.tsx` jako osobny komponent
 
 **Implementacja**
 
@@ -562,32 +492,17 @@ Zachowanie:
 > }
 > ```
 >
-> **Dostępne atmosfery:** Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech, Vintage Noir, Desert Rose, Ocean Deep
+> **Dostępne atmosfery:** Cream Calm, Green Forest, Dark Ink, Soft Pink, Silver Tech, Solar Flare, Desert Rose, Ocean Deep
 
 **UI Wyboru Atmosfery**
 ```
-Lokalizacja: Prawa góra, obok login/theme
-Ikona: 🎨 (palette)
-
-Po kliknięciu → Dropdown/Panel:
-┌─────────────────────────────┐
-│  🎨 Wybierz Atmosferę       │
-├─────────────────────────────┤
-│  🟠 Cream Calm              │
-│  🌿 Green Forest            │
-│  🖋️ Dark Ink                │
-│  🌸 Soft Pink               │
-│  ⚙️ Silver Tech             │
-│  🎭 Vintage Noir            │
-│  🏜️ Desert Rose             │
-│  🌊 Ocean Deep              │
-└─────────────────────────────┘
+Lokalizacja: Settings page → "Atmosphere" section (nie w Header)
+Brak osobnego AtmospherePicker.tsx — to prosty select/button group w Settings.
 
 Zachowanie:
-- Mini preview przy hover
-- Klik = natychmiastowa zmiana
-- Zapis w localStorage
-- Tylko dla zalogowanych (Premium feature option)
+- Klik = natychmiastowa zmiana (apply)
+- Zapis w localStorage (themeStore.atmosphere)
+- Dla wszystkich użytkowników (free i premium) — wszystkie 8 atmosfer dostępne
 ```
 
 ---
@@ -734,106 +649,178 @@ Backend:
 - Alternatywa: Firebase
 ```
 
-### 8.2 Struktura Komponentów
+### 8.2 Struktura Komponentów — aktualna implementacja
 
 ```
-src/
-├── components/
-│   ├── layout/
-│   │   ├── Sidebar.tsx
-│   │   ├── Header.tsx
-│   │   └── MainArea.tsx
-│   ├── emotion-wheel/
-│   │   ├── EmotionWheel.tsx
-│   │   ├── EmotionSegment.tsx
-│   │   └── EmotionDropdown.tsx
-│   ├── worksheet/
-│   │   ├── Worksheet.tsx
-│   │   ├── QuestionCard.tsx
-│   │   └── AnswerInput.tsx
-│   ├── calendar/
-│   │   ├── Calendar.tsx
-│   │   ├── CalendarDay.tsx
-│   │   └── DayDetail.tsx
-│   └── ui/
-│       ├── Button.tsx
-│       ├── IconButton.tsx
-│       ├── ThemeToggle.tsx
-│       ├── AtmospherePicker.tsx
-│       └── Modal.tsx
-├── hooks/
-│   ├── useTheme.ts
-│   ├── useAtmosphere.ts
-│   └── useAutoSave.ts
-├── stores/
-│   ├── appStore.ts
-│   └── userStore.ts
-└── styles/
-    └── globals.css (CSS variables)
+src/components/
+├── layout/
+│   ├── MainLayout.tsx           ← top navigation bar + outlet
+│   ├── AuthLayout.tsx
+│   ├── OnboardingLayout.tsx
+│   └── ProtectedRoute.tsx
+├── emotion-wheel/
+│   ├── EmotionWheel.tsx         ← SVG sectors, click → modal
+│   └── EmotionDetails.tsx       ← emotion info tooltip/popover
+├── journey/
+│   ├── JourneyCard.tsx          ← journey list item
+│   ├── JourneyProgress.tsx      ← progress indicator (7 days)
+│   └── DayView.tsx              ← full page: question + textarea + submit
+├── calendar/
+│   ├── MoodCalendar.tsx         ← monthly grid, day dots
+│   └── CalendarEntry.tsx       ← entry preview (inline)
+└── common/
+    ├── LoadingSpinner.tsx
+    └── EmptyState.tsx
+
+src/pages/
+├── Landing.tsx
+├── Intro.tsx
+├── HowItWorks.tsx
+├── Auth.tsx
+├── Onboarding.tsx
+├── Home.tsx
+├── Journeys.tsx
+├── Journey.tsx            ← journey overview + continue button
+├── DayView.tsx            ← day detail (full page)
+├── Session.tsx            ← emotion wheel only
+├── EmotionReflection.tsx  ← answer question (emotion-specific)
+├── QuickEntry.tsx         ← quick mood logging
+├── Calendar.tsx           ← calendar view
+├── History.tsx            ← list of entries
+└── Settings.tsx           ← theme/atmosphere toggle
+
+src/hooks/
+├── useAuth.ts
+├── useCalendar.ts
+├── useHomeStats.ts
+└── useHistory.ts
+
+src/stores/
+├── authStore.ts
+├── themeStore.ts
+├── journeyStore.ts         ← localStorage persist (completedDays)
+└── sessionStore.ts        ← entry deletion counter only
 ```
 
-### 8.3 Ścieżki (Routing)
+**Komponenty NIEZIMPLEMENTOWANE (z oryginalnego UX planu):**
+- `Sidebar.tsx` — nie istnieje, nawigacja w `MainLayout.tsx`
+- `Header.tsx` — nie istnieje
+- `EmotionNode.tsx` — nie istnieje (sektory w `EmotionWheel.tsx`)
+- `EmotionSegment.tsx` — nie istnieje
+- `EmotionDropdown.tsx` — nie istnieje
+- `Worksheet.tsx` — zastąpione przez `EmotionReflection.tsx`
+- `QuestionCard.tsx` — nie istnieje
+- `AnswerInput.tsx` — nie istnieje
+- `CalendarDay.tsx` — nie istnieje
+- `DayDetail.tsx` — zastąpione przez `DayView.tsx` (pełna strona, nie drawer)
+- `MainArea.tsx` — nie istnieje
 
+### 8.3 Ścieżki (Routing) — aktualnie zaimplementowane
+
+**Routes zaimplementowane w App.tsx:**
+
+| Route | Page | Opis |
+|-------|------|------|
+| `/` | Landing.tsx | Landing page (public) |
+| `/intro` | Intro.tsx | Intro/onboarding entry point |
+| `/how-it-works` | HowItWorks.tsx | Product explanation |
+| `/auth` | Auth.tsx | Login/Register |
+| `/onboarding` | Onboarding.tsx | Onboarding flow (protected) |
+| `/home` | Home.tsx | Dashboard (protected) |
+| `/journeys` | Journeys.tsx | Lista journey (protected) |
+| `/journey/:id` | Journey.tsx | Journey overview (protected) |
+| `/journey/:id/day/:dayNumber` | Journey.tsx | Specific journey day (protected) - renders DayView component |
+| `/session` | Session.tsx | Emotion picker → redirects to emotion-reflection |
+| `/emotion-reflection` | EmotionReflection.tsx | Reflection page (protected) |
+| `/quick-entry` | QuickEntry.tsx | Quick mood entry (protected) |
+| `/calendar` | Calendar.tsx | Mood calendar (protected) |
+| `/history` | History.tsx | Past entries (protected) |
+| `/settings` | Settings.tsx | User settings (protected) |
+
+**Routes z dokumentacji NIEZIMPLEMENTOWANE:**
+- `/worksheet` — nie istnieje (zastąpione przez `/emotion-reflection`)
+- `/worksheet/:sessionId` — nie istnieje
+- `/calendar/:date` — nie istnieje (kalendarz na jednej stronie)
+- `/settings/atmosphere` — nie istnieje (atmosfera wybierana w Settings page)
+- `/settings/theme` — nie istnieje (theme toggle w Settings page)
+- `/login`, `/register` — nie istnieją (połączone w `/auth`)
+- `/premium` — nie istnieje
+
+### 8.4 API Endpoints — aktualnie nie zaimplementowane
+
+Aplikacja używa Supabase client bezpośrednio (nie ma dedykowanych API routes). Wszystkie zapytania idą przez Supabase JS client z RLS.
+
+**Przykłady operacji (z `lib/database.ts`):**
+
+```typescript
+// Mood entry
+await supabase.from('calendar_entries').insert({
+  user_id: userId,
+  content,
+  emotion_id,
+  journey_id,      // optional
+  journey_day,     // optional
+});
+
+// Fetch month entries
+await supabase.from('mood_calendar')
+  .select('*, entries:calendar_entries(*)')
+  .eq('user_id', userId)
+  .gte('entry_date', startDate)
+  .lte('entry_date', endDate);
+
+// Delete
+await supabase.from('calendar_entries').delete().eq('id', entryId);
 ```
-/                       → Emotion Wheel (Home)
-/journeys               → Wybór journey
-/journeys/:id           → Konkretny journey
-/worksheet              → Arkusz refleksji
-/worksheet/:sessionId   → Sesja z ID
-/calendar               → Kalendarz nastrojów
-/calendar/:date         → Szczegóły dnia
-/history                → Historia wszystkich sesji
-/settings               → Ustawienia użytkownika
-/settings/atmosphere    → Wybór atmosfery
-/settings/theme         → Wybór theme
-/login                  → Logowanie
-/register               → Rejestracja
+
+**Nieistniejące endpointy z dokumentacji UX:**
+- `POST /api/reflections` — nie ma
+- `GET /api/reflections` — nie ma
+- `GET /api/calendar/:year/:month` — nie ma (użyj `getCalendarEntriesForMonth`)
+- `POST /api/journey/start` — nie ma
+- `POST /api/journey/:id/progress` — nie ma
+
+### 8.5 Struktura Bazy Danych — aktualna (Supabase)
+
+**Tabele używane w aplikacji:**
+
+```sql
+-- Journeys (static data, 6 rows)
+journeys (id, title, titleEn, subtitle, icon, is_active, display_order)
+
+-- Journey days (static, 7 per journey)
+journey_days (id, journey_id, day_number, question, question_en)
+
+-- User journeys progress — NOT USED (see notes)
+-- user_journey_progress exists but no code reads/writes it
+
+-- Mood calendar entries (mood_calendar + calendar_entries)
+mood_calendar (id, user_id, entry_date, primary_emotion_id)
+calendar_entries (id, calendar_id, user_id, content, emotion_id, journey_id, journey_day, source_type)
+
+-- Emotions (static data)
+emotions (id, name, nameEn, spectrum, parentId, wheelPos, color)
+
+-- User profiles
+profiles (id, email, timezone, created_at)
+
+-- User settings (optional)
+user_settings (id, user_id, theme, atmosphere, ...)
+
+-- User responses — NOT USED (replaced by calendar_entries)
+-- user_responses exists but no code uses it
+
+-- User mood checkins — NOT USED
+-- user_mood_checkins exists but no code uses it
 ```
 
-### 8.4 API Endpoints
+**Relacje:**
+- journeys (1) → journey_days (N)
+- mood_calendar (1) → calendar_entries (N)
+- users (1) → mood_calendar (N)
+- emotions (1) → mood_calendar/calendar_entries (N)
 
-```
-POST /api/reflections
-  - Tworzenie nowej refleksji
-  - Body: { emotionId, questionId, answer, atmosphere, theme }
-
-GET /api/reflections
-  - Pobranie wszystkich refleksji użytkownika
-
-GET /api/reflections/:id
-  - Pobranie pojedynczej refleksji
-
-PUT /api/reflections/:id
-  - Aktualizacja refleksji
-
-DELETE /api/reflections/:id
-  - Usunięcie refleksji
-
-GET /api/calendar/:year/:month
-  - Pobranie wpisów kalendarzowych dla miesiąca
-
-POST /api/journey/start
-  - Rozpoczęcie nowego journey
-
-POST /api/journey/:id/progress
-  - Zapis postępu w journey
-```
-
-### 8.5 Struktura Bazy Danych
-
-```
-collections:
-  - users/
-    - {userId}/
-      - profile: { email, displayName, createdAt }
-      - settings: { theme, atmosphere, language }
-      - reflections/
-        - {reflectionId}: { emotionId, questionId, answer, createdAt }
-      - journeys/
-        - {journeyId}: { journeyType, currentDay, status, startedAt }
-      - calendar/
-        - {date}: { dominantEmotion, entries[] }
-```
+**Important:** Journey progress is calculated from `calendar_entries` (WHERE `journey_id` IS NOT NULL), NOT from `user_journey_progress`. That table is currently unused.
 
 ### 8.6 Environment Variables
 

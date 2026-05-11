@@ -551,6 +551,7 @@ System może generować automatyczne statystyki oparte na danych:
 - [ ] Eksport statystyk (PDF)
 - [ ] Porównanie z poprzednimi miesiącami
 - [ ] AI-powered insights
+- [ ] Pełna historia kalendarza (dostęp do wpisów ze wszystkich miesięcy)
 
 ---
 

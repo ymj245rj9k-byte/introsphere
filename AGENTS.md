@@ -6,13 +6,13 @@
 |---------|-------------|
 | Framework | React 18 + Vite |
 | Styling | Tailwind CSS + Shadcn UI |
-| State | Zustand + React Context |
+| State | Zustand |
 | Backend | Supabase (PostgreSQL + Auth) |
 | Routing | React Router v6 |
 | Język | TypeScript |
 | Hosting | Vercel |
 
-Referencje: `docs/technical-architecture.md`, `docs/project-description.md`
+Referencje: `docs/architecture/technical.md`, `docs/business/project-description.md`
 
 ---
 
@@ -23,61 +23,67 @@ app/
 ├── src/
 │   ├── components/           # Komponenty UI
 │   │   ├── ui/               # Shadcn base (button, card, input, dialog...)
-│   │   ├── layout/           # MainLayout, AuthLayout, OnboardingLayout
-│   │   ├── emotion-wheel/    # EmotionWheel, EmotionNode, EmotionDetails
-│   │   ├── journey/          # JourneyCard, JourneyProgress, DayQuestion
-│   │   ├── calendar/        # MoodCalendar, CalendarDay, CalendarEntry
-│   │   └── common/          # LoadingSpinner, EmptyState
+│   │   ├── layout/           # MainLayout, AuthLayout, OnboardingLayout, ProtectedRoute
+│   │   ├── emotion-wheel/    # EmotionWheel, EmotionDetails
+│   │   ├── journey/          # JourneyCard, JourneyProgress, DayView
+│   │   ├── calendar/         # MoodCalendar, CalendarEntry
+│   │   └── common/           # LoadingSpinner, EmptyState
 │   │
 │   ├── pages/               # Page components (routes)
-│   │   ├── Landing.tsx      # /
-│   │   ├── Onboarding.tsx   # /onboarding
-│   │   ├── Home.tsx        # /home
-│   │   ├── Journey.tsx     # /journey/:id
-│   │   ├── Session.tsx     # /session
-│   │   ├── Calendar.tsx    # /calendar
-│   │   ├── History.tsx     # /history
-│   │   ├── Settings.tsx     # /settings
-│   │   └── Auth.tsx        # /auth
+│   │   ├── Landing.tsx       # /
+│   │   ├── Intro.tsx         # /intro
+│   │   ├── HowItWorks.tsx    # /how-it-works
+│   │   ├── Auth.tsx          # /auth
+│   │   ├── Onboarding.tsx    # /onboarding
+│   │   ├── Home.tsx          # /home
+│   │   ├── Journeys.tsx      # /journeys
+│   │   ├── Journey.tsx       # /journey/:id  +  /journey/:id/day/:dayNumber
+│   │   ├── Session.tsx       # /session
+│   │   ├── EmotionReflection.tsx # /emotion-reflection
+│   │   ├── QuickEntry.tsx    # /quick-entry
+│   │   ├── Calendar.tsx      # /calendar
+│   │   ├── History.tsx       # /history
+│   │   └── Settings.tsx      # /settings
 │   │
 │   ├── lib/                 # Narzędzia core
-│   │   ├── supabase.ts     # Supabase client
-│   │   ├── auth.ts        # Auth helpers
-│   │   ├── database.ts   # Type-safe DB queries
-│   │   └── utils.ts      # Utilities
+│   │   ├── supabase.ts      # Supabase client
+│   │   ├── database.ts      # DB queries (saveMoodEntry, getCalendarEntries, deleteEntry…)
+│   │   └── utils.ts         # Utilities (cn helper)
 │   │
 │   ├── hooks/              # Custom React hooks
-│   │   ├── useAuth.ts
-│   │   ├── useJourney.ts
-│   │   ├── useCalendar.ts
-│   │   ├── useEmotions.ts
-│   │   └── useSession.ts
+│   │   ├── useAuth.ts      # Inicjalizacja sesji, listener zmian auth
+│   │   ├── useCalendar.ts  # Pobieranie wpisów dla miesiąca
+│   │   ├── useHomeStats.ts # Statystyki dla strony głównej
+│   │   └── useHistory.ts   # Pobieranie wpisów z filtrowaniem
 │   │
 │   ├── stores/             # Zustand stores
-│   │   ├── authStore.ts
-│   │   ├── themeStore.ts
-│   │   └── sessionStore.ts
+│   │   ├── authStore.ts    # user, session, signIn/signUp/signOut (persist)
+│   │   ├── themeStore.ts   # atmosphere, isDark (persist)
+│   │   ├── journeyStore.ts # completedDays map + syncFromDatabase (persist)
+│   │   └── sessionStore.ts # entryDeletedCount (trigger refetch)
 │   │
 │   ├── types/              # TypeScript definitions
-│   │   ├── database.ts
+│   │   ├── database.ts     # Ręczne typy tabel Supabase
 │   │   ├── journey.ts
 │   │   ├── emotion.ts
-│   │   └── index.ts
+│   │   ├── question.ts
+│   │   ├── user.ts
+│   │   └── reflection.ts
 │   │
-│   ├── data/              # Static data (MVP)
-│   │   ├── journeys.ts
-│   │   ├── emotions.ts
-│   │   ├── questions.ts
-│   │   └── themes.ts
+│   ├── data/              # Static data
+│   │   ├── journeys.ts    # 6 journeys × 7 dni
+│   │   ├── emotions.ts    # 8 L3 + 16 L2/L1 + utility functions
+│   │   ├── themes.ts      # 8 atmosphere themes
+│   │   └── questions.ts   # (nieużywane)
 │   │
 │   ├── constants/        # Stałe aplikacji
-│   │   ├── routes.ts
+│   │   ├── routes.ts     # ROUTES object
 │   │   ├── config.ts
 │   │   └── index.ts
 │   │
 │   ├── App.tsx            # Root component + routing
 │   ├── main.tsx           # Entry point
-│   └── index.css         # Global styles + Tailwind
+│   └── index.css         # Global styles + Tailwind + atmosphere CSS variables
 ```
 
 ---
@@ -138,22 +144,25 @@ interface BadEmotion {
 // ✅ Funkcyjny component z TypeScript
 interface EmotionWheelProps {
   onSelect: (emotion: Emotion) => void;
-  selectedId?: string;
+  size?: number;
 }
 
-export function EmotionWheel({ onSelect, selectedId }: EmotionWheelProps) {
-  const emotions = useEmotions();
+export function EmotionWheel({ onSelect, size = 480 }: EmotionWheelProps) {
+  const [selectedEmotion, setSelectedEmotion] = useState<Emotion | null>(null);
+  // Emocje importowane bezpośrednio z data/emotions.ts
   
   return (
     <div className="emotion-wheel">
-      {emotions.map((emotion) => (
-        <EmotionNode
-          key={emotion.id}
-          emotion={emotion}
-          isSelected={emotion.id === selectedId}
-          onClick={() => onSelect(emotion)}
+      <svg width={size} height={size}>
+        {/* 8 sektorów SVG renderowanych bezpośrednio w komponencie */}
+      </svg>
+      {selectedEmotion && (
+        <EmotionDetails
+          emotion={selectedEmotion}
+          onSelect={onSelect}
+          onClose={() => setSelectedEmotion(null)}
         />
-      ))}
+      )}
     </div>
   );
 }
@@ -194,31 +203,25 @@ export function useJourney(journeyId: string) {
 
 ```typescript
 // ✅ Konwencja store
-interface SessionStore {
-  currentMood: Emotion | null;
-  currentJourneyId: string | null;
-  currentDay: number;
-  currentQuestion: Question | null;
-  responseText: string;
-  
-  selectMood: (emotion: Emotion) => void;
-  startJourney: (journeyId: string) => void;
-  nextDay: () => void;
-  reset: () => void;
+interface JourneyStore {
+  completedDays: Record<string, number[]>;
+  setCompletedDays: (journeyId: string, dayNumber: number) => void;
+  getCompletedDays: (journeyId: string) => number[];
+  resetJourney: (journeyId: string) => void;
+  getCurrentDay: (journeyId: string) => number;
+  syncFromDatabase: () => Promise<void>;
 }
 
-export const useSessionStore = create<SessionStore>((set) => ({
-  currentMood: null,
-  currentJourneyId: null,
-  currentDay: 1,
-  currentQuestion: null,
-  responseText: '',
-  
-  selectMood: (emotion) => set({ currentMood: emotion }),
-  startJourney: (journeyId) => set({ currentJourneyId: journeyId, currentDay: 1 }),
-  nextDay: () => set((state) => ({ currentDay: state.currentDay + 1 })),
-  reset: () => set({ currentMood: null, currentJourneyId: null, currentDay: 1, currentQuestion: null, responseText: '' }),
-}));
+export const useJourneyStore = create<JourneyStore>()(
+  persist((set, get) => ({
+    completedDays: {},
+    setCompletedDays: (journeyId, dayNumber) => { /* dodaje do mapy */ },
+    getCompletedDays: (journeyId) => get().completedDays[journeyId] || [],
+    resetJourney: (journeyId) => { /* usuwa z mapy */ },
+    getCurrentDay: (journeyId) => { /* max(completedDays[journeyId]) + 1 */ },
+    syncFromDatabase: async () => { /* pobiera z calendar_entries */ },
+  }), { name: 'journey-completed-days' })
+);
 ```
 
 ---
@@ -265,18 +268,15 @@ try {
 
 ## Referencje Dokumentacji
 
-- Stack i architektura: `docs/technical-architecture.md`
-- Opis projektu: `docs/project-description.md`
-- UI/UX: `docs/ui-ux-*.md`
-- Baza danych: `docs/database-schema.md`
-- Journeys: `docs/journeys.md`
-- Emocje: `docs/emotions-structure.md`
+- Stack i architektura: `docs/architecture/technical.md`
+- Opis projektu: `docs/business/project-description.md`
+- UI/UX: `docs/ux_ui.md`
+- Architektura systemu: `docs/architecture/system_overview.md`
+- Zaimplementowane funkcje: `docs/implemented_features.md`
 
 ---
 
 ## Dalsze Reguły
 
 Szczegółowe reguły implementacyjne znajdują się w:
-- `.kilocode/` – workflow i dodatkowe reguły specyficzne dla feature'ów
-- `.kilocode/workflows/` – automatyzacje
-- `.kilocode/commands/` – komendy CLI
+- `.kilo/` – workflow i dodatkowe reguły specyficzne dla feature'ów
